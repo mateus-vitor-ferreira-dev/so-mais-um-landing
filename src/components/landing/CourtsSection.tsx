@@ -16,7 +16,7 @@ const sports = [
   { icon: '🏐', name: 'Vôlei',             desc: 'Quadra de vôlei indoor',             color: 'from-yellow-500 to-yellow-700', from: { x: 0, y: 80 } },
   { icon: '🌊', name: 'Vôlei de Areia',    desc: 'Quadra de vôlei de areia',           color: 'from-cyan-500 to-cyan-700',     from: { x: 100, y: 0 } },
   { icon: '🤾', name: 'Handebol',          desc: 'Quadra de handebol',                 color: 'from-red-500 to-red-700',       from: { x: -100, y: 0 } },
-  { icon: '🏸', name: 'Peteca',            desc: 'Quadra de peteca',                   color: 'from-pink-500 to-pink-700',     from: { x: 0, y: -80 } },
+  { icon: '🖐️', name: 'Peteca',            desc: 'Quadra de peteca',                   color: 'from-pink-500 to-pink-700',     from: { x: 0, y: -80 } },
   { icon: '🎾', name: 'Beach Tennis',      desc: 'Quadra de beach tennis',             color: 'from-lime-500 to-lime-700',     from: { x: 100, y: 0 } },
   { icon: '🏀', name: 'Basquete',          desc: 'Quadra de basquete',                 color: 'from-orange-600 to-red-700',    from: { x: -100, y: 0 } },
   { icon: '🎾', name: 'Tênis',             desc: 'Quadra de tênis',                    color: 'from-purple-500 to-purple-700', from: { x: 0, y: 80 } },
