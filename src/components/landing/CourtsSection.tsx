@@ -7,55 +7,19 @@ import { Badge } from '@/components/ui/badge'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Espelha o enum CourtType do backend (src/constants/sports.js)
 const sports = [
-  {
-    icon: '⚽',
-    name: 'Futebol',
-    desc: 'Campo society ou gramado. Do racha ao torneio.',
-    players: '10-22 jogadores',
-    color: 'from-green-600 to-green-800',
-    from: { x: -100, y: 0 },
-  },
-  {
-    icon: '🥅',
-    name: 'Futsal',
-    desc: 'Quadra coberta, ritmo intenso e muita habilidade.',
-    players: '8-10 jogadores',
-    color: 'from-blue-600 to-blue-800',
-    from: { x: 0, y: -80 },
-  },
-  {
-    icon: '🏖️',
-    name: 'Beach Soccer',
-    desc: 'Areia, sol e gols de voleio. Verão o ano todo.',
-    players: '6-10 jogadores',
-    color: 'from-orange-500 to-orange-700',
-    from: { x: 100, y: 0 },
-  },
-  {
-    icon: '🏐',
-    name: 'Vôlei de Praia',
-    desc: 'Duplas ou quatro para uma disputa na areia.',
-    players: '2-4 jogadores',
-    color: 'from-yellow-500 to-yellow-700',
-    from: { x: -100, y: 0 },
-  },
-  {
-    icon: '🏀',
-    name: 'Basquete',
-    desc: 'Quadra aberta ou coberta, 3x3 ou 5x5.',
-    players: '6-10 jogadores',
-    color: 'from-red-500 to-red-700',
-    from: { x: 0, y: 80 },
-  },
-  {
-    icon: '🎾',
-    name: 'Tênis / Padel',
-    desc: 'Singles ou duplas. Reserve sua quadra agora.',
-    players: '2-4 jogadores',
-    color: 'from-purple-500 to-purple-700',
-    from: { x: 100, y: 0 },
-  },
+  { icon: '⚽', name: 'Society',           desc: 'Campo society — grama sintética',   color: 'from-green-600 to-green-800',   from: { x: -100, y: 0 } },
+  { icon: '🏟️', name: 'Futebol de Campo',  desc: 'Campo convencional',                color: 'from-emerald-600 to-emerald-800', from: { x: 0, y: -80 } },
+  { icon: '👟', name: 'Futsal',            desc: 'Quadra de futsal coberta',           color: 'from-blue-600 to-blue-800',     from: { x: 100, y: 0 } },
+  { icon: '🏖️', name: 'Futevôlei',         desc: 'Quadra de areia',                   color: 'from-orange-500 to-orange-700', from: { x: -100, y: 0 } },
+  { icon: '🏐', name: 'Vôlei',             desc: 'Quadra de vôlei indoor',             color: 'from-yellow-500 to-yellow-700', from: { x: 0, y: 80 } },
+  { icon: '🌊', name: 'Vôlei de Areia',    desc: 'Quadra de vôlei de areia',           color: 'from-cyan-500 to-cyan-700',     from: { x: 100, y: 0 } },
+  { icon: '🤾', name: 'Handebol',          desc: 'Quadra de handebol',                 color: 'from-red-500 to-red-700',       from: { x: -100, y: 0 } },
+  { icon: '🏸', name: 'Peteca',            desc: 'Quadra de peteca',                   color: 'from-pink-500 to-pink-700',     from: { x: 0, y: -80 } },
+  { icon: '🎾', name: 'Beach Tennis',      desc: 'Quadra de beach tennis',             color: 'from-lime-500 to-lime-700',     from: { x: 100, y: 0 } },
+  { icon: '🏀', name: 'Basquete',          desc: 'Quadra de basquete',                 color: 'from-orange-600 to-red-700',    from: { x: -100, y: 0 } },
+  { icon: '🎾', name: 'Tênis',             desc: 'Quadra de tênis',                    color: 'from-purple-500 to-purple-700', from: { x: 0, y: 80 } },
 ]
 
 export default function CourtsSection() {
@@ -171,12 +135,9 @@ export default function CourtsSection() {
               <div className={`absolute inset-0 bg-gradient-to-br ${sport.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl`} />
 
               <div className="relative z-10">
-                <div className="flex items-start justify-between mb-4">
+                <div className="mb-4">
                   <span className="text-4xl group-hover:scale-110 transition-transform duration-300 inline-block">
                     {sport.icon}
-                  </span>
-                  <span className="text-xs text-gray-500 bg-gray-800 border border-white/5 rounded-full px-3 py-1">
-                    {sport.players}
                   </span>
                 </div>
                 <h3 className="text-xl font-bold text-white mb-2">{sport.name}</h3>

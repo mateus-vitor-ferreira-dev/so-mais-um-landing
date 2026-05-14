@@ -137,10 +137,10 @@ export default function HeroSection() {
             </div>
             {/* Orbit badges */}
             <div className="absolute -top-4 -right-4 bg-gray-900 border border-green-500/30 rounded-2xl px-4 py-2 text-white text-sm font-semibold shadow-xl">
-              🏆 500+ jogadores
+              🏅 11 modalidades
             </div>
             <div className="absolute -bottom-4 -left-4 bg-gray-900 border border-green-500/30 rounded-2xl px-4 py-2 text-white text-sm font-semibold shadow-xl">
-              📍 50+ espaços
+              🆓 100% gratuito
             </div>
           </div>
         </div>
