@@ -1,10 +1,13 @@
-# FutMatch — Landing Page
+# ⚽ FutMatch — Landing Page
 
 Landing page da plataforma **FutMatch**: organize peladas, encontre quadras e monte seu time em um único lugar.
 
+**Deploy:** https://futmatch-landing.vercel.app  
+**App principal:** https://futmatch-web.vercel.app
+
 ## Stack
 
-- **Next.js 16** (App Router) com **React 19**
+- **Next.js 15** (App Router) com **React 19**
 - **TypeScript**
 - **Tailwind CSS v4**
 - **GSAP 3** — animações de entrada (ScrollTrigger no desktop, IntersectionObserver no mobile)
@@ -53,6 +56,15 @@ npm run lint    # ESLint
 
 ## Deploy
 
-O projeto está configurado para deploy na **Vercel**. Qualquer push para `main` aciona um deploy automático.
+Configurado para deploy automático na **Vercel**. Qualquer push para `main` aciona um deploy.
 
-App principal: [futmatch-web.vercel.app](https://futmatch-web.vercel.app)
+## Seções da landing
+
+1. **Navbar** — logo, CTA "Entrar no app"
+2. **Hero** — headline, subtítulo, CTA principal + animação GSAP
+3. **Stats** — estatísticas da plataforma (peladas, quadras, jogadores)
+4. **Features** — 6 funcionalidades principais em cards
+5. **How It Works** — passo a passo em 3 etapas
+6. **Courts** — as 11 modalidades suportadas
+7. **CTA** — chamada final para cadastro
+8. **Footer** — links e créditos
