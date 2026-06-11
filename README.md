@@ -1,9 +1,12 @@
 # ⚽ FutMatch — Landing Page
 
+![CI](https://github.com/mateus-vitor-ferreira-dev/futmatch-landing/actions/workflows/ci-cd.yml/badge.svg)
+
 Landing page da plataforma **FutMatch**: organize peladas, encontre quadras e monte seu time em um único lugar.
 
-**Deploy:** https://futmatch-landing.vercel.app  
-**App principal:** https://futmatch-web.vercel.app
+**Landing:** https://futmatch-landing.vercel.app  
+**App:** https://futmatch-web.vercel.app  
+**API:** https://futmatch-api-production.up.railway.app
 
 ## Stack
 
