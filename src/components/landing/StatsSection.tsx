@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const highlights = [
   { value: '26+', label: 'Arenas parceiras em Lavras', icon: '🏟️' },
-  { value: '12',  label: 'Modalidades suportadas',     icon: '🏅' },
+  { value: '12',  label: 'Modalidades esportivas',       icon: '🏅' },
   { value: '100%', label: 'Gratuito para jogadores',   icon: '🆓' },
 ]
 

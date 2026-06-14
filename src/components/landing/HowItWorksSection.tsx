@@ -63,17 +63,22 @@ export default function HowItWorksSection() {
           scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
         })
       }
-      gsap.from('.step-card', {
-        y: 50,
-        opacity: 0,
+      const stepCards = sectionRef.current?.querySelectorAll('.step-card')
+      const hiwTitle = sectionRef.current?.querySelector('.hiw-title')
+      if (stepCards?.length) gsap.set(Array.from(stepCards), { autoAlpha: 0, y: 50 })
+      if (hiwTitle) gsap.set(hiwTitle, { autoAlpha: 0, y: 30 })
+
+      if (stepCards?.length) gsap.to(Array.from(stepCards), {
+        autoAlpha: 1,
+        y: 0,
         duration: 0.7,
         stagger: 0.2,
         ease: 'back.out(1.4)',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
       })
-      gsap.from('.hiw-title', {
-        y: 30,
-        opacity: 0,
+      if (hiwTitle) gsap.to(hiwTitle, {
+        autoAlpha: 1,
+        y: 0,
         duration: 0.7,
         ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },

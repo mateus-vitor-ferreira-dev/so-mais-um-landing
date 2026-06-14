@@ -166,7 +166,7 @@ export default function HeroSection() {
             </div>
             <div className="absolute top-1/2 -translate-y-1/2 -right-12 bg-gray-800 border border-white/10 rounded-2xl px-3 py-2 shadow-xl flex items-center gap-2">
               <Users size={14} className="text-blue-400" />
-              <span className="text-white text-xs font-semibold">11 modalidades</span>
+              <span className="text-white text-xs font-semibold">12 modalidades</span>
             </div>
           </div>
         </div>

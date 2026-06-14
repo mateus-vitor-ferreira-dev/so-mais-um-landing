@@ -5,14 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
-import {
-  Search,
-  Shuffle,
-  Star,
-  Zap,
-  Trophy,
-  BarChart2,
-} from 'lucide-react'
+import { Search, Shuffle, Star, Zap, Trophy, BarChart2 } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -26,7 +19,6 @@ const features = [
     color: 'text-green-400',
     bg: 'bg-green-500/10',
     border: 'border-green-500/20',
-    glow: 'group-hover:shadow-green-500/10',
   },
   {
     Icon: Shuffle,
@@ -37,7 +29,6 @@ const features = [
     color: 'text-blue-400',
     bg: 'bg-blue-500/10',
     border: 'border-blue-500/20',
-    glow: 'group-hover:shadow-blue-500/10',
   },
   {
     Icon: Star,
@@ -48,7 +39,6 @@ const features = [
     color: 'text-yellow-400',
     bg: 'bg-yellow-500/10',
     border: 'border-yellow-500/20',
-    glow: 'group-hover:shadow-yellow-500/10',
   },
   {
     Icon: Zap,
@@ -59,7 +49,6 @@ const features = [
     color: 'text-orange-400',
     bg: 'bg-orange-500/10',
     border: 'border-orange-500/20',
-    glow: 'group-hover:shadow-orange-500/10',
   },
   {
     Icon: Trophy,
@@ -70,7 +59,6 @@ const features = [
     color: 'text-purple-400',
     bg: 'bg-purple-500/10',
     border: 'border-purple-500/20',
-    glow: 'group-hover:shadow-purple-500/10',
   },
   {
     Icon: BarChart2,
@@ -81,7 +69,6 @@ const features = [
     color: 'text-cyan-400',
     bg: 'bg-cyan-500/10',
     border: 'border-cyan-500/20',
-    glow: 'group-hover:shadow-cyan-500/10',
   },
 ]
 
@@ -91,21 +78,27 @@ export default function FeaturesSection() {
   useEffect(() => {
     if (window.matchMedia('(max-width: 767px)').matches) return
 
+    const cards = sectionRef.current?.querySelectorAll('.feature-card')
+    const title = sectionRef.current?.querySelector('.features-title')
+
+    if (title) gsap.set(title, { autoAlpha: 0, y: 30 })
+    if (cards) gsap.set(cards, { autoAlpha: 0, y: 60 })
+
     const ctx = gsap.context(() => {
-      gsap.from('.features-title', {
-        y: 30,
-        opacity: 0,
+      if (title) gsap.to(title, {
+        autoAlpha: 1,
+        y: 0,
         duration: 0.7,
         ease: 'power3.out',
         scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
       })
-      gsap.from('.feature-card', {
-        y: 60,
-        opacity: 0,
+      if (cards?.length) gsap.to(Array.from(cards), {
+        autoAlpha: 1,
+        y: 0,
         duration: 0.7,
         stagger: 0.1,
         ease: 'power3.out',
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', once: true },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top 75%', once: true },
       })
     }, sectionRef)
 
@@ -132,7 +125,7 @@ export default function FeaturesSection() {
           {features.map((feat, i) => (
             <div
               key={i}
-              className={`feature-card group relative bg-gray-900/60 border border-white/5 hover:border-white/10 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${feat.glow} overflow-hidden`}
+              className="feature-card group relative bg-gray-900/60 border border-white/5 hover:border-white/10 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-white/[0.02] pointer-events-none" />
 
@@ -146,8 +139,6 @@ export default function FeaturesSection() {
 
               <h3 className="text-base font-bold text-white mb-2">{feat.title}</h3>
               <p className="text-gray-500 leading-relaxed text-sm">{feat.description}</p>
-
-              <div className={`absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-current to-transparent ${feat.color} opacity-0 group-hover:opacity-30 transition-opacity duration-300`} />
             </div>
           ))}
         </div>
