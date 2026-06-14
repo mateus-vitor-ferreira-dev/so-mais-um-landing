@@ -5,27 +5,43 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { UserPlus, Search, Star } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const steps = [
   {
     number: '01',
-    icon: '📲',
+    Icon: UserPlus,
     title: 'Crie sua conta',
-    description: 'Cadastre-se em segundos com e-mail/senha ou Google. Sem formulário longo, sem burocracia.',
+    description:
+      'Cadastre-se em segundos com e-mail/senha ou Google. Sem formulário longo, sem burocracia.',
+    color: 'text-green-400',
+    bg: 'bg-green-500/10',
+    border: 'border-green-500/20',
+    glow: 'shadow-green-500/20',
   },
   {
     number: '02',
-    icon: '🔍',
+    Icon: Search,
     title: 'Encontre ou crie uma pelada',
-    description: 'Filtre por modalidade e cidade ou monte sua própria partida vinculada a uma quadra específica.',
+    description:
+      'Filtre por modalidade e cidade ou monte sua própria partida vinculada a uma quadra específica.',
+    color: 'text-blue-400',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20',
+    glow: 'shadow-blue-500/20',
   },
   {
     number: '03',
-    icon: '🥅',
+    Icon: Star,
     title: 'Jogue e avalie',
-    description: 'Confirme presença, sorteie os times na hora e avalie os jogadores após a pelada. Sua reputação cresce.',
+    description:
+      'Confirme presença, sorteie os times na hora e avalie os jogadores após a pelada. Sua reputação cresce.',
+    color: 'text-yellow-400',
+    bg: 'bg-yellow-500/10',
+    border: 'border-yellow-500/20',
+    glow: 'shadow-yellow-500/20',
   },
 ]
 
@@ -68,44 +84,51 @@ export default function HowItWorksSection() {
   }, [])
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="bg-gray-50 py-12 md:py-24">
+    <section id="how-it-works" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="hiw-title text-center mb-10 md:mb-20">
-          <Badge className="mb-4">Como funciona</Badge>
-          <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          <Badge variant="dark" className="mb-4">Como funciona</Badge>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Três passos para a{' '}
-            <span className="text-green-500">próxima pelada</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
+              próxima pelada
+            </span>
           </h2>
-          <p className="text-gray-500 text-lg max-w-xl mx-auto">
+          <p className="text-gray-400 text-lg max-w-xl mx-auto">
             Simples, rápido e sem complicação. Como deve ser.
           </p>
         </div>
 
         <div className="relative">
-          <div className="hidden md:block absolute top-16 left-0 right-0 px-32">
+          <div className="hidden md:block absolute top-14 left-0 right-0 px-36">
             <svg className="w-full" height="4" viewBox="0 0 800 4" preserveAspectRatio="none">
               <line
                 ref={lineRef}
                 x1="0" y1="2" x2="800" y2="2"
                 stroke="#22c55e"
-                strokeWidth="2"
+                strokeWidth="1.5"
                 strokeDasharray="8 6"
+                opacity="0.4"
               />
             </svg>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {steps.map((step, i) => (
-              <div key={i} className="step-card flex flex-col items-center text-center">
-                <div className="relative mb-6">
-                  <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-green-500/30 relative z-10">
-                    {step.number}
+              <div key={i} className="step-card group flex flex-col items-center text-center">
+                {/* Step badge */}
+                <div className="relative mb-8">
+                  <div className={`w-28 h-28 rounded-2xl bg-gray-800/80 border border-white/10 flex flex-col items-center justify-center gap-2 shadow-xl ${step.glow} group-hover:border-white/20 transition-all duration-300 group-hover:-translate-y-1`}>
+                    <span className={`text-xs font-bold tracking-widest ${step.color} opacity-60`}>{step.number}</span>
+                    <div className={`w-12 h-12 rounded-xl ${step.bg} border ${step.border} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <step.Icon size={22} className={step.color} />
+                    </div>
                   </div>
-                  <div className="absolute inset-0 rounded-full bg-green-400 blur-md opacity-40 scale-110" />
+                  <div className={`absolute inset-0 rounded-2xl blur-xl ${step.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10`} />
                 </div>
-                <div className="text-4xl mb-4">{step.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{step.description}</p>
+
+                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+                <p className="text-gray-500 leading-relaxed max-w-xs">{step.description}</p>
               </div>
             ))}
           </div>

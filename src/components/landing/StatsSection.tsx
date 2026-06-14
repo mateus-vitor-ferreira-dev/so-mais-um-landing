@@ -8,9 +8,9 @@ import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
 gsap.registerPlugin(ScrollTrigger)
 
 const highlights = [
-  { value: '11', label: 'modalidades esportivas', icon: '🏅' },
-  { value: '100%', label: 'Gratuito para jogadores', icon: '🆓' },
-  { value: '24h', label: 'Disponível a qualquer hora', icon: '⏱️' },
+  { value: '26+', label: 'Arenas parceiras em Lavras', icon: '🏟️' },
+  { value: '12',  label: 'Modalidades suportadas',     icon: '🏅' },
+  { value: '100%', label: 'Gratuito para jogadores',   icon: '🆓' },
 ]
 
 export default function StatsSection() {
@@ -34,18 +34,23 @@ export default function StatsSection() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-gray-900 py-8 md:py-16">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section ref={sectionRef} className="relative bg-gray-950 py-8 md:py-14 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(34,197,94,0.04),transparent)]" />
+
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {highlights.map((item, i) => (
             <div
               key={i}
-              className="stat-card bg-gray-800/50 border border-white/5 rounded-2xl p-8 flex items-center gap-6"
+              className="stat-card group relative bg-gray-900/60 border border-white/5 hover:border-green-500/20 rounded-2xl p-8 flex items-center gap-6 transition-all duration-300 overflow-hidden"
             >
-              <span className="text-4xl">{item.icon}</span>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/0 to-green-500/[0.03] pointer-events-none" />
+              <span className="text-4xl group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
               <div>
-                <div className="text-4xl font-black text-green-400">{item.value}</div>
-                <p className="text-gray-400 text-sm mt-1">{item.label}</p>
+                <div className="text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
+                  {item.value}
+                </div>
+                <p className="text-gray-500 text-sm mt-1">{item.label}</p>
               </div>
             </div>
           ))}
