@@ -9,14 +9,19 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'FutMatch — Organizar sua pelada nunca foi tão fácil',
+  title: 'Só+1 — Organizar sua pelada nunca foi tão fácil',
   description:
-    'Conecte jogadores, reserve quadras e gerencie partidas em um único lugar. Do racha da várzea ao torneio organizado.',
-  keywords: ['pelada', 'futebol', 'quadras', 'esportes', 'organização de partidas'],
+    'Conecte jogadores, reserve quadras e gerencie partidas em um único lugar. Do racha da várzea ao torneio organizado. Gratuito para sempre.',
+  keywords: ['pelada', 'futebol', 'quadras', 'esportes', 'organização de partidas', 'sorteio de times', 'futsal', 'beach tennis'],
   openGraph: {
-    title: 'FutMatch — Organizar sua pelada nunca foi tão fácil',
-    description: 'Plataforma gratuita para organizar peladas e reservar quadras esportivas.',
+    title: 'Só+1 — Organizar sua pelada nunca foi tão fácil',
+    description: 'Plataforma gratuita para organizar peladas, sortear times e avaliar jogadores.',
     type: 'website',
+    url: 'https://so-mais-um.com',
+  },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/icon.svg',
   },
 }
 

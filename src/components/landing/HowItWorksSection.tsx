@@ -3,7 +3,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
 
@@ -14,19 +13,19 @@ const steps = [
     number: '01',
     icon: '📲',
     title: 'Crie sua conta',
-    description: 'Cadastre-se em segundos com e-mail ou Google. Sem burocracia.',
+    description: 'Cadastre-se em segundos com e-mail/senha ou Google. Sem formulário longo, sem burocracia.',
   },
   {
     number: '02',
     icon: '🔍',
     title: 'Encontre ou crie uma pelada',
-    description: 'Descubra partidas abertas perto de você ou monte a sua própria do zero.',
+    description: 'Filtre por modalidade e cidade ou monte sua própria partida vinculada a uma quadra específica.',
   },
   {
     number: '03',
     icon: '🥅',
-    title: 'Jogue!',
-    description: 'Confirme presença, saiba onde jogar e apareça. O resto é com a bola.',
+    title: 'Jogue e avalie',
+    description: 'Confirme presença, sorteie os times na hora e avalie os jogadores após a pelada. Sua reputação cresce.',
   },
 ]
 
@@ -83,7 +82,6 @@ export default function HowItWorksSection() {
         </div>
 
         <div className="relative">
-          {/* Connecting line — desktop only */}
           <div className="hidden md:block absolute top-16 left-0 right-0 px-32">
             <svg className="w-full" height="4" viewBox="0 0 800 4" preserveAspectRatio="none">
               <line
@@ -99,14 +97,12 @@ export default function HowItWorksSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {steps.map((step, i) => (
               <div key={i} className="step-card flex flex-col items-center text-center">
-                {/* Number badge */}
                 <div className="relative mb-6">
                   <div className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white font-black text-lg shadow-lg shadow-green-500/30 relative z-10">
                     {step.number}
                   </div>
                   <div className="absolute inset-0 rounded-full bg-green-400 blur-md opacity-40 scale-110" />
                 </div>
-
                 <div className="text-4xl mb-4">{step.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
                 <p className="text-gray-500 leading-relaxed">{step.description}</p>
