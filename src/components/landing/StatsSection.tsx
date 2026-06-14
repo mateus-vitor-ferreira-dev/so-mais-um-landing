@@ -8,9 +8,9 @@ import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
 gsap.registerPlugin(ScrollTrigger)
 
 const highlights = [
+  { value: '11', label: 'modalidades esportivas', icon: '🏅' },
   { value: '100%', label: 'Gratuito para jogadores', icon: '🆓' },
-  { value: '11',   label: 'modalidades esportivas',  icon: '🏅' },
-  { value: '24h',  label: 'Disponível a qualquer hora', icon: '⏱️' },
+  { value: '24h', label: 'Disponível a qualquer hora', icon: '⏱️' },
 ]
 
 export default function StatsSection() {

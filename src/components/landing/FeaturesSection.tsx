@@ -10,32 +10,46 @@ gsap.registerPlugin(ScrollTrigger)
 
 const features = [
   {
-    icon: '⚽',
-    title: 'Organize Peladas',
+    icon: '🎯',
+    title: 'Encontre e entre em peladas',
     description:
-      'Crie partidas, defina horários, limites de jogadores e gerencie presenças com facilidade. Sem grupão de WhatsApp lotado.',
-    highlight: 'Gestão completa',
+      'Veja partidas abertas com vagas, horário, quadra e valor. Entre com um clique — sem grupo de WhatsApp, sem planilha, sem confusão.',
+    highlight: 'Zero burocracia',
   },
   {
-    icon: '🏟️',
-    title: 'Encontre Quadras',
+    icon: '🎲',
+    title: 'Sorteio automático de times',
     description:
-      'Descubra espaços esportivos perto de você. Futebol, futsal, society e muito mais. Reserve diretamente pela plataforma.',
-    highlight: 'Reserva online',
+      'O organizador sorteia os times com algoritmo Fisher-Yates: distribuição aleatória, grupos equilibrados, diferença máxima de 1 jogador entre times.',
+    highlight: 'Times justos',
   },
   {
-    icon: '👥',
-    title: 'Monte seu Time',
+    icon: '⭐',
+    title: 'Avaliações com tags e badges',
     description:
-      'Convide amigos, aceite jogadores avulsos ou sorteie times automaticamente. FutMatch cuida da burocracia para você jogar.',
-    highlight: 'Sorteio automático',
+      'Avalie jogadores com estrelas (1–5) e tags como CRAQUE_DA_PELADA, FAIR_PLAY e PONTUAL. Badges como Confiável e Craque são conquistados automaticamente.',
+    highlight: 'Reputação real',
+  },
+  {
+    icon: '🔔',
+    title: 'Notificações em tempo real',
+    description:
+      'Seja avisado na hora quando alguém entra, a pelada lota ou é cancelada. Conexão SSE persistente — sem recarregar a página, sem polling.',
+    highlight: 'Ao vivo',
+  },
+  {
+    icon: '🏆',
+    title: 'Torneios completos',
+    description:
+      'Crie campeonatos com formato (league, knockout, grupos+mata-mata, suíço), divisões por nível e controle de inscrições. Para o OWNER gerir seus espaços.',
+    highlight: 'Campeonatos',
   },
   {
     icon: '📊',
-    title: 'Histórico e Estatísticas',
+    title: 'Perfil e histórico',
     description:
-      'Acompanhe seu histórico de peladas, times favoritos e espaços mais frequentados. Dados que revelam quem realmente aparece.',
-    highlight: 'Insights do time',
+      'Consulte peladas criadas, participadas e avaliações recebidas. Seu perfil público mostra badge, média de estrelas e estatísticas de presença.',
+    highlight: 'Histórico completo',
   },
 ]
 
@@ -72,34 +86,30 @@ export default function FeaturesSection() {
         <div className="features-title text-center mb-8 md:mb-16">
           <Badge className="mb-4">Funcionalidades</Badge>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-            Tudo que você precisa para{' '}
-            <span className="text-green-500">jogar mais</span>
+            Do racha ao torneio —{' '}
+            <span className="text-green-500">tudo num lugar só</span>
           </h2>
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-            Da organização à reserva, FutMatch centraliza tudo para que você gaste energia na pelada, não na logística.
+            Só+1 cobre o ciclo completo: descobrir pelada, entrar, sortear times, jogar, avaliar e construir reputação.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feat, i) => (
             <div
               key={i}
               className="feature-card group bg-gray-50 hover:bg-white border border-gray-100 hover:border-green-100 hover:shadow-xl hover:shadow-green-500/5 rounded-3xl p-8 transition-all duration-300"
             >
-              <div className="flex items-start gap-5">
-                <div className="w-14 h-14 rounded-2xl bg-green-50 border border-green-100 flex items-center justify-center text-2xl flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  {feat.icon}
-                </div>
-                <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl font-bold text-gray-900">{feat.title}</h3>
-                    <span className="hidden sm:inline-block text-xs font-semibold text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full border border-green-100">
-                      {feat.highlight}
-                    </span>
-                  </div>
-                  <p className="text-gray-500 leading-relaxed">{feat.description}</p>
-                </div>
+              <div className="w-14 h-14 rounded-2xl bg-green-50 border border-green-100 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
+                {feat.icon}
               </div>
+              <div className="flex items-center gap-2 mb-2">
+                <h3 className="text-lg font-bold text-gray-900">{feat.title}</h3>
+              </div>
+              <span className="inline-block text-xs font-semibold text-green-600 bg-green-50 px-2.5 py-0.5 rounded-full border border-green-100 mb-3">
+                {feat.highlight}
+              </span>
+              <p className="text-gray-500 leading-relaxed text-sm">{feat.description}</p>
             </div>
           ))}
         </div>

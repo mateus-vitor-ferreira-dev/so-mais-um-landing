@@ -5,11 +5,12 @@ import { gsap } from 'gsap'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import LogoSvg from '@/components/LogoSvg'
 
 const links = [
   { label: 'Funcionalidades', href: '#features' },
   { label: 'Como funciona', href: '#how-it-works' },
-  { label: 'Quadras', href: '#courts' },
+  { label: 'Modalidades', href: '#courts' },
 ]
 
 export default function Navbar() {
@@ -42,11 +43,8 @@ export default function Navbar() {
       )}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-2 text-white font-bold text-xl">
-          <span className="text-2xl">⚽</span>
-          <span>
-            Fut<span className="text-green-400">Match</span>
-          </span>
+        <a href="#" className="flex items-center">
+          <LogoSvg width={88} />
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -63,12 +61,12 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
-          <a href="https://futmatch-web.vercel.app/login">
+          <a href="https://app.so-mais-um.com/login">
             <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
               Entrar
             </Button>
           </a>
-          <a href="https://futmatch-web.vercel.app/register">
+          <a href="https://app.so-mais-um.com/register">
             <Button size="sm">Começar grátis</Button>
           </a>
         </div>
@@ -95,10 +93,10 @@ export default function Navbar() {
             </a>
           ))}
           <hr className="border-white/10" />
-          <a href="https://futmatch-web.vercel.app/login">
+          <a href="https://app.so-mais-um.com/login">
             <Button variant="ghost" className="w-full text-gray-300">Entrar</Button>
           </a>
-          <a href="https://futmatch-web.vercel.app/register">
+          <a href="https://app.so-mais-um.com/register">
             <Button className="w-full">Começar grátis</Button>
           </a>
         </div>

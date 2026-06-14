@@ -32,7 +32,6 @@ export default function CTASection() {
     <section ref={sectionRef} className="bg-white py-12 md:py-24">
       <div className="max-w-4xl mx-auto px-6 text-center cta-content">
         <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-3xl p-8 md:p-16 relative overflow-hidden shadow-2xl shadow-green-500/20">
-          {/* Field pattern inside CTA */}
           <svg
             className="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
             viewBox="0 0 600 300"
@@ -47,19 +46,19 @@ export default function CTASection() {
           <div className="relative z-10">
             <span className="text-5xl mb-6 block">🏆</span>
             <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-              Pronto para a próxima pelada?
+              Sua próxima pelada começa aqui
             </h2>
             <p className="text-green-100 text-lg mb-10 max-w-xl mx-auto">
-              Junte-se a centenas de jogadores que já usam o FutMatch para organizar suas partidas. Grátis para sempre.
+              Crie sua conta gratuita e encontre uma partida hoje. Times sorteados, vagas controladas, reputação garantida.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a href="https://futmatch-web.vercel.app/register">
+              <a href="https://app.so-mais-um.com/register">
                 <Button variant="secondary" size="xl" className="group font-bold">
                   Criar conta gratuita
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </Button>
               </a>
-              <a href="https://futmatch-web.vercel.app/login">
+              <a href="https://app.so-mais-um.com/login">
                 <Button
                   size="xl"
                   className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-green-600 font-bold"

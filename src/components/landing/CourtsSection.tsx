@@ -8,19 +8,19 @@ import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Espelha o enum CourtType do backend (src/constants/sports.js)
 const sports = [
-  { icon: '⚽', name: 'Society',           desc: 'Campo society — grama sintética',   color: 'from-green-600 to-green-800',   from: { x: -100, y: 0 } },
-  { icon: '🏟️', name: 'Futebol de Campo',  desc: 'Campo convencional',                color: 'from-emerald-600 to-emerald-800', from: { x: 0, y: -80 } },
-  { icon: '👟', name: 'Futsal',            desc: 'Quadra de futsal coberta',           color: 'from-blue-600 to-blue-800',     from: { x: 100, y: 0 } },
-  { icon: '🏖️', name: 'Futevôlei',         desc: 'Quadra de areia',                   color: 'from-orange-500 to-orange-700', from: { x: -100, y: 0 } },
-  { icon: '🏐', name: 'Vôlei',             desc: 'Quadra de vôlei indoor',             color: 'from-yellow-500 to-yellow-700', from: { x: 0, y: 80 } },
-  { icon: '🌊', name: 'Vôlei de Areia',    desc: 'Quadra de vôlei de areia',           color: 'from-cyan-500 to-cyan-700',     from: { x: 100, y: 0 } },
-  { icon: '🤾', name: 'Handebol',          desc: 'Quadra de handebol',                 color: 'from-red-500 to-red-700',       from: { x: -100, y: 0 } },
-  { icon: '🖐️', name: 'Peteca',            desc: 'Quadra de peteca',                   color: 'from-pink-500 to-pink-700',     from: { x: 0, y: -80 } },
-  { icon: '🎾', name: 'Beach Tennis',      desc: 'Quadra de beach tennis',             color: 'from-lime-500 to-lime-700',     from: { x: 100, y: 0 } },
-  { icon: '🏀', name: 'Basquete',          desc: 'Quadra de basquete',                 color: 'from-orange-600 to-red-700',    from: { x: -100, y: 0 } },
-  { icon: '🎾', name: 'Tênis',             desc: 'Quadra de tênis',                    color: 'from-purple-500 to-purple-700', from: { x: 0, y: 80 } },
+  { icon: '👟', name: 'Futsal',            desc: 'Quadra coberta',               color: 'from-blue-600 to-blue-800',     from: { x: -100, y: 0 } },
+  { icon: '⚽', name: 'Society',           desc: 'Grama sintética',              color: 'from-green-600 to-green-800',   from: { x: 0, y: -80 } },
+  { icon: '🏟️', name: 'Futebol de Campo',  desc: 'Campo convencional',           color: 'from-emerald-600 to-emerald-800', from: { x: 100, y: 0 } },
+  { icon: '🏀', name: 'Basquete',          desc: 'Quadra de basquete',           color: 'from-orange-600 to-red-700',    from: { x: -100, y: 0 } },
+  { icon: '🏐', name: 'Vôlei',             desc: 'Quadra indoor',                color: 'from-yellow-500 to-yellow-700', from: { x: 0, y: 80 } },
+  { icon: '🎾', name: 'Beach Tennis',      desc: 'Quadra de areia',              color: 'from-lime-500 to-lime-700',     from: { x: 100, y: 0 } },
+  { icon: '🏖️', name: 'Futevôlei',         desc: 'Quadra de areia',              color: 'from-orange-500 to-orange-700', from: { x: -100, y: 0 } },
+  { icon: '🃏', name: 'Poker',             desc: 'Torneios e cash games',        color: 'from-purple-600 to-purple-800', from: { x: 0, y: -80 } },
+  { icon: '🎾', name: 'Tênis',             desc: 'Quadra de tênis',              color: 'from-violet-500 to-violet-700', from: { x: 100, y: 0 } },
+  { icon: '🤾', name: 'Handebol',          desc: 'Quadra de handebol',           color: 'from-red-500 to-red-700',       from: { x: -100, y: 0 } },
+  { icon: '🌊', name: 'Vôlei de Areia',    desc: 'Quadra de vôlei de areia',     color: 'from-cyan-500 to-cyan-700',     from: { x: 0, y: 80 } },
+  { icon: '🖐️', name: 'Peteca',            desc: 'Quadra de peteca',             color: 'from-pink-500 to-pink-700',     from: { x: 100, y: 0 } },
 ]
 
 export default function CourtsSection() {
@@ -29,7 +29,6 @@ export default function CourtsSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Draw field markings on scroll
       const paths = fieldRef.current?.querySelectorAll('path, circle, line, ellipse')
       if (paths) {
         paths.forEach((path) => {
@@ -73,7 +72,6 @@ export default function CourtsSection() {
 
   return (
     <section id="courts" ref={sectionRef} className="relative bg-gray-950 py-12 md:py-24 overflow-hidden">
-      {/* Animated field lines background */}
       <svg
         ref={fieldRef}
         className="absolute inset-0 w-full h-full pointer-events-none opacity-10"
@@ -87,53 +85,40 @@ export default function CourtsSection() {
         <circle cx="600" cy="350" r="5" fill="#22c55e" />
         <path d="M60 260 H180 V440 H60" stroke="#22c55e" strokeWidth="1.5" />
         <path d="M1140 260 H1020 V440 H1140" stroke="#22c55e" strokeWidth="1.5" />
-        <path d="M60 300 H120 V400 H60" stroke="#22c55e" strokeWidth="1" />
-        <path d="M1140 300 H1080 V400 H1140" stroke="#22c55e" strokeWidth="1" />
-        <ellipse cx="60" cy="350" rx="40" ry="70" stroke="#22c55e" strokeWidth="1" />
-        <ellipse cx="1140" cy="350" rx="40" ry="70" stroke="#22c55e" strokeWidth="1" />
         <circle cx="220" cy="350" r="5" fill="#22c55e" />
         <circle cx="980" cy="350" r="5" fill="#22c55e" />
-        <path d="M350 40 A 250 250 0 0 1 350 660" stroke="#22c55e" strokeWidth="1" strokeDasharray="6 4" />
-        <path d="M850 40 A 250 250 0 0 0 850 660" stroke="#22c55e" strokeWidth="1" strokeDasharray="6 4" />
       </svg>
 
-      {/* Gradient overlays */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(34,197,94,0.06),transparent)]" />
 
       <div className="relative max-w-6xl mx-auto px-6">
         <div className="courts-title text-center mb-8 md:mb-16">
           <Badge variant="dark" className="mb-4">Modalidades</Badge>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Quadras para todos os{' '}
+            12 modalidades,{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
-              esportes
+              uma plataforma
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Espaços parceiros em diversas modalidades. Encontre a quadra ideal e reserve com poucos cliques.
+            De futebol a poker — organize qualquer tipo de partida ou campeonato.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {sports.map((sport, i) => (
             <div
               key={i}
-              className="sport-card group relative bg-gray-900 border border-white/10 hover:border-green-500/40 rounded-3xl p-6 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/10"
+              className="sport-card group relative bg-gray-900 border border-white/10 hover:border-green-500/40 rounded-2xl p-5 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/10"
             >
-              {/* Card gradient glow on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${sport.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-3xl`} />
-
+              <div className={`absolute inset-0 bg-gradient-to-br ${sport.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`} />
               <div className="relative z-10">
-                <div className="mb-4">
-                  <span className="text-4xl group-hover:scale-110 transition-transform duration-300 inline-block">
-                    {sport.icon}
-                  </span>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{sport.name}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{sport.desc}</p>
+                <span className="text-3xl group-hover:scale-110 transition-transform duration-300 inline-block mb-3">
+                  {sport.icon}
+                </span>
+                <h3 className="text-base font-bold text-white mb-1">{sport.name}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{sport.desc}</p>
               </div>
-
-              {/* Bottom accent line */}
               <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${sport.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
             </div>
           ))}
