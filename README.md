@@ -1,11 +1,11 @@
-# Só+1 — Landing Page
+# ⚽ FutMatch — Landing Page
 
-![CI](https://github.com/mateus-vitor-ferreira-dev/so-mais-um-landing/actions/workflows/ci-cd.yml/badge.svg)
+![CI](https://github.com/mateus-vitor-ferreira-dev/futmatch-landing/actions/workflows/ci-cd.yml/badge.svg)
 
-Landing page da plataforma **Só+1**: organize peladas, encontre quadras e monte seu time em um único lugar.
+Landing page da plataforma **FutMatch**: organize peladas, encontre quadras e monte seu time em um único lugar.
 
-**Landing:** https://so-mais-um.com  
-**App:** https://app.so-mais-um.com  
+**Landing:** https://futmatch-landing.vercel.app  
+**App:** https://futmatch-web.vercel.app  
 **API:** https://futmatch-api-production.up.railway.app
 
 ## Stack
