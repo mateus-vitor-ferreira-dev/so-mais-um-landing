@@ -1,4 +1,4 @@
-name: CI/CD - FutMatch Landing
+name: CI/CD - Só+1 Landing
 
 on:
   push:
