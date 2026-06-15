@@ -22,10 +22,6 @@ export default function Navbar() {
   const [activeHref, setActiveHref] = useState('')
 
   useEffect(() => {
-    gsap.from(navRef.current, {
-      y: -80, opacity: 0, duration: 0.8, ease: 'power3.out', delay: 0.2,
-    })
-
     const onScroll = () => setScrolled(window.scrollY > 40)
     window.addEventListener('scroll', onScroll, { passive: true })
 
