@@ -79,7 +79,7 @@ export default function Navbar() {
           <LogoSvg width={88} />
         </a>
 
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-6">
           {links.map((link) => (
             <li key={link.href}>
               <a
@@ -97,7 +97,7 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <a href="https://app.so-mais-um.com/login">
             <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
               Entrar
@@ -109,7 +109,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="md:hidden text-white p-1"
+          className="lg:hidden text-white p-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
         >
@@ -121,7 +121,7 @@ export default function Navbar() {
       <div
         ref={mobileRef}
         style={{ display: 'none' }}
-        className="md:hidden bg-gray-950/97 backdrop-blur-md border-t border-white/10 px-6 py-5 flex-col gap-4"
+        className="lg:hidden bg-gray-950/97 backdrop-blur-md border-t border-white/10 px-6 py-5 flex-col gap-4"
       >
         {links.map((link) => (
           <a

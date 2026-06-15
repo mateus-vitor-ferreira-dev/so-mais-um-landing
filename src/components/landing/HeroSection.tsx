@@ -116,17 +116,21 @@ export default function HeroSection() {
 
           <h1
             ref={headlineRef}
-            className="text-4xl md:text-6xl font-black text-white leading-tight mb-6"
+            className="text-5xl md:text-[4.5rem] font-black text-white leading-[1.05] mb-6"
           >
-            A pelada que falta{' '}
+            Falta um?{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-green-400">
-              sempre tem vaga
-            </span>{' '}
-            pra você
+              Achou.
+            </span>
+            <br />
+            Quer jogar?{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-emerald-300 to-green-400">
+              Entrou.
+            </span>
           </h1>
 
           <p ref={subRef} className="text-lg text-gray-400 mb-10 leading-relaxed max-w-lg">
-            Encontre partidas abertas, entre com um clique, sorteie os times e avalie os jogadores. Do racha da várzea ao torneio organizado — tudo em um lugar.
+            Encontre peladas abertas na sua cidade, entre com um clique e sorteie os times na hora. Sem grupo de WhatsApp, sem confusão — só jogo.
           </p>
 
           <div ref={ctaRef} className="flex flex-wrap gap-4 mb-8">
