@@ -1,180 +1,80 @@
 <div align="center">
 
-<h1>🏠 Só+1 — Landing Page</h1>
+# ⚽ Só+1 — Landing
 
-<p><strong>Página de apresentação da plataforma de organização de peladas amadoras</strong></p>
+### A porta de entrada da plataforma que acaba com o _"falta um?"_ no grupo do WhatsApp.
+
+Landing de conversão do **Só+1**: descubra peladas abertas, entre com um clique e sorteie os times na hora — sem grupo de WhatsApp, sem confusão, só jogo.
 
 <p>
-  <a href="https://so-mais-um.com" target="_blank">
-    <img src="https://img.shields.io/badge/Acessar-so--mais--um.com-22C55E?style=for-the-badge&logo=vercel&logoColor=white" alt="Landing"/>
-  </a>
-  <a href="https://app.so-mais-um.com" target="_blank">
-    <img src="https://img.shields.io/badge/Web_App-app.so--mais--um.com-3B82F6?style=for-the-badge&logo=vercel&logoColor=white" alt="App"/>
-  </a>
+  <a href="https://so-mais-um.com"><img src="https://img.shields.io/badge/▶_Ver_ao_vivo-so--mais--um.com-22C55E?style=for-the-badge&logo=vercel&logoColor=white" alt="Ao vivo"/></a>
+  <a href="https://app.so-mais-um.com"><img src="https://img.shields.io/badge/Abrir_o_app-app.so--mais--um.com-3B82F6?style=for-the-badge&logo=googlechrome&logoColor=white" alt="App"/></a>
 </p>
 
 <p>
   <img src="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-landing/actions/workflows/ci-cd.yml/badge.svg" alt="CI/CD"/>
-  &nbsp;
-  <img src="https://img.shields.io/badge/Next.js-15-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js"/>
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
-  <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind"/>
-  <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat-square&logo=greensock&logoColor=black" alt="GSAP"/>
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=flat-square&logo=next.js&logoColor=white" alt="Next.js 16"/>
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React 19"/>
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind v4"/>
+  <img src="https://img.shields.io/badge/GSAP-3-88CE02?style=flat-square&logo=greensock&logoColor=black" alt="GSAP"/>
   <img src="https://img.shields.io/badge/deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel"/>
 </p>
 
-</div>
+<sub>🟢 <strong>Em produção</strong> &nbsp;•&nbsp; 🏟️ <strong>12</strong> modalidades esportivas &nbsp;•&nbsp; 🎬 animações scroll-driven &nbsp;•&nbsp; ⚡ deploy contínuo</sub>
 
----
+<br/><br/>
 
-## 📋 Índice
+![Landing Só+1 — a cena rolando](docs/screenshots/landing.webp)
 
-- [Preview](#-preview)
-- [Stack](#-stack)
-- [Seções](#-seções)
-- [Instalação local](#-instalação-local)
-- [Estrutura](#-estrutura)
-- [Deploy](#-deploy)
-- [Convenções](#-convenções)
-
----
-
-## 📸 Preview
-
-<div align="center">
-
-![Landing Só+1](docs/screenshots/landing.png)
+<sub><i>A narrativa se revela conforme o scroll — capturado do site em produção.</i></sub>
 
 </div>
 
 ---
 
-## 🛠️ Stack
+## 🎯 O que é
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Framework</strong></td>
-      <td><img src="https://img.shields.io/badge/Next.js_15-000000?style=flat-square&logo=next.js&logoColor=white"/> (App Router)</td>
-    </tr>
-    <tr>
-      <td><strong>Linguagem</strong></td>
-      <td><img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/></td>
-    </tr>
-    <tr>
-      <td><strong>Estilização</strong></td>
-      <td><img src="https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white"/></td>
-    </tr>
-    <tr>
-      <td><strong>Animações</strong></td>
-      <td><img src="https://img.shields.io/badge/GSAP_3-88CE02?style=flat-square&logo=greensock&logoColor=black"/> — ScrollTrigger no desktop · IntersectionObserver no mobile</td>
-    </tr>
-    <tr>
-      <td><strong>Componentes</strong></td>
-      <td><img src="https://img.shields.io/badge/shadcn/ui-000000?style=flat-square"/> (<code>Button</code>, <code>Badge</code>) · <img src="https://img.shields.io/badge/Lucide-222222?style=flat-square"/> (ícones)</td>
-    </tr>
-    <tr>
-      <td><strong>Deploy</strong></td>
-      <td><img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/> — deploy automático a cada push em <code>main</code></td>
-    </tr>
-  </tbody>
-</table>
+Página de marketing de um produto **em produção** — a plataforma [Só+1](https://app.so-mais-um.com) para organizar peladas amadoras. O objetivo da landing é **converter o visitante em jogador**: comunicar a proposta em segundos e levar ao cadastro no app. Cada seção conta a história `Descobrir → Entrar → Jogar` com uma narrativa visual que se revela conforme o scroll.
 
----
+## ✨ Destaques de engenharia
 
-## 📄 Seções
+- 🎬 **Animações scroll-driven com GSAP** — as seções se revelam com `ScrollTrigger`, dando ritmo e profundidade à narrativa sem pesar no carregamento.
+- 📱 **Estratégia de animação responsiva** — no **desktop** usa `ScrollTrigger`; no **mobile** troca para um hook próprio com `IntersectionObserver` (`useMobileScrollAnimation`), evitando o custo de scroll-linked animation em telas menores. Decisão consciente de **performance × experiência**.
+- ⚡ **Next.js 16 (App Router) + React 19 + Tailwind v4** — stack atual, build estático entregue na borda pela Vercel.
+- 🧩 **Composição limpa** — cada seção é um componente isolado em `components/landing/`, orquestrado por um único `page.tsx`; UI base com shadcn/ui + ícones Lucide.
+- 🚀 **CI/CD** — GitHub Actions (lint + build) e deploy automático na Vercel a cada push em `main`; PRs geram preview.
 
-| # | Seção | Descrição |
-|---|---|---|
-| 1 | **Navbar** | Logo + CTA "Entrar no app" |
-| 2 | **Hero** | Headline, subtítulo, CTA principal + animação GSAP |
-| 3 | **Stats** | Estatísticas da plataforma (peladas, quadras, jogadores) |
-| 4 | **Features** | 6 funcionalidades principais em cards |
-| 5 | **How It Works** | Passo a passo em 3 etapas |
-| 6 | **Courts** | As 11 modalidades suportadas |
-| 7 | **CTA** | Chamada final para cadastro |
-| 8 | **Footer** | Links e créditos |
+## 🧱 Stack
 
----
+**Next.js 16** (App Router) · **React 19** · **TypeScript** (strict) · **Tailwind CSS v4** · **GSAP 3** (ScrollTrigger) · shadcn/ui · Lucide · **Vercel**
 
-## 🚀 Instalação local
+## 📐 Anatomia da página
+
+`Navbar` → `Hero` (headline + card de pelada + prova social) → `Stats` → `Features` (6 cards) → `How It Works` (3 passos) → `Courts` (11 modalidades) → `CTA` → `Footer`
+
+## 🚀 Rodando localmente
 
 ```bash
-# 1. Clonar
 git clone https://github.com/mateus-vitor-ferreira-dev/so-mais-um-landing.git
 cd so-mais-um-landing
-
-# 2. Instalar dependências
 npm install
-
-# 3. Iniciar em desenvolvimento
-npm run dev
+npm run dev      # http://localhost:3000
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000)
-
----
-
-## 📜 Scripts
-
-```bash
-npm run dev     # Desenvolvimento com hot-reload
-npm run build   # Build de produção
-npm run lint    # ESLint
-```
-
----
-
-## 📁 Estrutura
-
-```
-src/
-├── app/
-│   ├── layout.tsx
-│   ├── page.tsx              # Composição das seções
-│   └── globals.css
-├── components/
-│   ├── landing/
-│   │   ├── Navbar.tsx
-│   │   ├── HeroSection.tsx
-│   │   ├── StatsSection.tsx
-│   │   ├── FeaturesSection.tsx
-│   │   ├── HowItWorksSection.tsx
-│   │   ├── CourtsSection.tsx
-│   │   ├── CTASection.tsx
-│   │   └── Footer.tsx
-│   └── ui/
-│       ├── button.tsx
-│       └── badge.tsx
-└── lib/
-    ├── useMobileScrollAnimation.ts   # Hook de animação mobile (IntersectionObserver)
-    └── utils.ts
-```
-
----
-
-## 🚢 Deploy
-
-Deploy automático na **Vercel** a cada push em `main`.
-
-| Branch | Ambiente |
+| Script | O que faz |
 |---|---|
-| `main` | Produção — [so-mais-um.com](https://so-mais-um.com) |
-| `develop` / PRs | Preview automático |
+| `dev` | desenvolvimento com hot-reload |
+| `build` | build de produção |
+| `lint` | ESLint |
 
----
+## 🌿 Fluxo & deploy
 
-## 🔧 Convenções
-
-| Item | Padrão |
-|---|---|
-| Branch principal | `main` — apenas releases estáveis |
-| Branch de integração | `develop` |
-| Branches de trabalho | `feature/<nome>` ou `fix/<nome>` a partir de `develop` |
-| Commits | Conventional Commits em português |
+`main` (produção · [so-mais-um.com](https://so-mais-um.com)) ← `develop` ← `feature/*` · `fix/*`
+Push em `main` → deploy de produção na Vercel · PRs → preview automático · commits em Conventional Commits (pt-BR).
 
 ---
 
 <div align="center">
-  <sub>Parte do projeto <a href="https://github.com/mateus-vitor-ferreira-dev/tpes-2026-1-so-mais-um">Só+1</a> · Engenharia de Software · UFLA 2026/1</sub>
+<sub>Parte do produto <strong>Só+1</strong> · <a href="https://app.so-mais-um.com">app</a> · <a href="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-api">API</a> · <a href="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-web">Web</a> — Engenharia de Software, UFLA 2026/1</sub>
 </div>
