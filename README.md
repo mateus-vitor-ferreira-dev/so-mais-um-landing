@@ -76,5 +76,5 @@ Push em `main` → deploy de produção na Vercel · PRs → preview automático
 ---
 
 <div align="center">
-<sub>Parte do produto <strong>Só+1</strong> · <a href="https://app.so-mais-um.com">app</a> · <a href="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-api">API</a> · <a href="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-web">Web</a> — Engenharia de Software, UFLA 2026/1</sub>
+<sub>Parte do produto <strong>Só+1</strong> · <a href="https://app.so-mais-um.com">app</a> · <a href="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-api">API</a> · <a href="https://github.com/mateus-vitor-ferreira-dev/so-mais-um-web">Web</a></sub>
 </div>
