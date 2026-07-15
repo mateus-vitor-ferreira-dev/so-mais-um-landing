@@ -29,12 +29,23 @@
 
 ## 📋 Índice
 
+- [Preview](#-preview)
 - [Stack](#-stack)
 - [Seções](#-seções)
 - [Instalação local](#-instalação-local)
 - [Estrutura](#-estrutura)
 - [Deploy](#-deploy)
 - [Convenções](#-convenções)
+
+---
+
+## 📸 Preview
+
+<div align="center">
+
+![Landing Só+1](docs/screenshots/landing.png)
+
+</div>
 
 ---
 
