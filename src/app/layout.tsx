@@ -22,11 +22,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Só+1 — Encontre sua partida hoje',
   description:
-    'Plataforma gratuita para jogadores: encontre partidas abertas, sorteie times e avalie jogadores. Do racha da várzea ao torneio organizado, tudo em um lugar.',
+    'Plataforma gratuita para jogadores: encontre partidas abertas, sorteie times e avalie jogadores. Do beach tennis ao futsal, do jogo da semana ao campeonato, tudo em um lugar.',
   keywords: [
     'pelada', 'futebol', 'society', 'futsal', 'quadras esportivas',
     'organização de partidas', 'sorteio de times', 'beach tennis',
-    'vôlei', 'basquete', 'esportes Lavras', 'app esportes',
+    'vôlei', 'vôlei de areia', 'futevôlei', 'peteca', 'tênis', 'basquete',
+    'handebol', 'esportes Lavras', 'app esportes',
   ],
   openGraph: {
     title: 'Só+1 — Encontre sua partida hoje',

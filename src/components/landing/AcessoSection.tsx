@@ -102,7 +102,7 @@ export default function AcessoSection() {
   }, [sectionRef])
 
   return (
-    <section id="acesso" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="acesso" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="acesso-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Quem vê e quem entra</Badge>
@@ -113,7 +113,7 @@ export default function AcessoSection() {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Escolha quem enxerga a pelada e quem pode entrar nela. Do jogo aberto para a cidade
+            Escolha quem enxerga a partida e quem pode entrar nela. Do jogo aberto para a cidade
             inteira ao fechado só para quem você chamar.
           </p>
         </div>

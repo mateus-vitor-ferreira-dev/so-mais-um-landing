@@ -11,23 +11,9 @@ export default function HeroSection() {
   const subRef       = useRef<HTMLParagraphElement>(null)
   const ctaRef       = useRef<HTMLDivElement>(null)
   const cardRef      = useRef<HTMLDivElement>(null)
-  const fieldLinesRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Field SVG lines draw-in
-      const paths = fieldLinesRef.current?.querySelectorAll('path, circle, line')
-      if (paths) {
-        paths.forEach((path) => {
-          const length = (path as SVGGeometryElement).getTotalLength?.() ?? 300
-          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length })
-        })
-        gsap.to(Array.from(paths), {
-          strokeDashoffset: 0, duration: 2, stagger: 0.15,
-          ease: 'power2.inOut', delay: 0.3,
-        })
-      }
-
       // Content entrance
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.from(cardRef.current, { y: 70, opacity: 0, duration: 1.1, ease: 'back.out(1.2)' })
@@ -70,25 +56,13 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex items-center overflow-hidden bg-gray-950 min-h-[70vh] md:min-h-screen"
+      className="relative flex items-center overflow-hidden bg-gray-950/40 min-h-[70vh] md:min-h-screen"
     >
-      {/* Field SVG background */}
-      <svg
-        ref={fieldLinesRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1200 700"
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-      >
-        <circle cx="600" cy="350" r="120" stroke="#22c55e" strokeWidth="1.5" opacity="0.15" />
-        <circle cx="600" cy="350" r="6"   stroke="#22c55e" strokeWidth="2"   opacity="0.2" />
-        <line x1="600" y1="0" x2="600" y2="700" stroke="#22c55e" strokeWidth="1.5" opacity="0.1" />
-        <path d="M80 60 H1120 V640 H80 Z"     stroke="#22c55e" strokeWidth="1.5" opacity="0.1" />
-        <path d="M80 260 H200 V440 H80"       stroke="#22c55e" strokeWidth="1.5" opacity="0.08" />
-        <path d="M1120 260 H1000 V440 H1120"  stroke="#22c55e" strokeWidth="1.5" opacity="0.08" />
-        <circle cx="230" cy="350" r="4" fill="#22c55e" opacity="0.15" />
-        <circle cx="970" cy="350" r="4" fill="#22c55e" opacity="0.15" />
-      </svg>
+      {/*
+        O campo de futebol que se desenhava aqui saiu (landing#100, #102): o hero
+        passou a falar de todas as modalidades, e o movimento de fundo agora é o
+        da página inteira, no `FundoAnimado`.
+      */}
 
       {/* Stronger radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,rgba(34,197,94,0.1),transparent)]" />
@@ -122,7 +96,7 @@ export default function HeroSection() {
           </h1>
 
           <p ref={subRef} className="text-lg text-gray-400 mb-10 leading-relaxed max-w-lg">
-            Encontre partidas abertas na sua cidade, entre com um clique e sorteie os times na hora. Sem grupo de WhatsApp, sem confusão — só jogo.
+            Beach tennis, vôlei, futsal, peteca, basquete: encontre partidas abertas na sua cidade, entre com um clique e sorteie os times na hora. Sem grupo de WhatsApp, sem confusão — só jogo.
           </p>
 
           <div ref={ctaRef} className="flex flex-wrap gap-4">
@@ -152,16 +126,16 @@ export default function HeroSection() {
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Partida aberta</p>
-                  <h3 className="text-white font-bold text-lg">Society da Quinta</h3>
+                  <h3 className="text-white font-bold text-lg">Beach Tennis de Quinta</h3>
                 </div>
-                <span className="text-3xl">⚽</span>
+                <span className="text-3xl">🎾</span>
               </div>
 
               <div className="space-y-3 mb-5">
                 {[
                   { emoji: '📅', text: 'Quinta-feira, 19h' },
-                  { emoji: '📍', text: 'Quadra Arena Sul' },
-                  { emoji: '💰', text: 'R$ 30 por pessoa · Pix' },
+                  { emoji: '📍', text: 'Arena de Areia Centro' },
+                  { emoji: '💰', text: 'R$ 25 por pessoa · Pix' },
                 ].map(({ emoji, text }, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm text-gray-400">
                     <span className="w-8 h-8 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center text-base flex-shrink-0">
@@ -175,10 +149,10 @@ export default function HeroSection() {
               <div className="mb-5">
                 <div className="flex justify-between text-xs text-gray-500 mb-2">
                   <span>Vagas preenchidas</span>
-                  <span className="text-green-400 font-semibold">8 / 12</span>
+                  <span className="text-green-400 font-semibold">3 / 4</span>
                 </div>
                 <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" style={{ width: '66%' }} />
+                  <div className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" style={{ width: '75%' }} />
                 </div>
               </div>
 

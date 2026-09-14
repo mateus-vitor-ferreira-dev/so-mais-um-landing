@@ -117,7 +117,7 @@ export default function PlanosSection({ grade }: PlanosSectionProps) {
   if (!grade) return null
 
   return (
-    <section id="planos" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section id="planos" ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="planos-title text-center mb-8 md:mb-14">
           <Badge variant="dark" className="mb-4">Planos</Badge>
