@@ -38,7 +38,7 @@ const pilares = [
   {
     Icon: Crown,
     titulo: 'Alguém manda',
-    texto: 'O capitão convida, remove e edita o time. O resto joga.',
+    texto: 'O capitão convida, remove e edita o time — até a cor dele. O resto joga.',
   },
   {
     Icon: UserPlus,

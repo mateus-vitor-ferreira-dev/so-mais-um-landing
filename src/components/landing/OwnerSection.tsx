@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
-import { ArrowRight, BarChart2, LayoutGrid, Users, MapPin, Package, ClipboardList, CheckCircle } from 'lucide-react'
+import { ArrowRight, BarChart2, LayoutGrid, Users, MapPin, Package, ClipboardList, CheckCircle, CloudSun, LifeBuoy } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,7 +38,11 @@ gsap.registerPlugin(ScrollTrigger)
  */
 const benefits = [
   { Icon: BarChart2,     text: 'Painel com seus espaços, quadras e partidas ativas' },
-  { Icon: LayoutGrid,    text: 'Cadastro de quadras por modalidade, com preço e status' },
+  { Icon: LayoutGrid,    text: 'Cadastro de quadras por modalidade, com preço, status e se é coberta' },
+  // As duas de 14/09 (landing#101): a agenda do dia com o tempo (web#477) e o
+  // suporte pelo painel (web#472, épico api#570), os dois na `main` da web.
+  { Icon: CloudSun,      text: 'Agenda do dia com a previsão do tempo hora a hora' },
+  { Icon: LifeBuoy,      text: 'Suporte direto pelo painel, sem sair do Só+1' },
   { Icon: Package,       text: 'Controle de estoque do bar, com alerta de estoque baixo' },
   { Icon: ClipboardList, text: 'Controle de equipamentos emprestados, da saída à devolução' },
   { Icon: Users,         text: 'Visibilidade para todos os jogadores da plataforma' },

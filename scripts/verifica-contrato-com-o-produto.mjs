@@ -227,8 +227,8 @@ const tags = await catalogo('/review-tags')
 //
 // A vitrine deixou de ter lista própria: a `CourtsSection` recebe as
 // modalidades da api e a seção 2 confere o fallback. Sobra aqui o que **ainda**
-// é escrito à mão na landing — o mockup de partidas, que mostra seis das doze
-// e inventa o emoji se ninguém olhar.
+// é escrito à mão na landing — o mockup de partidas, que mostra oito das doze
+// desde a landing#100 e inventa o emoji se ninguém olhar.
 //
 // Quem decide é `src/constants/sports.ts` da api: `iconFallback` é o emoji,
 // ou `null` para modalidade que precisa do SVG desenhado pelo cliente.
@@ -236,7 +236,7 @@ const tags = await catalogo('/review-tags')
   const fontes = [
     {
       caminho: 'src/components/landing/AppPreviewSection.tsx',
-      esperado: 6,
+      esperado: 8,
       regex: /\{\s*id: '([A-Z_]+)',[^\n]*icon: '([^']*)'/g,
     },
   ]

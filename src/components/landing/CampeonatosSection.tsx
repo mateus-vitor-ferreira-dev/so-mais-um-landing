@@ -90,7 +90,7 @@ export default function CampeonatosSection() {
   }, [sectionRef])
 
   return (
-    <section id="campeonatos" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="campeonatos" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="camp-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Campeonatos</Badge>

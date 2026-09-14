@@ -46,12 +46,14 @@ vi.mock('gsap/ScrollTrigger', () => ({ ScrollTrigger: {} }))
 import TimesSection from './TimesSection'
 import AcessoSection from './AcessoSection'
 import PertoSection from './PertoSection'
+import PrevisaoSection from './PrevisaoSection'
 import CampeonatosSection from './CampeonatosSection'
 
 const SECOES = [
   { nome: 'Times fixos', id: 'times', Componente: TimesSection },
   { nome: 'Quem vê e quem entra', id: 'acesso', Componente: AcessoSection },
   { nome: 'Partidas perto de você', id: 'perto', Componente: PertoSection },
+  { nome: 'Previsão do tempo', id: 'previsao', Componente: PrevisaoSection },
   { nome: 'Campeonatos jogáveis', id: 'campeonatos', Componente: CampeonatosSection },
 ]
 
@@ -100,6 +102,7 @@ describe('nada aqui é roadmap', () => {
     'so-mais-um-api#203', // campeonatos jogáveis
     'so-mais-um-api#211', // partidas perto
     'so-mais-um-api#219', // quem vê e quem entra
+    'so-mais-um-api#580', // previsão do tempo
   ]
 
   it('o roadmap não lista nenhum dos épicos que estas seções dão como prontos', async () => {

@@ -9,6 +9,7 @@ import AppPreviewSection from '@/components/landing/AppPreviewSection'
 import TimesSection from '@/components/landing/TimesSection'
 import AcessoSection from '@/components/landing/AcessoSection'
 import PertoSection from '@/components/landing/PertoSection'
+import PrevisaoSection from '@/components/landing/PrevisaoSection'
 import CampeonatosSection from '@/components/landing/CampeonatosSection'
 import HowItWorksSection from '@/components/landing/HowItWorksSection'
 import OwnerSection from '@/components/landing/OwnerSection'
@@ -55,6 +56,10 @@ export default async function LandingPage() {
           <TimesSection />
           <AcessoSection />
           <PertoSection />
+          {/* Depois da busca por distância, porque é a mesma pergunta de quem
+              escolhe o jogo — onde e em que condição —, e antes dos campeonatos,
+              que também leem a previsão (landing#101). */}
+          <PrevisaoSection />
           <CampeonatosSection />
         </div>
         <HowItWorksSection />

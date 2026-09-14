@@ -51,6 +51,7 @@ import AppPreviewSection from './AppPreviewSection'
 import TimesSection from './TimesSection'
 import AcessoSection from './AcessoSection'
 import PertoSection from './PertoSection'
+import PrevisaoSection from './PrevisaoSection'
 import CampeonatosSection from './CampeonatosSection'
 import HowItWorksSection from './HowItWorksSection'
 import OwnerSection from './OwnerSection'
@@ -73,6 +74,7 @@ function aPagina() {
       <TimesSection />
       <AcessoSection />
       <PertoSection />
+      <PrevisaoSection />
       <CampeonatosSection />
       <HowItWorksSection />
       <OwnerSection />
