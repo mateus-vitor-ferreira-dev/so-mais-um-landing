@@ -10,7 +10,7 @@ import { Navigation, MapPin } from 'lucide-react'
 gsap.registerPlugin(ScrollTrigger)
 
 /**
- * Peladas perto de você (épico api#211).
+ * Partidas perto de você (épico api#211).
  *
  * Terceira das quatro seções de profundidade da #63. O partido é o inverso da
  * `TimesSection` — visual à esquerda, texto à direita —, para as quatro não
@@ -64,10 +64,10 @@ export default function PertoSection() {
   }, [sectionRef])
 
   return (
-    <section id="perto" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section id="perto" ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="perto-title text-center mb-10 md:mb-14">
-          <Badge variant="dark" className="mb-4">Peladas perto de você</Badge>
+          <Badge variant="dark" className="mb-4">Partidas perto de você</Badge>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
             Quem mora na divisa{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
@@ -93,13 +93,13 @@ export default function PertoSection() {
               </div>
 
               <span className="absolute top-6 right-10 inline-flex items-center gap-1.5 text-[11px] text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
-                <MapPin size={11} className="text-green-400" /> Society
+                <MapPin size={11} className="text-green-400" /> Vôlei
               </span>
               <span className="absolute bottom-10 left-6 inline-flex items-center gap-1.5 text-[11px] text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
                 <MapPin size={11} className="text-green-400" /> Beach tennis
               </span>
-              <span className="absolute bottom-20 right-4 inline-flex items-center gap-1.5 text-[11px] text-gray-400 bg-gray-900/70 border border-white/10 px-2.5 py-1 rounded-full">
-                <MapPin size={11} className="text-gray-500" /> Futsal
+              <span className="absolute bottom-20 right-4 inline-flex items-center gap-1.5 text-[11px] text-gray-400 bg-gray-900/60 border border-white/10 px-2.5 py-1 rounded-full">
+                <MapPin size={11} className="text-gray-500" /> Basquete
               </span>
             </div>
           </div>

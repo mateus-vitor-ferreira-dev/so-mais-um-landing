@@ -42,7 +42,8 @@ gsap.registerPlugin(ScrollTrigger)
  *   em `/professor` (api#451, #484)
  * - **chamada** — `/professor`, dentro de cada aula, e `/owner/.../chamada`
  * - **day use com entrada avulsa** — `/owner/day-uses` e as entradas de cada um
- * - **o jogador encontra o day use** — `components/DayUsesDoDia`, no Quero Jogar
+ * - **o jogador encontra o day use** — a página `/day-uses` (web#469), com busca
+ *   por cidade, por distância e por teto de preço (api#565, api#566)
  *
  * ## A âncora existe, e o menu não ganha item
  *
@@ -86,7 +87,7 @@ const formatos = [
     pontos: [
       { Icon: CalendarDays, texto: 'Quem entrou, quem já pagou e quanto ainda cabe' },
       { Icon: Users,        texto: 'Entrada de quem não tem conta, registrada no balcão' },
-      { Icon: Ticket,       texto: 'E o jogador encontra os day uses do dia dentro do Quero Jogar' },
+      { Icon: Ticket,       texto: 'E o jogador encontra os day uses numa página própria, por cidade, distância e preço' },
     ],
   },
 ]
@@ -124,7 +125,7 @@ export default function EscolinhaEDayUseSection() {
   }, [sectionRef])
 
   return (
-    <section id="escolinha" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section id="escolinha" ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="esc-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Escolinha e day use</Badge>

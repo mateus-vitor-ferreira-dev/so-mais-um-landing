@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
@@ -205,25 +205,9 @@ function iconeDe(sport: Sport) {
 
 export default function CourtsSection({ sports }: { sports: Sport[] }) {
   const sectionRef = useMobileScrollAnimation('.courts-title, .sport-card', { staggerMs: 80 })
-  const fieldRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const paths = fieldRef.current?.querySelectorAll('path, circle, line, ellipse')
-      if (paths) {
-        paths.forEach((path) => {
-          const length = (path as SVGGeometryElement).getTotalLength?.() ?? 200
-          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length })
-        })
-        gsap.to(Array.from(paths), {
-          strokeDashoffset: 0,
-          duration: 2.5,
-          stagger: 0.1,
-          ease: 'power2.inOut',
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%', once: true },
-        })
-      }
-
       if (window.matchMedia('(min-width: 768px)').matches) {
         const cards = sectionRef.current?.querySelectorAll('.sport-card')
         cards?.forEach((card, i) => {
@@ -251,23 +235,7 @@ export default function CourtsSection({ sports }: { sports: Sport[] }) {
   }, [sectionRef, sports])
 
   return (
-    <section id="courts" ref={sectionRef} className="relative bg-gray-950 py-12 md:py-24 overflow-hidden">
-      <svg
-        ref={fieldRef}
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-10"
-        viewBox="0 0 1200 700"
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-      >
-        <path d="M60 40 H1140 V660 H60 Z" stroke="#22c55e" strokeWidth="2" />
-        <line x1="600" y1="40" x2="600" y2="660" stroke="#22c55e" strokeWidth="1.5" />
-        <circle cx="600" cy="350" r="100" stroke="#22c55e" strokeWidth="1.5" />
-        <circle cx="600" cy="350" r="5" fill="#22c55e" />
-        <path d="M60 260 H180 V440 H60" stroke="#22c55e" strokeWidth="1.5" />
-        <path d="M1140 260 H1020 V440 H1140" stroke="#22c55e" strokeWidth="1.5" />
-        <circle cx="220" cy="350" r="5" fill="#22c55e" />
-        <circle cx="980" cy="350" r="5" fill="#22c55e" />
-      </svg>
+    <section id="courts" ref={sectionRef} className="relative bg-gray-950/60 py-12 md:py-24 overflow-hidden">
 
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_50%,rgba(34,197,94,0.06),transparent)]" />
 
@@ -281,7 +249,7 @@ export default function CourtsSection({ sports }: { sports: Sport[] }) {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            De futebol a poker — organize qualquer tipo de partida ou campeonato.
+            Beach tennis, vôlei, futsal, peteca, basquete, tênis e até poker — organize qualquer tipo de partida ou campeonato.
           </p>
         </div>
 

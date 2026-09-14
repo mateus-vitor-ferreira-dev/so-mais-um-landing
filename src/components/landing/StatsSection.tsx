@@ -80,7 +80,7 @@ const LIMIARES = {
 }
 
 const FIXOS: Cartao[] = [
-  { target: 12,  suffix: '',  label: 'Modalidades esportivas',  Icon: Shapes, description: 'do futsal ao poker' },
+  { target: 12,  suffix: '',  label: 'Modalidades esportivas',  Icon: Shapes, description: 'do beach tennis ao poker' },
   { target: 100, suffix: '%', label: 'Gratuito para jogadores', Icon: Gift,   description: 'sem taxas, para sempre' },
 ]
 
@@ -169,7 +169,7 @@ export default function StatsSection({ numeros }: StatsSectionProps) {
   }, [highlights, sectionRef])
 
   return (
-    <section ref={sectionRef} className="relative bg-gray-950 py-8 md:py-16 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-gray-950/60 py-8 md:py-16 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(34,197,94,0.05),transparent)]" />
 
       <div className="relative max-w-6xl mx-auto px-6">

@@ -93,7 +93,7 @@ export default function RoadmapSection() {
   }, [sectionRef])
 
   return (
-    <section id="roadmap" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="roadmap" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="roadmap-title text-center mb-8 md:mb-14">
           <Badge variant="dark" className="mb-4 text-amber-400 border-amber-500/30">

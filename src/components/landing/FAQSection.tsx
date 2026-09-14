@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: 'Posso criar uma partida sem ter uma quadra cadastrada?',
-    a: 'A partida precisa ser vinculada a uma quadra cadastrada na plataforma. Se a quadra do seu racha ainda não está no Só+1, entre em contato com o dono do espaço para solicitar o cadastro — ou cadastre você mesmo pelo portal de parceiros.',
+    a: 'A partida precisa ser vinculada a uma quadra cadastrada na plataforma. Se a quadra onde vocês jogam ainda não está no Só+1, entre em contato com o dono do espaço para solicitar o cadastro — ou cadastre você mesmo pelo portal de parceiros.',
   },
   {
     // A landing citava "Craque, Fair Play e Pontual". São seis tags no
@@ -173,7 +173,7 @@ export default function FAQSection() {
   }, [sectionRef])
 
   return (
-    <section ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-3xl mx-auto px-6">
         <div className="faq-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Dúvidas frequentes</Badge>

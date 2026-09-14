@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
-import { ArrowRight, BarChart2, LayoutGrid, Users, MapPin, Package, ClipboardList, CheckCircle } from 'lucide-react'
+import { ArrowRight, BarChart2, LayoutGrid, Users, MapPin, Package, ClipboardList, CheckCircle, CloudSun, LifeBuoy } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -38,7 +38,11 @@ gsap.registerPlugin(ScrollTrigger)
  */
 const benefits = [
   { Icon: BarChart2,     text: 'Painel com seus espaços, quadras e partidas ativas' },
-  { Icon: LayoutGrid,    text: 'Cadastro de quadras por modalidade, com preço e status' },
+  { Icon: LayoutGrid,    text: 'Cadastro de quadras por modalidade, com preço, status e se é coberta' },
+  // As duas de 14/09 (landing#101): a agenda do dia com o tempo (web#477) e o
+  // suporte pelo painel (web#472, épico api#570), os dois na `main` da web.
+  { Icon: CloudSun,      text: 'Agenda do dia com a previsão do tempo hora a hora' },
+  { Icon: LifeBuoy,      text: 'Suporte direto pelo painel, sem sair do Só+1' },
   { Icon: Package,       text: 'Controle de estoque do bar, com alerta de estoque baixo' },
   { Icon: ClipboardList, text: 'Controle de equipamentos emprestados, da saída à devolução' },
   { Icon: Users,         text: 'Visibilidade para todos os jogadores da plataforma' },
@@ -75,7 +79,7 @@ export default function OwnerSection() {
   }, [sectionRef])
 
   return (
-    <section id="owner" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="owner" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="owner-title text-center mb-10 md:mb-16">
           <Badge variant="dark" className="mb-4">Para donos de espaço</Badge>
@@ -172,9 +176,9 @@ export default function OwnerSection() {
                   // `Court.status` é OPEN ou CLOSED — não existe reserva de
                   // quadra no produto, e "Reservada" sugeria um módulo inteiro
                   // que ninguém construiu.
-                  { name: 'Quadra 1 — Society', status: 'Partida em 2h', dot: 'bg-yellow-400' },
-                  { name: 'Quadra 2 — Futsal',  status: 'Aberta',        dot: 'bg-green-400' },
-                  { name: 'Quadra 3 — Beach Tennis', status: 'Fechada',  dot: 'bg-red-400' },
+                  { name: 'Quadra 1 — Beach Tennis', status: 'Partida em 2h', dot: 'bg-yellow-400' },
+                  { name: 'Quadra 2 — Vôlei',  status: 'Aberta',        dot: 'bg-green-400' },
+                  { name: 'Quadra 3 — Society', status: 'Fechada',  dot: 'bg-red-400' },
                 ].map((c, i) => (
                   <div key={i} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
                     <div className="flex items-center gap-2.5">

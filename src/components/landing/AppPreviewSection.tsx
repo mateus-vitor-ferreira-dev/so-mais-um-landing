@@ -9,22 +9,32 @@ import { Star, Users, Trophy, Bell, MapPin, Calendar } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
+/*
+ * Os exemplos alternam as famílias de esporte (landing#100). Até aqui a vitrine
+ * girava entre Society, Futsal e Campo, e quem joga na areia ou na quadra de
+ * vôlei não se via na página. Futebol continua, mas não abre a lista.
+ *
+ * Só modalidades com emoji: futevôlei, vôlei de areia e peteca têm ícone
+ * desenhado na `CourtsSection`, e emoji trocado aqui seria o erro que ela conta.
+ */
 const ALL_PARTIDAS = [
+  { id: 'BEACH_TENNIS', name: 'Beach Tennis de Sábado', local: 'Arena de Areia Centro', time: 'Sáb 08h', price: 'R$ 25', vagas: 1, total: 4, type: 'Beach Tennis', icon: '🎾' },
+  { id: 'VOLEI', name: 'Vôlei Misto', local: 'Ginásio UFLA', time: 'Ter 19h', price: 'R$ 18', vagas: 5, total: 12, type: 'Vôlei', icon: '🏐' },
+  { id: 'FUTSAL', name: 'Futsal de Sexta', local: 'Arena Indoor Lavras', time: 'Sex 20h', price: 'R$ 20', vagas: 3, total: 10, type: 'Futsal', icon: '👟' },
+  { id: 'BASQUETE', name: 'Basquete 3x3', local: 'Quadra do Parque', time: 'Qua 18h', price: 'R$ 10', vagas: 2, total: 6, type: 'Basquete', icon: '🏀' },
+  { id: 'TENIS', name: 'Tênis em Duplas', local: 'Clube Lavras', time: 'Dom 09h', price: 'R$ 35', vagas: 2, total: 4, type: 'Tênis', icon: '🥎' },
   { id: 'SOCIETY', name: 'Society da Quinta', local: 'Arena Sul Lavras', time: 'Qui 19h', price: 'R$ 30', vagas: 4, total: 12, type: 'Society', icon: '⚽' },
-  { id: 'BEACH_TENNIS', name: 'Beach Tennis Livre', local: 'Quadra de Areia Centro', time: 'Sáb 08h', price: 'R$ 25', vagas: 2, total: 4, type: 'Beach Tennis', icon: '🎾' },
-  { id: 'FUTSAL', name: 'Racha de Futsal', local: 'Arena Indoor Lavras', time: 'Sex 20h', price: 'R$ 20', vagas: 7, total: 10, type: 'Futsal', icon: '👟' },
-  { id: 'CAMPO', name: 'Futebol de Campo', local: 'Campo Municipal Lavras', time: 'Dom 08h', price: 'R$ 15', vagas: 3, total: 22, type: 'Campo', icon: '🏟️' },
-  { id: 'VOLEI', name: 'Vôlei Indoor', local: 'Ginásio UFLA', time: 'Ter 19h', price: 'R$ 18', vagas: 5, total: 12, type: 'Vôlei', icon: '🏐' },
+  { id: 'HANDBALL', name: 'Handebol de Domingo', local: 'Ginásio Municipal', time: 'Dom 16h', price: 'R$ 12', vagas: 6, total: 14, type: 'Handebol', icon: '🤾' },
   { id: 'POKER', name: 'Torneio de Poker', local: 'Arena Poker Lavras', time: 'Sáb 14h', price: 'R$ 50', vagas: 8, total: 20, type: 'Poker', icon: '🃏' },
 ]
 
 const ALL_NOTIFS = [
-  { text: 'Lucas entrou na Society da Quinta',    time: 'agora', dot: 'bg-green-500' },
-  { text: 'Racha de Futsal está quase lotando!',  time: '2min',  dot: 'bg-yellow-500' },
-  { text: 'Você recebeu uma avaliação ⭐⭐⭐⭐⭐', time: '1h',   dot: 'bg-blue-500' },
-  { text: 'Pedro entrou no Beach Tennis Livre',   time: '5min',  dot: 'bg-green-500' },
-  { text: 'Society da Quinta está quase cheia!',  time: '8min',  dot: 'bg-yellow-500' },
-  { text: 'Novo torneio disponível na sua cidade',time: '30min', dot: 'bg-purple-500' },
+  { text: 'Lucas entrou no Beach Tennis de Sábado', time: 'agora', dot: 'bg-green-500' },
+  { text: 'Futsal de Sexta está quase lotando!',    time: '2min',  dot: 'bg-yellow-500' },
+  { text: 'Você recebeu uma avaliação ⭐⭐⭐⭐⭐',   time: '1h',    dot: 'bg-blue-500' },
+  { text: 'Ana entrou no Vôlei Misto',              time: '5min',  dot: 'bg-green-500' },
+  { text: 'Basquete 3x3 está quase cheio!',         time: '8min',  dot: 'bg-yellow-500' },
+  { text: 'Novo campeonato de peteca na sua cidade', time: '30min', dot: 'bg-purple-500' },
 ]
 
 function useCycler<T>(items: T[], interval: number, count: number) {
@@ -85,7 +95,7 @@ export default function AppPreviewSection() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <section ref={sectionRef} className="bg-gray-900 py-12 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="preview-title text-center mb-10 md:mb-16">
           <Badge variant="dark" className="mb-4">Plataforma</Badge>
@@ -96,7 +106,7 @@ export default function AppPreviewSection() {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Interface limpa, tema escuro, dados em tempo real. Projetado para quem está no campo, não na frente do computador.
+            Interface limpa, tema escuro, dados em tempo real. Projetado para quem está na quadra, não na frente do computador.
           </p>
         </div>
 

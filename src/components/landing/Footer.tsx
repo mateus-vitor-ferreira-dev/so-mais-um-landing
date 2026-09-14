@@ -29,7 +29,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 border-t border-white/10 py-14">
+    <footer className="bg-gray-950/90 border-t border-white/10 py-14">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
@@ -38,7 +38,7 @@ export default function Footer() {
               <LogoSvg width={96} />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
-              A plataforma que conecta jogadores, espaços e partidas. Do racha da várzea ao torneio organizado.
+              A plataforma que conecta jogadores, espaços e partidas. Da areia à quadra, do jogo da semana ao campeonato.
             </p>
             {/* Social icon row */}
             <div className="flex gap-3">

@@ -26,7 +26,7 @@ export default function CTASection() {
   }, [sectionRef])
 
   return (
-    <section ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-4xl mx-auto px-6 text-center cta-content">
         <div className="relative bg-gradient-to-br from-green-700 via-green-600 to-emerald-500 rounded-3xl p-10 md:p-20 overflow-hidden shadow-2xl shadow-green-500/25">
           {/* Field SVG overlay */}
