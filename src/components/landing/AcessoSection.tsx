@@ -102,7 +102,7 @@ export default function AcessoSection() {
   }, [sectionRef])
 
   return (
-    <section id="acesso" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="acesso" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="acesso-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Quem vê e quem entra</Badge>

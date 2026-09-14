@@ -20,6 +20,7 @@ import RoadmapSection from '@/components/landing/RoadmapSection'
 import FAQSection from '@/components/landing/FAQSection'
 import CTASection from '@/components/landing/CTASection'
 import Footer from '@/components/landing/Footer'
+import FundoAnimado from '@/components/landing/FundoAnimado'
 
 // Server Component: os números são buscados no servidor e chegam prontos no
 // HTML. Nada de useEffect no cliente — assim quem visita não vê a seção pular
@@ -35,6 +36,8 @@ export default async function LandingPage() {
 
   return (
     <>
+      {/* Atrás de tudo, e só nesta página: as legais continuam lisas (landing#102). */}
+      <FundoAnimado />
       <Navbar />
       <main>
         <HeroSection />

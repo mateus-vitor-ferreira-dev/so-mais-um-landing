@@ -89,8 +89,9 @@ flowchart LR
     <tr><th>Seção</th><th>O que comunica</th><th>Animação</th></tr>
   </thead>
   <tbody>
+    <tr><td><code>FundoAnimado</code></td><td>Não é seção: a camada fixa atrás da página inteira, com linhas de quadra de tênis, basquete, vôlei e futsal, manchas de luz e bolas que andam devagar. As seções têm fundo translúcido por cima</td><td>Só CSS, em ciclos de 34 a 72 s; parado com <code>prefers-reduced-motion</code></td></tr>
     <tr><td><code>Navbar</code></td><td>Âncoras e os CTAs de <em>Entrar</em> / <em>Começar grátis</em>; fica sólida com blur após 40px de scroll</td><td>GSAP na entrada</td></tr>
-    <tr><td><code>Hero</code></td><td>Headline, subheadline que cita as modalidades pelo nome e um card de partida de beach tennis (vagas 3/4, horário, quadra, Pix)</td><td>Timeline GSAP + campo em SVG que se desenha</td></tr>
+    <tr><td><code>Hero</code></td><td>Headline, subheadline que cita as modalidades pelo nome e um card de partida de beach tennis (vagas 3/4, horário, quadra, Pix)</td><td>Timeline GSAP</td></tr>
     <tr><td><code>Stats</code></td><td>Dois cartões fixos (modalidades, gratuidade) + até quatro vindos de <code>GET /stats</code>, cada um sumindo abaixo do seu limiar. Ícones do <code>lucide-react</code>, como as outras — emoji de métrica saiu na #79</td><td>Stagger no scroll</td></tr>
     <tr><td><code>Features</code></td><td>9 cards — descoberta, sorteio por nível ou aleatório, avaliações, tempo real (SSE), perfil, rateio por Pix, presença confirmada, rede social (seguir e amigos), controle de conta e dados. Torneios saiu daqui e virou seção própria</td><td><code>autoAlpha</code> + stagger</td></tr>
     <tr><td><code>Times</code></td><td>O grupo que joga toda quarta: capitão, convite com aceite, vaga reservada por uma janela e histórico próprio</td><td>Entrada lateral + cartão de time</td></tr>
@@ -102,7 +103,7 @@ flowchart LR
     <tr><td><code>How It Works</code></td><td>3 passos: criar conta → achar ou criar partida → jogar e avaliar</td><td>Linha tracejada em SVG que se desenha ligando os passos</td></tr>
     <tr><td><code>Owner</code></td><td>O outro público: dono de quadra, com mock do painel de parceiro, os módulos de estoque e equipamentos, a agenda do dia com o tempo, o suporte pelo painel e a nota da assinatura</td><td>Entrada lateral</td></tr>
     <tr><td><code>Escolinha e day use</code></td><td>Os outros dois jeitos de a quadra vender — a turma semanal com matrícula, mensalidade e chamada, e a entrada avulsa do dia, que o jogador acha numa página própria. Fecha com a agenda do professor</td><td>Título, cartões e agenda em cascata</td></tr>
-    <tr><td><code>Courts</code></td><td><strong>12 modalidades</strong> — do beach tennis ao poker, cada card entrando de uma direção diferente</td><td>Direção por card + campo em SVG</td></tr>
+    <tr><td><code>Courts</code></td><td><strong>12 modalidades</strong> — do beach tennis ao poker, cada card entrando de uma direção diferente</td><td>Direção por card</td></tr>
     <tr><td><code>Roadmap</code></td><td><strong>O que ainda não existe</strong> — 3 trilhas com card aberto no board, cada uma declarando a issue que a sustenta. Desenhada para <em>não</em> parecer a de funcionalidades: borda tracejada, paleta âmbar e status por cartão</td><td>Stagger no scroll</td></tr>
     <tr><td><code>FAQ</code></td><td>8 objeções tratadas antes do cadastro (é grátis? como sorteia? como pago? e meus dados?)</td><td>Accordion + stagger</td></tr>
     <tr><td><code>CTA</code></td><td>O fechamento: criar conta gratuita ou entrar</td><td>Reveal no scroll</td></tr>
@@ -208,7 +209,7 @@ A porta 3000 é o default do Next. Para trocar: `npm run dev -- -p 3001`.
 
 Abra `http://localhost:3000` e confira, nesta ordem:
 
-1. **O Hero anima sozinho** no load — as linhas do campo se desenham e o card "Society da Quinta" sobe. Se aparecer estático, o GSAP não montou: olhe o console.
+1. **O Hero anima sozinho** no load — o card da partida de beach tennis sobe, e o fundo da página inteira se mexe devagar atrás dele. Se aparecer estático, o GSAP não montou (olhe o console), ou o sistema está com *reduzir movimento* ligado, que para o fundo de propósito.
 2. **Role a página.** Cada seção entra com sua animação. Seção que fica em branco até você rolar até ela é **comportamento esperado** — os triggers são `once: true`.
 3. **A navbar muda** de transparente para escura com blur depois de ~40px de scroll.
 4. **A seção "Plataforma"** começa a ciclar partidas e notificações assim que entra no viewport (e só então).

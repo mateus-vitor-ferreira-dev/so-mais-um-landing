@@ -64,7 +64,7 @@ export default function PertoSection() {
   }, [sectionRef])
 
   return (
-    <section id="perto" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section id="perto" ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="perto-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Partidas perto de você</Badge>
@@ -98,7 +98,7 @@ export default function PertoSection() {
               <span className="absolute bottom-10 left-6 inline-flex items-center gap-1.5 text-[11px] text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
                 <MapPin size={11} className="text-green-400" /> Beach tennis
               </span>
-              <span className="absolute bottom-20 right-4 inline-flex items-center gap-1.5 text-[11px] text-gray-400 bg-gray-900/70 border border-white/10 px-2.5 py-1 rounded-full">
+              <span className="absolute bottom-20 right-4 inline-flex items-center gap-1.5 text-[11px] text-gray-400 bg-gray-900/60 border border-white/10 px-2.5 py-1 rounded-full">
                 <MapPin size={11} className="text-gray-500" /> Basquete
               </span>
             </div>

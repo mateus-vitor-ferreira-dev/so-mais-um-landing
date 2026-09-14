@@ -82,7 +82,7 @@ export default function HowItWorksSection() {
   }, [sectionRef])
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="how-it-works" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="hiw-title text-center mb-10 md:mb-20">
           <Badge variant="dark" className="mb-4">Como funciona</Badge>

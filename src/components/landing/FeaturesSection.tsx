@@ -211,7 +211,7 @@ export default function FeaturesSection() {
   }, [sectionRef])
 
   return (
-    <section id="features" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section id="features" ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="features-title text-center mb-8 md:mb-16">
           <Badge variant="dark" className="mb-4">Funcionalidades</Badge>

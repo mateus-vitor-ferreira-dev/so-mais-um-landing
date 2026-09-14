@@ -126,3 +126,64 @@ body {
 .legal-document li + li { margin-top: 0.4rem; }
 .legal-document a { color: #4ade80; text-decoration: underline; text-underline-offset: 0.2em; }
 .legal-document a:hover { color: #86efac; }
+
+/* ─── Fundo animado da página inteira (landing#102) ─────────────────────────
+   Só transform e opacity, em ciclos de dezenas de segundos. O desenho está em
+   components/landing/FundoAnimado.tsx, e o porquê de cada regra também. */
+.fundo-luz {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(34, 197, 94, 0.12), transparent 70%);
+  will-change: transform;
+}
+.fundo-luz-1 { top: -30vmax; left: -25vmax; animation: fundo-luz-1 42s ease-in-out infinite alternate; }
+.fundo-luz-2 { top: 35vh; right: -35vmax; animation: fundo-luz-2 55s ease-in-out infinite alternate; background: radial-gradient(closest-side, rgba(16, 185, 129, 0.10), transparent 70%); }
+.fundo-luz-3 { bottom: -40vmax; left: 20vw; animation: fundo-luz-3 48s ease-in-out infinite alternate; }
+
+@keyframes fundo-luz-1 { to { transform: translate3d(30vw, 35vh, 0) scale(1.1); } }
+@keyframes fundo-luz-2 { to { transform: translate3d(-35vw, -20vh, 0) scale(0.9); } }
+@keyframes fundo-luz-3 { to { transform: translate3d(-15vw, -30vh, 0) scale(1.2); } }
+
+.fundo-quadra {
+  position: absolute;
+  opacity: 0.16;
+  will-change: transform;
+}
+.fundo-quadra svg { width: 100%; height: auto; display: block; }
+.fundo-quadra-1 { width: clamp(220px, 34vw, 520px); top: 8vh;  left: -4vw;  animation: fundo-deriva-1 60s ease-in-out infinite alternate; }
+.fundo-quadra-2 { width: clamp(240px, 36vw, 560px); top: 52vh; right: -6vw; animation: fundo-deriva-2 72s ease-in-out infinite alternate; }
+.fundo-quadra-3 { width: clamp(160px, 22vw, 340px); top: 62vh; left: 12vw; animation: fundo-deriva-3 54s ease-in-out infinite alternate; }
+.fundo-quadra-4 { width: clamp(180px, 26vw, 400px); top: 4vh;  right: 14vw; animation: fundo-deriva-4 66s ease-in-out infinite alternate; }
+
+@keyframes fundo-deriva-1 { from { transform: translate3d(0, 0, 0) rotate(-8deg); }  to { transform: translate3d(6vw, 10vh, 0) rotate(4deg); } }
+@keyframes fundo-deriva-2 { from { transform: translate3d(0, 0, 0) rotate(10deg); }  to { transform: translate3d(-8vw, -12vh, 0) rotate(-3deg); } }
+@keyframes fundo-deriva-3 { from { transform: translate3d(0, 0, 0) rotate(20deg); }  to { transform: translate3d(10vw, -8vh, 0) rotate(32deg); } }
+@keyframes fundo-deriva-4 { from { transform: translate3d(0, 0, 0) rotate(-14deg); } to { transform: translate3d(-6vw, 14vh, 0) rotate(-26deg); } }
+
+.fundo-bola {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #22c55e;
+  opacity: 0.28;
+  will-change: transform;
+}
+.fundo-bola-1 { top: 20vh; left: 30vw; animation: fundo-bola-1 34s ease-in-out infinite alternate; }
+.fundo-bola-2 { top: 70vh; left: 70vw; width: 7px; height: 7px; animation: fundo-bola-2 40s ease-in-out infinite alternate; }
+.fundo-bola-3 { top: 45vh; left: 8vw;  width: 6px; height: 6px; animation: fundo-bola-3 46s ease-in-out infinite alternate; }
+.fundo-bola-4 { top: 12vh; left: 82vw; width: 8px; height: 8px; animation: fundo-bola-4 38s ease-in-out infinite alternate; }
+
+@keyframes fundo-bola-1 { to { transform: translate3d(22vw, 30vh, 0); } }
+@keyframes fundo-bola-2 { to { transform: translate3d(-30vw, -25vh, 0); } }
+@keyframes fundo-bola-3 { to { transform: translate3d(26vw, -18vh, 0); } }
+@keyframes fundo-bola-4 { to { transform: translate3d(-18vw, 40vh, 0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fundo-animado,
+  .fundo-animado * {
+    animation: none !important;
+  }
+}

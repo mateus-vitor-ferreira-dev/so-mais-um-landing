@@ -173,7 +173,7 @@ export default function FAQSection() {
   }, [sectionRef])
 
   return (
-    <section ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-3xl mx-auto px-6">
         <div className="faq-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Dúvidas frequentes</Badge>

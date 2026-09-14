@@ -95,7 +95,7 @@ export default function AppPreviewSection() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <section ref={sectionRef} className="bg-gray-900 py-12 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="preview-title text-center mb-10 md:mb-16">
           <Badge variant="dark" className="mb-4">Plataforma</Badge>

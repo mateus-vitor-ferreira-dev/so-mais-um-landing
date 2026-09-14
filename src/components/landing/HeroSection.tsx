@@ -11,23 +11,9 @@ export default function HeroSection() {
   const subRef       = useRef<HTMLParagraphElement>(null)
   const ctaRef       = useRef<HTMLDivElement>(null)
   const cardRef      = useRef<HTMLDivElement>(null)
-  const fieldLinesRef = useRef<SVGSVGElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Field SVG lines draw-in
-      const paths = fieldLinesRef.current?.querySelectorAll('path, circle, line')
-      if (paths) {
-        paths.forEach((path) => {
-          const length = (path as SVGGeometryElement).getTotalLength?.() ?? 300
-          gsap.set(path, { strokeDasharray: length, strokeDashoffset: length })
-        })
-        gsap.to(Array.from(paths), {
-          strokeDashoffset: 0, duration: 2, stagger: 0.15,
-          ease: 'power2.inOut', delay: 0.3,
-        })
-      }
-
       // Content entrance
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
       tl.from(cardRef.current, { y: 70, opacity: 0, duration: 1.1, ease: 'back.out(1.2)' })
@@ -70,25 +56,13 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative flex items-center overflow-hidden bg-gray-950 min-h-[70vh] md:min-h-screen"
+      className="relative flex items-center overflow-hidden bg-gray-950/40 min-h-[70vh] md:min-h-screen"
     >
-      {/* Field SVG background */}
-      <svg
-        ref={fieldLinesRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        viewBox="0 0 1200 700"
-        preserveAspectRatio="xMidYMid slice"
-        fill="none"
-      >
-        <circle cx="600" cy="350" r="120" stroke="#22c55e" strokeWidth="1.5" opacity="0.15" />
-        <circle cx="600" cy="350" r="6"   stroke="#22c55e" strokeWidth="2"   opacity="0.2" />
-        <line x1="600" y1="0" x2="600" y2="700" stroke="#22c55e" strokeWidth="1.5" opacity="0.1" />
-        <path d="M80 60 H1120 V640 H80 Z"     stroke="#22c55e" strokeWidth="1.5" opacity="0.1" />
-        <path d="M80 260 H200 V440 H80"       stroke="#22c55e" strokeWidth="1.5" opacity="0.08" />
-        <path d="M1120 260 H1000 V440 H1120"  stroke="#22c55e" strokeWidth="1.5" opacity="0.08" />
-        <circle cx="230" cy="350" r="4" fill="#22c55e" opacity="0.15" />
-        <circle cx="970" cy="350" r="4" fill="#22c55e" opacity="0.15" />
-      </svg>
+      {/*
+        O campo de futebol que se desenhava aqui saiu (landing#100, #102): o hero
+        passou a falar de todas as modalidades, e o movimento de fundo agora é o
+        da página inteira, no `FundoAnimado`.
+      */}
 
       {/* Stronger radial gradient */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,rgba(34,197,94,0.1),transparent)]" />

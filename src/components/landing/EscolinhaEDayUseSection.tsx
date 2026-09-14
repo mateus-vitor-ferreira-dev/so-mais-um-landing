@@ -125,7 +125,7 @@ export default function EscolinhaEDayUseSection() {
   }, [sectionRef])
 
   return (
-    <section id="escolinha" ref={sectionRef} className="bg-gray-950 py-12 md:py-24">
+    <section id="escolinha" ref={sectionRef} className="bg-gray-950/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="esc-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Escolinha e day use</Badge>

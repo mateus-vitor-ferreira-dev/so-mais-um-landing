@@ -103,7 +103,7 @@ export default function PrevisaoSection() {
   }, [sectionRef])
 
   return (
-    <section id="previsao" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="previsao" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="previsao-title text-center mb-10 md:mb-14">
           <Badge variant="dark" className="mb-4">Previsão do tempo</Badge>
@@ -141,7 +141,7 @@ export default function PrevisaoSection() {
           */}
           <div className="previsao-visual flex justify-center" aria-hidden="true">
             <div className="relative w-full max-w-sm">
-              <div className="rounded-2xl border border-white/10 bg-gray-950/70 p-6 shadow-2xl shadow-black/40">
+              <div className="rounded-2xl border border-white/10 bg-gray-950/60 p-6 shadow-2xl shadow-black/40">
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p className="text-white font-bold">Beach Tennis de Sábado</p>
@@ -173,7 +173,7 @@ export default function PrevisaoSection() {
                 </div>
               </div>
 
-              <div className="animate-float absolute -bottom-6 -left-4 md:-left-10 max-w-[260px] rounded-2xl border border-green-500/30 bg-gray-800 px-4 py-3 shadow-xl">
+              <div className="animate-float absolute -bottom-12 -left-4 md:-left-10 max-w-[260px] rounded-2xl border border-green-500/30 bg-gray-800 px-4 py-3 shadow-xl">
                 <p className="flex items-center gap-2 text-white text-xs font-semibold">
                   <Bell size={13} className="text-green-400" /> Previsão de vento forte
                 </p>

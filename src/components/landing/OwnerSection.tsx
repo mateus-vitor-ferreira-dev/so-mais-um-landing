@@ -79,7 +79,7 @@ export default function OwnerSection() {
   }, [sectionRef])
 
   return (
-    <section id="owner" ref={sectionRef} className="bg-gray-900 py-12 md:py-24">
+    <section id="owner" ref={sectionRef} className="bg-gray-900/60 py-12 md:py-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="owner-title text-center mb-10 md:mb-16">
           <Badge variant="dark" className="mb-4">Para donos de espaço</Badge>
