@@ -51,7 +51,7 @@ import CampeonatosSection from './CampeonatosSection'
 const SECOES = [
   { nome: 'Times fixos', id: 'times', Componente: TimesSection },
   { nome: 'Quem vê e quem entra', id: 'acesso', Componente: AcessoSection },
-  { nome: 'Peladas perto de você', id: 'perto', Componente: PertoSection },
+  { nome: 'Partidas perto de você', id: 'perto', Componente: PertoSection },
   { nome: 'Campeonatos jogáveis', id: 'campeonatos', Componente: CampeonatosSection },
 ]
 
@@ -98,7 +98,7 @@ describe('nada aqui é roadmap', () => {
   const EPICOS_ANUNCIADOS = [
     'so-mais-um-api#202', // times fixos
     'so-mais-um-api#203', // campeonatos jogáveis
-    'so-mais-um-api#211', // peladas perto
+    'so-mais-um-api#211', // partidas perto
     'so-mais-um-api#219', // quem vê e quem entra
   ]
 

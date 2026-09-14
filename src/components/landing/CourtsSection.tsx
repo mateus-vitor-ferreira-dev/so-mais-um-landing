@@ -281,7 +281,7 @@ export default function CourtsSection({ sports }: { sports: Sport[] }) {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            De futebol a poker — organize qualquer tipo de partida ou campeonato.
+            Beach tennis, vôlei, futsal, peteca, basquete, tênis e até poker — organize qualquer tipo de partida ou campeonato.
           </p>
         </div>
 

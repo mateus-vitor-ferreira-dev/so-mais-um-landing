@@ -27,7 +27,7 @@ gsap.registerPlugin(ScrollTrigger)
  * para o que **não** tem seção própria.
  *
  * Só ele saiu, e não os quatro grandes que a issue cogitava: os outros três
- * épicos — times fixos, quem vê e quem entra, peladas perto — nunca tiveram
+ * épicos — times fixos, quem vê e quem entra, partidas perto — nunca tiveram
  * card aqui, porque a `RoadmapSection` os listava como "Planejado" até a #62.
  * Não havia o que remover.
  */
@@ -216,7 +216,7 @@ export default function FeaturesSection() {
         <div className="features-title text-center mb-8 md:mb-16">
           <Badge variant="dark" className="mb-4">Funcionalidades</Badge>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-            Do racha ao torneio —{' '}
+            Do jogo da semana ao campeonato —{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">
               tudo num lugar só
             </span>

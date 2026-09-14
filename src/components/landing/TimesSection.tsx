@@ -98,8 +98,8 @@ export default function TimesSection() {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Antes, cada semana começava do zero: chamar todo mundo de novo, torcer para dar dez.
-            Agora o time existe entre uma pelada e a outra.
+            Antes, cada semana começava do zero: chamar todo mundo de novo, torcer para fechar o
+            número. Agora o time existe entre uma partida e a outra.
           </p>
         </div>
 
@@ -129,7 +129,7 @@ export default function TimesSection() {
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <p className="text-white font-bold">Quarta dos Guerreiros</p>
-                  <p className="text-gray-500 text-xs">Futsal · 14 membros</p>
+                  <p className="text-gray-500 text-xs">Vôlei · 9 membros</p>
                 </div>
                 <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full">
                   <Crown size={12} /> Capitão
@@ -146,7 +146,7 @@ export default function TimesSection() {
                     {i === 0 && <span className="text-[10px] text-gray-500 ml-auto">organiza</span>}
                   </div>
                 ))}
-                <p className="text-gray-600 text-xs pl-11">e mais 11</p>
+                <p className="text-gray-600 text-xs pl-11">e mais 6</p>
               </div>
 
               <div className="mt-5 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-400">

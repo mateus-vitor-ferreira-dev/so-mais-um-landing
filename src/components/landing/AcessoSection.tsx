@@ -113,7 +113,7 @@ export default function AcessoSection() {
             </span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            Escolha quem enxerga a pelada e quem pode entrar nela. Do jogo aberto para a cidade
+            Escolha quem enxerga a partida e quem pode entrar nela. Do jogo aberto para a cidade
             inteira ao fechado só para quem você chamar.
           </p>
         </div>

@@ -172,9 +172,9 @@ export default function OwnerSection() {
                   // `Court.status` é OPEN ou CLOSED — não existe reserva de
                   // quadra no produto, e "Reservada" sugeria um módulo inteiro
                   // que ninguém construiu.
-                  { name: 'Quadra 1 — Society', status: 'Partida em 2h', dot: 'bg-yellow-400' },
-                  { name: 'Quadra 2 — Futsal',  status: 'Aberta',        dot: 'bg-green-400' },
-                  { name: 'Quadra 3 — Beach Tennis', status: 'Fechada',  dot: 'bg-red-400' },
+                  { name: 'Quadra 1 — Beach Tennis', status: 'Partida em 2h', dot: 'bg-yellow-400' },
+                  { name: 'Quadra 2 — Vôlei',  status: 'Aberta',        dot: 'bg-green-400' },
+                  { name: 'Quadra 3 — Society', status: 'Fechada',  dot: 'bg-red-400' },
                 ].map((c, i) => (
                   <div key={i} className="flex items-center justify-between py-2.5 border-b border-white/5 last:border-0">
                     <div className="flex items-center gap-2.5">

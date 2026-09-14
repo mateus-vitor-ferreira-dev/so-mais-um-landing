@@ -38,7 +38,7 @@ export default function Footer() {
               <LogoSvg width={96} />
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-xs mb-6">
-              A plataforma que conecta jogadores, espaços e partidas. Do racha da várzea ao torneio organizado.
+              A plataforma que conecta jogadores, espaços e partidas. Da areia à quadra, do jogo da semana ao campeonato.
             </p>
             {/* Social icon row */}
             <div className="flex gap-3">

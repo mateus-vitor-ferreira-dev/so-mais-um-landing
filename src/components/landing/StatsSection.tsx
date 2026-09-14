@@ -80,7 +80,7 @@ const LIMIARES = {
 }
 
 const FIXOS: Cartao[] = [
-  { target: 12,  suffix: '',  label: 'Modalidades esportivas',  Icon: Shapes, description: 'do futsal ao poker' },
+  { target: 12,  suffix: '',  label: 'Modalidades esportivas',  Icon: Shapes, description: 'do beach tennis ao poker' },
   { target: 100, suffix: '%', label: 'Gratuito para jogadores', Icon: Gift,   description: 'sem taxas, para sempre' },
 ]
 

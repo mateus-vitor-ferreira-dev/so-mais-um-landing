@@ -122,7 +122,7 @@ export default function HeroSection() {
           </h1>
 
           <p ref={subRef} className="text-lg text-gray-400 mb-10 leading-relaxed max-w-lg">
-            Encontre partidas abertas na sua cidade, entre com um clique e sorteie os times na hora. Sem grupo de WhatsApp, sem confusão — só jogo.
+            Beach tennis, vôlei, futsal, peteca, basquete: encontre partidas abertas na sua cidade, entre com um clique e sorteie os times na hora. Sem grupo de WhatsApp, sem confusão — só jogo.
           </p>
 
           <div ref={ctaRef} className="flex flex-wrap gap-4">
@@ -152,16 +152,16 @@ export default function HeroSection() {
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Partida aberta</p>
-                  <h3 className="text-white font-bold text-lg">Society da Quinta</h3>
+                  <h3 className="text-white font-bold text-lg">Beach Tennis de Quinta</h3>
                 </div>
-                <span className="text-3xl">⚽</span>
+                <span className="text-3xl">🎾</span>
               </div>
 
               <div className="space-y-3 mb-5">
                 {[
                   { emoji: '📅', text: 'Quinta-feira, 19h' },
-                  { emoji: '📍', text: 'Quadra Arena Sul' },
-                  { emoji: '💰', text: 'R$ 30 por pessoa · Pix' },
+                  { emoji: '📍', text: 'Arena de Areia Centro' },
+                  { emoji: '💰', text: 'R$ 25 por pessoa · Pix' },
                 ].map(({ emoji, text }, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm text-gray-400">
                     <span className="w-8 h-8 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center text-base flex-shrink-0">
@@ -175,10 +175,10 @@ export default function HeroSection() {
               <div className="mb-5">
                 <div className="flex justify-between text-xs text-gray-500 mb-2">
                   <span>Vagas preenchidas</span>
-                  <span className="text-green-400 font-semibold">8 / 12</span>
+                  <span className="text-green-400 font-semibold">3 / 4</span>
                 </div>
                 <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" style={{ width: '66%' }} />
+                  <div className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" style={{ width: '75%' }} />
                 </div>
               </div>
 
