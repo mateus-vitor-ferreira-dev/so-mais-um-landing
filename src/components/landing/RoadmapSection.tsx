@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { MessageCircle } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -70,7 +71,8 @@ export default function RoadmapSection() {
   })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.roadmap-title')
     const cards = sectionRef.current?.querySelectorAll('.roadmap-card')
@@ -122,13 +124,13 @@ export default function RoadmapSection() {
                 <div className="w-12 h-12 rounded-xl bg-amber-500/5 border border-dashed border-amber-500/25 flex items-center justify-center">
                   <item.Icon size={22} className="text-amber-400/80" />
                 </div>
-                <span className="inline-block text-[11px] font-semibold text-gray-400 bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">
+                <span className="inline-block text-xs font-semibold text-gray-400 bg-white/5 px-2.5 py-0.5 rounded-full border border-white/10">
                   {item.status}
                 </span>
               </div>
 
               <h3 className="text-base font-bold text-gray-200 mb-2">{item.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">{item.description}</p>
+              <p className="text-gray-400 leading-relaxed text-sm">{item.description}</p>
             </div>
           ))}
         </div>

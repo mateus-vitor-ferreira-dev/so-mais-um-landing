@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { Navigation, MapPin } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -35,7 +36,8 @@ export default function PertoSection() {
   const sectionRef = useMobileScrollAnimation('.perto-title, .perto-texto, .perto-visual', { staggerMs: 80 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.perto-title')
     const left = sectionRef.current?.querySelector('.perto-visual')
@@ -92,14 +94,14 @@ export default function PertoSection() {
                 <Navigation size={20} className="text-green-400" />
               </div>
 
-              <span className="absolute top-6 right-10 inline-flex items-center gap-1.5 text-[11px] text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
+              <span className="absolute top-6 right-10 inline-flex items-center gap-1.5 text-xs text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
                 <MapPin size={11} className="text-green-400" /> Vôlei
               </span>
-              <span className="absolute bottom-10 left-6 inline-flex items-center gap-1.5 text-[11px] text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
+              <span className="absolute bottom-10 left-6 inline-flex items-center gap-1.5 text-xs text-gray-300 bg-gray-900/90 border border-white/10 px-2.5 py-1 rounded-full">
                 <MapPin size={11} className="text-green-400" /> Beach tennis
               </span>
-              <span className="absolute bottom-20 right-4 inline-flex items-center gap-1.5 text-[11px] text-gray-400 bg-gray-900/60 border border-white/10 px-2.5 py-1 rounded-full">
-                <MapPin size={11} className="text-gray-500" /> Basquete
+              <span className="absolute bottom-20 right-4 inline-flex items-center gap-1.5 text-xs text-gray-400 bg-gray-900/60 border border-white/10 px-2.5 py-1 rounded-full">
+                <MapPin size={11} className="text-gray-400" /> Basquete
               </span>
             </div>
           </div>

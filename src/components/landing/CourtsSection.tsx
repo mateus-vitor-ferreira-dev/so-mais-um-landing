@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import type { Sport } from '@/lib/sports'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -208,7 +209,7 @@ export default function CourtsSection({ sports }: { sports: Sport[] }) {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (window.matchMedia('(min-width: 768px)').matches) {
+      if (window.matchMedia('(min-width: 768px)').matches && !prefereMenosMovimento()) {
         const cards = sectionRef.current?.querySelectorAll('.sport-card')
         cards?.forEach((card, i) => {
           const dir = (DECORACAO[sports[i].id] ?? DECORACAO_PADRAO).from
@@ -259,7 +260,7 @@ export default function CourtsSection({ sports }: { sports: Sport[] }) {
             return (
             <div
               key={sport.id}
-              className="sport-card group relative bg-gray-900 border border-white/10 hover:border-green-500/40 rounded-2xl p-5 overflow-hidden cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/10"
+              className="sport-card group relative bg-gray-900 border border-white/10 hover:border-green-500/40 rounded-2xl p-5 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-green-500/10"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${decoracao.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`} />
               <div className="relative z-10">
@@ -273,7 +274,7 @@ export default function CourtsSection({ sports }: { sports: Sport[] }) {
                   {iconeDe(sport)}
                 </span>
                 <h3 className="text-base font-bold text-white mb-1">{sport.label}</h3>
-                <p className="text-gray-500 text-xs leading-relaxed">{sport.description}</p>
+                <p className="text-gray-400 text-xs leading-relaxed">{sport.description}</p>
               </div>
               <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${decoracao.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
             </div>

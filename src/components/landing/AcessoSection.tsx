@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { Globe, Link2, Lock, CalendarCheck, Star, Award, Users } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -73,7 +74,8 @@ export default function AcessoSection() {
   const sectionRef = useMobileScrollAnimation('.acesso-title, .acesso-card, .acesso-chip', { staggerMs: 60 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.acesso-title')
     const cards = sectionRef.current?.querySelectorAll('.acesso-card')
@@ -135,7 +137,7 @@ export default function AcessoSection() {
 
         <div className="rounded-2xl border border-white/10 bg-gray-950/40 p-6 md:p-8">
           <p className="text-gray-300 font-medium mb-1">E dá para exigir mais do que o convite</p>
-          <p className="text-gray-500 text-sm mb-5 max-w-2xl">
+          <p className="text-gray-400 text-sm mb-5 max-w-2xl">
             Requisitos de entrada barram quem não atende antes do clique — e o app diz o motivo,
             em vez de deixar a pessoa tomar erro.
           </p>
@@ -151,7 +153,7 @@ export default function AcessoSection() {
             ))}
           </div>
 
-          <p className="text-gray-500 text-xs mt-5">
+          <p className="text-gray-400 text-xs mt-5">
             O convite por link é revogável, tem validade e limite de uso.
           </p>
         </div>

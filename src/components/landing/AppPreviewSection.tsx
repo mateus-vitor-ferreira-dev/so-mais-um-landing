@@ -5,7 +5,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
-import { Star, Users, Trophy, Bell, MapPin, Calendar } from 'lucide-react'
+import { prefereMenosMovimento } from '@/lib/movimento'
+import { Star, Users, Trophy, Bell, MapPin, Calendar, Medal, Handshake } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -31,7 +32,8 @@ const ALL_PARTIDAS = [
 const ALL_NOTIFS = [
   { text: 'Lucas entrou no Beach Tennis de Sábado', time: 'agora', dot: 'bg-green-500' },
   { text: 'Futsal de Sexta está quase lotando!',    time: '2min',  dot: 'bg-yellow-500' },
-  { text: 'Você recebeu uma avaliação ⭐⭐⭐⭐⭐',   time: '1h',    dot: 'bg-blue-500' },
+  // As cinco estrelas eram emoji no texto; agora são ícone, desenhado ao lado (web#511).
+  { text: 'Você recebeu uma avaliação',            time: '1h',    dot: 'bg-blue-500', estrelas: 5 },
   { text: 'Ana entrou no Vôlei Misto',              time: '5min',  dot: 'bg-green-500' },
   { text: 'Basquete 3x3 está quase cheio!',         time: '8min',  dot: 'bg-yellow-500' },
   { text: 'Novo campeonato de peteca na sua cidade', time: '30min', dot: 'bg-purple-500' },
@@ -61,7 +63,8 @@ export default function AppPreviewSection() {
   const notifs  = useCycler(ALL_NOTIFS,  2400, 3)
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.preview-title')
     const left  = sectionRef.current?.querySelector('.preview-left')
@@ -110,10 +113,10 @@ export default function AppPreviewSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {/* Left: Partida list — cycles automatically */}
-          <div className="preview-left flex flex-col gap-3">
-            <p className="text-xs text-gray-600 uppercase tracking-wider font-semibold mb-1">Partidas abertas</p>
+          <div className="preview-left flex min-w-0 flex-col gap-3">
+            <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">Partidas abertas</p>
             <div className="flex flex-col gap-3 flex-1">
               {partidas.visible.map((p, i) => (
                 <div
@@ -123,21 +126,21 @@ export default function AppPreviewSection() {
                 >
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <span className="text-xs text-gray-500 mb-1 flex items-center gap-1.5">
+                      <span className="text-xs text-gray-400 mb-1 flex items-center gap-1.5">
                         <span>{p.icon}</span> {p.type}
                       </span>
                       <h4 className="text-white font-bold text-base">{p.name}</h4>
                     </div>
                     <span className="text-green-400 font-bold text-sm bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-lg flex-shrink-0">
-                      {p.price}<span className="text-gray-500 font-normal">/p.</span>
+                      {p.price}<span className="text-gray-400 font-normal">/p.</span>
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-400 mb-3">
                     <span className="flex items-center gap-1.5"><Calendar size={11} />{p.time}</span>
                     <span className="flex items-center gap-1.5"><MapPin size={11} />{p.local}</span>
                   </div>
                   <div>
-                    <div className="flex justify-between text-xs text-gray-600 mb-1.5">
+                    <div className="flex justify-between text-xs text-gray-400 mb-1.5">
                       <span>Vagas</span>
                       <span className="text-green-400 font-semibold">{p.vagas} restantes</span>
                     </div>
@@ -154,32 +157,34 @@ export default function AppPreviewSection() {
           </div>
 
           {/* Right: Profile + notifications */}
-          <div className="preview-right flex flex-col gap-4">
+          <div className="preview-right flex min-w-0 flex-col gap-4">
             {/* Profile card */}
             <div className="bg-gray-800/60 border border-white/5 rounded-2xl p-6">
-              <p className="text-xs text-gray-600 uppercase tracking-wider font-semibold mb-4">Perfil do jogador</p>
-              <div className="flex items-center gap-4 mb-5">
+              <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-4">Perfil do jogador</p>
+              {/* No celular os selos descem para baixo do nome: lado a lado, o nome
+                  ficava com 80px e quebrava em duas linhas (web#511). */}
+              <div className="flex flex-wrap items-center gap-4 mb-5">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-2xl font-black text-white flex-shrink-0">
                   M
                 </div>
                 <div className="min-w-0 flex-1">
                   <h4 className="text-white font-bold text-base">Mateus F.</h4>
-                  <div className="flex items-center gap-1 mt-0.5">
+                  <div className="flex flex-wrap items-center gap-1 mt-0.5">
                     {[1,2,3,4,5].map(s => (
                       <Star key={s} size={11} className="text-yellow-400 fill-yellow-400" />
                     ))}
-                    <span className="text-gray-500 text-xs ml-1">4.9 · 38 jogos</span>
+                    <span className="text-gray-400 text-xs ml-1">4.9 · 38 jogos</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                <div className="flex w-full flex-row flex-wrap gap-1.5 sm:w-auto sm:flex-col sm:items-end flex-shrink-0">
                   {/*
                     🏅, e não o ⭐ que estava aqui: a estrela é a nota, e ela
                     aparece cinco linhas acima justamente como nota (o 4.9). O
                     mesmo símbolo para a nota e para o prêmio apagava a
                     diferença entre os dois no mesmo cartão (#440).
                   */}
-                  <span className="text-xs font-bold text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-2.5 py-0.5 rounded-full">🏅 Craque</span>
-                  <span className="text-xs font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full">🤝 Confiável</span>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-yellow-400 bg-yellow-500/10 border border-yellow-500/20 px-2.5 py-0.5 rounded-full"><Medal size={12} aria-hidden="true" /> Craque</span>
+                  <span className="inline-flex items-center gap-1 text-xs font-bold text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2.5 py-0.5 rounded-full"><Handshake size={12} aria-hidden="true" /> Confiável</span>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-3">
@@ -193,7 +198,7 @@ export default function AppPreviewSection() {
                       <Icon size={14} className="text-green-400" />
                     </div>
                     <div className="text-white font-black text-lg">{value}</div>
-                    <div className="text-gray-600 text-xs">{label}</div>
+                    <div className="text-gray-400 text-xs">{label}</div>
                   </div>
                 ))}
               </div>
@@ -203,8 +208,8 @@ export default function AppPreviewSection() {
             <div className="bg-gray-800/60 border border-white/5 rounded-2xl p-5 flex-1">
               <div className="flex items-center gap-2 mb-4">
                 <Bell size={14} className="text-green-400" />
-                <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Notificações</p>
-                <span className="ml-auto w-5 h-5 rounded-full bg-green-500 flex items-center justify-center text-white text-[10px] font-black">3</span>
+                <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold">Notificações</p>
+                <span className="ml-auto w-5 h-5 rounded-full bg-green-500 flex items-center justify-center text-gray-950 text-xs font-black">3</span>
               </div>
               <div className="space-y-3.5">
                 {notifs.visible.map((n, i) => (
@@ -214,8 +219,17 @@ export default function AppPreviewSection() {
                     style={{ animationDelay: `${i * 80}ms` }}
                   >
                     <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${n.dot}`} />
-                    <p className="text-gray-400 text-xs leading-relaxed flex-1">{n.text}</p>
-                    <span className="text-gray-600 text-[10px] flex-shrink-0">{n.time}</span>
+                    <p className="text-gray-400 text-xs leading-relaxed flex-1">
+                      {n.text}
+                      {n.estrelas && (
+                        <span className="ml-1 inline-flex gap-0.5 align-middle" aria-label={`${n.estrelas} estrelas`}>
+                          {Array.from({ length: n.estrelas }, (_, s) => (
+                            <Star key={s} size={11} aria-hidden="true" className="text-yellow-400 fill-yellow-400" />
+                          ))}
+                        </span>
+                      )}
+                    </p>
+                    <span className="text-gray-400 text-xs flex-shrink-0">{n.time}</span>
                   </div>
                 ))}
               </div>

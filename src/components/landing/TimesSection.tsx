@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { Crown, Clock, History, UserPlus } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -61,7 +62,8 @@ export default function TimesSection() {
   const sectionRef = useMobileScrollAnimation('.times-title, .times-pilar, .times-card', { staggerMs: 80 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.times-title')
     const left = sectionRef.current?.querySelector('.times-left')
@@ -129,9 +131,9 @@ export default function TimesSection() {
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <p className="text-white font-bold">Quarta dos Guerreiros</p>
-                  <p className="text-gray-500 text-xs">Vôlei · 9 membros</p>
+                  <p className="text-gray-400 text-xs">Vôlei · 9 membros</p>
                 </div>
-                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full">
                   <Crown size={12} /> Capitão
                 </span>
               </div>
@@ -139,14 +141,14 @@ export default function TimesSection() {
               <div className="space-y-3">
                 {['Mateus V.', 'Fernanda L.', 'Rafael S.'].map((nome, i) => (
                   <div key={nome} className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[11px] text-gray-400 font-semibold">
+                    <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-xs text-gray-400 font-semibold">
                       {nome.slice(0, 1)}
                     </div>
                     <span className="text-gray-300 text-sm">{nome}</span>
-                    {i === 0 && <span className="text-[10px] text-gray-500 ml-auto">organiza</span>}
+                    {i === 0 && <span className="text-xs text-gray-400 ml-auto">organiza</span>}
                   </div>
                 ))}
-                <p className="text-gray-600 text-xs pl-11">e mais 6</p>
+                <p className="text-gray-400 text-xs pl-11">e mais 6</p>
               </div>
 
               <div className="mt-5 pt-4 border-t border-white/5 flex items-center gap-2 text-xs text-gray-400">
