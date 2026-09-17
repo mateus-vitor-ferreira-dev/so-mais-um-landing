@@ -31,7 +31,9 @@
  * Server Component: não há estado nem efeito, e o fundo chega pronto no HTML.
  */
 
-const TRACO = { stroke: '#22c55e', fill: 'none', vectorEffect: 'non-scaling-stroke' } as const
+// A cor vem do token `--color-brand` (web#511). Atributo de SVG não lê `var()`,
+// por isso o traço vai no `style`.
+const TRACO = { style: { stroke: 'var(--color-brand)' }, fill: 'none', vectorEffect: 'non-scaling-stroke' } as const
 
 function QuadraDeTenis() {
   // Proporção real de 23,77 × 10,97 m, com os corredores de duplas.

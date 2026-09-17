@@ -103,7 +103,7 @@ export default function HowItWorksSection() {
               <line
                 ref={lineRef}
                 x1="0" y1="2" x2="800" y2="2"
-                stroke="#22c55e" strokeWidth="1.5"
+                className="stroke-brand" strokeWidth="1.5"
                 strokeDasharray="8 6" opacity="0.4"
               />
             </svg>
