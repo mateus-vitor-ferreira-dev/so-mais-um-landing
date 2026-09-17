@@ -100,10 +100,13 @@ export default function Navbar() {
         <ul className="hidden lg:flex items-center gap-6">
           {links.map((link) => (
             <li key={link.href}>
+              {/* 24px de altura no mínimo, o alvo de ponteiro do WCAG 2.2 (2.5.8):
+                  do tamanho da linha de texto eram 17px (web#511). O texto não
+                  sai do lugar — o `items-center` centraliza na caixa maior. */}
               <a
                 href={link.href}
                 className={cn(
-                  'text-sm font-medium transition-colors duration-200',
+                  'inline-flex min-h-6 items-center text-sm font-medium transition-colors duration-200',
                   activeHref === link.href
                     ? 'text-green-400'
                     : 'text-gray-300 hover:text-green-400'
