@@ -145,8 +145,12 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         inert={!open}
         style={{ height: 0, overflow: 'hidden', opacity: 0 }}
       >
+        {/* O fio fica na largura do cartão e o texto, na medida de leitura: no
+            computador a resposta corria 96 caracteres por linha (web#511). */}
         <div className="px-5 pb-5">
-          <p className="text-gray-400 leading-relaxed text-sm pt-3 border-t border-white/5">{a}</p>
+          <div className="pt-3 border-t border-white/5">
+            <p className="max-w-leitura text-gray-400 leading-relaxed text-sm">{a}</p>
+          </div>
         </div>
       </div>
     </div>
