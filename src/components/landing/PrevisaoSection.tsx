@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
 import { prefereMenosMovimento } from '@/lib/movimento'
 import { Bell, CalendarClock, CloudSun, Sun, Umbrella, Wind } from 'lucide-react'
+import IconeModalidade from './IconeModalidade'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -151,7 +152,7 @@ export default function PrevisaoSection() {
                     <p className="text-white font-bold">Beach Tennis de Sábado</p>
                     <p className="text-gray-400 text-xs">Arena de Areia · Sáb 15h às 17h</p>
                   </div>
-                  <span className="text-2xl">🎾</span>
+                  <IconeModalidade icon="beach-tennis" tamanho={26} />
                 </div>
 
                 <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">

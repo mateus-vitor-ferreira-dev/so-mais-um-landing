@@ -116,4 +116,49 @@ describe('a página inteira', () => {
     expect(hero).toMatch(/beach tennis/i)
     expect(hero).toMatch(/vôlei/i)
   })
+
+  /**
+   * O Tailwind 4 tirou o `cursor: pointer` do `<button>` no preflight, e o
+   * botão sem classe mostra a seta: as oito perguntas do FAQ pareciam texto
+   * (web#511). O jsdom não aplica CSS, então o teste confere a classe.
+   */
+  it('todo botão mostra a mãozinha', () => {
+    const { container } = aPagina()
+
+    const botoes = [...container.querySelectorAll('button, summary, [role=button]')]
+    expect(botoes.length).toBeGreaterThan(0)
+    for (const botao of botoes) {
+      expect(botao.className, botao.textContent ?? '').toMatch(/\bcursor-pointer\b/)
+    }
+  })
+
+  /**
+   * Quem navega por título no leitor de tela salta de um nível para o próximo,
+   * e um h4 logo depois de um h2 parece subseção de algo que não existe. Eram
+   * três: o cartão do hero (h1→h3), o preview do app e o rodapé (h2→h4).
+   */
+  it('os títulos não pulam nível', () => {
+    const { container } = aPagina()
+
+    const niveis = [...container.querySelectorAll('h1, h2, h3, h4, h5, h6')].map((h) => ({
+      nivel: Number(h.tagName[1]),
+      texto: h.textContent?.trim(),
+    }))
+    expect(niveis[0]?.nivel).toBe(1)
+    for (let i = 1; i < niveis.length; i++) {
+      expect(niveis[i].nivel, `${niveis[i - 1].texto} → ${niveis[i].texto}`).toBeLessThanOrEqual(niveis[i - 1].nivel + 1)
+    }
+  })
+
+  /**
+   * Emoji não é desenho, é fonte: cada sistema entrega o seu (#79). A última
+   * leva a sair foi a das modalidades — hero, preview do app, previsão do
+   * tempo e a grade (web#511). A faixa é a mesma do `StatsSection.test.tsx`.
+   */
+  it('não desenha emoji em lugar nenhum, nem de modalidade', () => {
+    const { container } = aPagina()
+
+    expect(container.textContent ?? '').not.toMatch(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}]/u)
+    expect(container.querySelectorAll('#courts svg[data-modalidade]')).toHaveLength(FALLBACK_SPORTS.length)
+  })
 })

@@ -130,7 +130,7 @@ export default function CampeonatosSection() {
 
         <div className="rounded-2xl border border-white/10 bg-gray-950/40 p-6 md:p-8">
           <p className="text-gray-300 font-medium mb-1">Cinco formatos, e divisões por nível</p>
-          <p className="text-gray-400 text-sm mb-5 max-w-2xl">
+          <p className="text-gray-400 text-sm mb-5 max-w-leitura">
             Do iniciante ao profissional, cada divisão com a própria chave — para o campeonato não
             virar um time de fábrica contra quatro amigos.
           </p>

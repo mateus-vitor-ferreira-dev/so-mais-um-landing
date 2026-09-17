@@ -100,10 +100,13 @@ export default function Navbar() {
         <ul className="hidden lg:flex items-center gap-6">
           {links.map((link) => (
             <li key={link.href}>
+              {/* 24px de altura no mínimo, o alvo de ponteiro do WCAG 2.2 (2.5.8):
+                  do tamanho da linha de texto eram 17px (web#511). O texto não
+                  sai do lugar — o `items-center` centraliza na caixa maior. */}
               <a
                 href={link.href}
                 className={cn(
-                  'text-sm font-medium transition-colors duration-200',
+                  'inline-flex min-h-6 items-center text-sm font-medium transition-colors duration-200',
                   activeHref === link.href
                     ? 'text-green-400'
                     : 'text-gray-300 hover:text-green-400'
@@ -131,10 +134,12 @@ export default function Navbar() {
         </div>
 
         {/* 24px de ícone com 10px de folga de cada lado: os 44px de alvo de
-            toque (web#511). A margem negativa mantém o ícone alinhado à borda. */}
+            toque (web#511). A margem negativa mantém o ícone alinhado à borda.
+            O Tailwind 4 tirou a mãozinha do `<button>`, e quem a devolve é a
+            classe, como no `buttonVariants`. */}
         <button
           type="button"
-          className="lg:hidden text-white p-2.5 -mr-2.5 rounded-full"
+          className="lg:hidden text-white p-2.5 -mr-2.5 rounded-full cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={menuOpen}
