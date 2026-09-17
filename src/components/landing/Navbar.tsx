@@ -2,10 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import LogoSvg from '@/components/LogoSvg'
+import { prefereMenosMovimento } from '@/lib/movimento'
 
 /**
  * Na ordem em que as seções aparecem na página (#97).
@@ -63,6 +64,12 @@ export default function Navbar() {
   useEffect(() => {
     const el = mobileRef.current
     if (!el) return
+    // Sem movimento pedido, o menu só aparece e some.
+    if (prefereMenosMovimento()) {
+      el.style.display = menuOpen ? 'flex' : 'none'
+      el.style.opacity = '1'
+      return
+    }
     if (menuOpen) {
       el.style.display = 'flex'
       gsap.fromTo(el, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out' })
@@ -108,20 +115,29 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-3">
-          <a href="https://app.so-mais-um.com/login">
-            <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white">
-              Entrar
-            </Button>
+          <a
+            href="https://app.so-mais-um.com/login"
+            className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), 'text-gray-300 hover:text-white')}
+          >
+            Entrar
           </a>
-          <a href="https://app.so-mais-um.com/register">
-            <Button size="sm" className="btn-shimmer">Começar grátis</Button>
+          <a
+            href="https://app.so-mais-um.com/register"
+            className={cn(buttonVariants({ size: 'sm' }), 'btn-shimmer')}
+          >
+            Começar grátis
           </a>
         </div>
 
+        {/* 24px de ícone com 10px de folga de cada lado: os 44px de alvo de
+            toque (web#511). A margem negativa mantém o ícone alinhado à borda. */}
         <button
-          className="lg:hidden text-white p-1"
+          type="button"
+          className="lg:hidden text-white p-2.5 -mr-2.5 rounded-full"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={menuOpen}
+          aria-controls="menu-mobile"
         >
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -129,16 +145,18 @@ export default function Navbar() {
 
       {/* Mobile menu — always mounted, visibility controlled by GSAP */}
       <div
+        id="menu-mobile"
         ref={mobileRef}
         style={{ display: 'none' }}
-        className="lg:hidden bg-gray-950/97 backdrop-blur-md border-t border-white/10 px-6 py-5 flex-col gap-4"
+        className="lg:hidden bg-gray-950/97 backdrop-blur-md border-t border-white/10 px-6 py-3 flex-col gap-1"
       >
         {links.map((link) => (
           <a
             key={link.href}
             href={link.href}
             className={cn(
-              'font-medium transition-colors text-base',
+              // A linha inteira é o alvo, com 44px de altura (web#511).
+              'flex min-h-11 items-center font-medium transition-colors text-base',
               activeHref === link.href ? 'text-green-400' : 'text-gray-300'
             )}
             onClick={() => setMenuOpen(false)}
@@ -146,12 +164,18 @@ export default function Navbar() {
             {link.label}
           </a>
         ))}
-        <hr className="border-white/10" />
-        <a href="https://app.so-mais-um.com/login">
-          <Button variant="ghost" className="w-full text-gray-300">Entrar</Button>
+        <hr className="my-2 border-white/10" />
+        <a
+          href="https://app.so-mais-um.com/login"
+          className={cn(buttonVariants({ variant: 'ghost' }), 'w-full text-gray-300')}
+        >
+          Entrar
         </a>
-        <a href="https://app.so-mais-um.com/register">
-          <Button className="w-full btn-shimmer">Começar grátis</Button>
+        <a
+          href="https://app.so-mais-um.com/register"
+          className={cn(buttonVariants(), 'mt-2 w-full btn-shimmer')}
+        >
+          Começar grátis
         </a>
       </div>
     </nav>
