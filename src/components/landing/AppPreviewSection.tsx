@@ -222,7 +222,7 @@ export default function AppPreviewSection() {
                     <p className="text-gray-400 text-xs leading-relaxed flex-1">
                       {n.text}
                       {n.estrelas && (
-                        <span className="ml-1 inline-flex gap-0.5 align-middle" aria-label={`${n.estrelas} estrelas`}>
+                        <span className="ml-1 inline-flex gap-0.5 align-middle" role="img" aria-label={`${n.estrelas} estrelas`}>
                           {Array.from({ length: n.estrelas }, (_, s) => (
                             <Star key={s} size={11} aria-hidden="true" className="text-yellow-400 fill-yellow-400" />
                           ))}

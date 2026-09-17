@@ -92,7 +92,8 @@ export default function Navbar() {
       )}
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#" className="flex items-center opacity-90 hover:opacity-100 transition-opacity">
+        {/* O logo é desenho: sem o rótulo, o leitor de tela anunciava só "link" (axe, web#511). */}
+        <a href="#" aria-label="Só+1, voltar ao início" className="flex items-center opacity-90 hover:opacity-100 transition-opacity">
           <LogoSvg width={88} />
         </a>
 
