@@ -113,9 +113,9 @@ export default function AppPreviewSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {/* Left: Partida list — cycles automatically */}
-          <div className="preview-left flex flex-col gap-3">
+          <div className="preview-left flex min-w-0 flex-col gap-3">
             <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-1">Partidas abertas</p>
             <div className="flex flex-col gap-3 flex-1">
               {partidas.visible.map((p, i) => (
@@ -135,7 +135,7 @@ export default function AppPreviewSection() {
                       {p.price}<span className="text-gray-400 font-normal">/p.</span>
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-gray-400 mb-3">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-400 mb-3">
                     <span className="flex items-center gap-1.5"><Calendar size={11} />{p.time}</span>
                     <span className="flex items-center gap-1.5"><MapPin size={11} />{p.local}</span>
                   </div>
@@ -157,24 +157,26 @@ export default function AppPreviewSection() {
           </div>
 
           {/* Right: Profile + notifications */}
-          <div className="preview-right flex flex-col gap-4">
+          <div className="preview-right flex min-w-0 flex-col gap-4">
             {/* Profile card */}
             <div className="bg-gray-800/60 border border-white/5 rounded-2xl p-6">
               <p className="text-xs text-gray-400 uppercase tracking-wider font-semibold mb-4">Perfil do jogador</p>
-              <div className="flex items-center gap-4 mb-5">
+              {/* No celular os selos descem para baixo do nome: lado a lado, o nome
+                  ficava com 80px e quebrava em duas linhas (web#511). */}
+              <div className="flex flex-wrap items-center gap-4 mb-5">
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center text-2xl font-black text-white flex-shrink-0">
                   M
                 </div>
                 <div className="min-w-0 flex-1">
                   <h4 className="text-white font-bold text-base">Mateus F.</h4>
-                  <div className="flex items-center gap-1 mt-0.5">
+                  <div className="flex flex-wrap items-center gap-1 mt-0.5">
                     {[1,2,3,4,5].map(s => (
                       <Star key={s} size={11} className="text-yellow-400 fill-yellow-400" />
                     ))}
                     <span className="text-gray-400 text-xs ml-1">4.9 · 38 jogos</span>
                   </div>
                 </div>
-                <div className="flex flex-col items-end gap-1.5 flex-shrink-0">
+                <div className="flex w-full flex-row flex-wrap gap-1.5 sm:w-auto sm:flex-col sm:items-end flex-shrink-0">
                   {/*
                     🏅, e não o ⭐ que estava aqui: a estrela é a nota, e ela
                     aparece cinco linhas acima justamente como nota (o 4.9). O
