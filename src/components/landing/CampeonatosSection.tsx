@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { ClipboardList, Flag, GitBranch, Trophy } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -59,7 +60,8 @@ export default function CampeonatosSection() {
   const sectionRef = useMobileScrollAnimation('.camp-title, .camp-etapa, .camp-formato', { staggerMs: 70 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.camp-title')
     const etapasEl = sectionRef.current?.querySelectorAll('.camp-etapa')
@@ -119,7 +121,7 @@ export default function CampeonatosSection() {
               <div className="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4 relative z-10 bg-gray-900">
                 <Icon size={22} className="text-green-400" />
               </div>
-              <p className="text-[11px] font-semibold text-green-400/70 mb-1">Etapa {i + 1}</p>
+              <p className="text-xs font-semibold text-green-400 mb-1">Etapa {i + 1}</p>
               <h3 className="text-white font-bold mb-2">{titulo}</h3>
               <p className="text-gray-400 text-sm leading-relaxed">{texto}</p>
             </li>
@@ -128,7 +130,7 @@ export default function CampeonatosSection() {
 
         <div className="rounded-2xl border border-white/10 bg-gray-950/40 p-6 md:p-8">
           <p className="text-gray-300 font-medium mb-1">Cinco formatos, e divisões por nível</p>
-          <p className="text-gray-500 text-sm mb-5 max-w-2xl">
+          <p className="text-gray-400 text-sm mb-5 max-w-2xl">
             Do iniciante ao profissional, cada divisão com a própria chave — para o campeonato não
             virar um time de fábrica contra quatro amigos.
           </p>
