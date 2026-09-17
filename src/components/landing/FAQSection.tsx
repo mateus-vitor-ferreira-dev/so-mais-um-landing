@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { ChevronDown } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -89,6 +90,12 @@ function FAQItem({ q, a }: { q: string; a: string }) {
   const toggle = () => {
     const el = contentRef.current
     if (!el) { setOpen(o => !o); return }
+    // Sem movimento pedido, a resposta abre e fecha de uma vez.
+    if (prefereMenosMovimento()) {
+      gsap.set(el, open ? { height: 0, opacity: 0 } : { height: 'auto', opacity: 1 })
+      setOpen(o => !o)
+      return
+    }
 
     if (!open) {
       setOpen(true)
@@ -150,7 +157,8 @@ export default function FAQSection() {
   const sectionRef = useMobileScrollAnimation('.faq-title, .faq-item', { staggerMs: 60 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.faq-title')
     const items = sectionRef.current?.querySelectorAll('.faq-item')
