@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { CalendarDays, ClipboardCheck, GraduationCap, Ticket, Users, Wallet } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -96,7 +97,8 @@ export default function EscolinhaEDayUseSection() {
   const sectionRef = useMobileScrollAnimation('.esc-title, .esc-card, .esc-agenda', { staggerMs: 90 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.esc-title')
     const cards = sectionRef.current?.querySelectorAll('.esc-card')
@@ -184,7 +186,7 @@ export default function EscolinhaEDayUseSection() {
           <div className="flex items-center gap-2 mb-5">
             <GraduationCap size={16} className="text-green-400" />
             <p className="text-white font-bold text-sm">Minhas aulas · hoje</p>
-            <span className="text-gray-600 text-xs ml-auto">o professor, em duas academias</span>
+            <span className="text-gray-400 text-xs ml-auto">o professor, em duas academias</span>
           </div>
 
           <div className="space-y-3">
@@ -196,9 +198,9 @@ export default function EscolinhaEDayUseSection() {
                 <span className="text-white font-bold text-sm tabular-nums">{hora}</span>
                 <div className="min-w-0">
                   <p className="text-gray-300 text-sm">{turma}</p>
-                  <p className="text-gray-600 text-xs truncate">{onde}</p>
+                  <p className="text-gray-400 text-xs truncate">{onde}</p>
                 </div>
-                <span className="ml-auto text-[11px] font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full whitespace-nowrap">
+                <span className="ml-auto text-xs font-semibold text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-full whitespace-nowrap">
                   Fazer chamada
                 </span>
               </div>
