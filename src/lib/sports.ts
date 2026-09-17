@@ -17,6 +17,10 @@ const REVALIDAR_SEGUNDOS = 3600
 /**
  * A API é a fonte da verdade. O fallback mantém a vitrine renderizável durante
  * indisponibilidade e é auditado pelo `contrato:check` contra o mesmo endpoint.
+ *
+ * A landing desenha pelo `icon`, no `IconeModalidade`. O `iconFallback` (o
+ * emoji) fica aqui porque é parte do contrato com a api, e não porque vá para a
+ * tela: emoji como ícone saiu da página na web#511.
  */
 export const FALLBACK_SPORTS: Sport[] = [
   { id: 'SOCIETY', label: 'Society', icon: 'society', iconFallback: '⚽', description: 'Campo society — grama sintética', group: 'FUTEBOL', groupLabel: 'Futebol', groupIcon: 'futebol', groupIconFallback: '⚽', groupOrder: 1 },

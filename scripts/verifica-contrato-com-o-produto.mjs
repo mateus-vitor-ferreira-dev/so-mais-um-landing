@@ -200,9 +200,9 @@ const tags = await catalogo('/review-tags')
     if (atual.icon !== esperado.icon) {
       problemas.push(`${fonte}: ${esperado.id} usa o ícone "${atual.icon}" e a api usa "${esperado.icon}"`)
     }
-    // O emoji do fallback é o que a vitrine desenha enquanto a api não responde.
-    // Divergir aqui é o defeito da #440 reaparecendo justamente na hora em que
-    // ninguém tem como conferir contra a api.
+    // O emoji do fallback já não é desenhado pela landing (web#511), mas é o
+    // que o `Sport` do fallback diz sobre a modalidade. Divergir aqui é o
+    // defeito da #440 reaparecendo na hora em que ninguém confere contra a api.
     if (atual.iconFallback !== esperado.iconFallback) {
       const mostra = atual.iconFallback ?? 'null'
       const serve = esperado.iconFallback ?? 'null'
@@ -219,19 +219,17 @@ const tags = await catalogo('/review-tags')
   conferido.push(`${naLanding.length} modalidades do fallback com nome, ícone e emoji`)
 }
 
-// ── 3. Os ícones do mockup do app, e os três desenhados à mão ───────────────
+// ── 3. Os ícones do mockup do app ───────────────────────────────────────────
 //
 // A conferência de nomes acima passava com o tênis errado: a landing mostrava
 // 🎾 — o mesmo emoji do Beach Tennis, no cartão ao lado — enquanto a api servia
 // 🥎.
 //
-// A vitrine deixou de ter lista própria: a `CourtsSection` recebe as
-// modalidades da api e a seção 2 confere o fallback. Sobra aqui o que **ainda**
-// é escrito à mão na landing — o mockup de partidas, que mostra oito das doze
-// desde a landing#100 e inventa o emoji se ninguém olhar.
-//
-// Quem decide é `src/constants/sports.ts` da api: `iconFallback` é o emoji,
-// ou `null` para modalidade que precisa do SVG desenhado pelo cliente.
+// Desde a web#511 a landing não desenha emoji nenhum: o mockup de partidas
+// guarda o `icon` da api (`beach-tennis`, `volei`…) e o `IconeModalidade`
+// desenha. O erro possível mudou de forma, e não de lugar: o mockup é escrito à
+// mão, mostra oito das doze desde a landing#100, e pode pôr o identificador de
+// uma modalidade no cartão de outra.
 {
   const fontes = [
     {
@@ -243,11 +241,7 @@ const tags = await catalogo('/review-tags')
 
   let total = 0
   for (const fonte of fontes) {
-    const itens = [...arquivo(fonte.caminho).matchAll(fonte.regex)].map((m) => ({
-      id: m[1],
-      emoji: m[2],
-      componente: m[3],
-    }))
+    const itens = [...arquivo(fonte.caminho).matchAll(fonte.regex)].map((m) => ({ id: m[1], icon: m[2] }))
     total += itens.length
 
     // Mudança de formatação não pode fazer uma lista desaparecer do radar.
@@ -262,71 +256,72 @@ const tags = await catalogo('/review-tags')
       const naApi = sports.find((s) => s.id === item.id)
       if (!naApi) {
         problemas.push(`${fonte.caminho}: \`${item.id}\` não é uma modalidade que a api serve`)
-        continue
-      }
-
-      if (naApi.iconFallback === null) {
-        if (!item.componente) {
-          problemas.push(
-            `${fonte.caminho}: ${naApi.label} mostra o emoji ${item.emoji} e a api serve ` +
-              '`iconFallback: null` — esta modalidade precisa do SVG desenhado',
-          )
-        }
-      } else if (item.emoji !== naApi.iconFallback) {
-        const mostrado = item.componente ? `<${item.componente} />` : item.emoji
-        problemas.push(`${fonte.caminho}: ${naApi.label} mostra ${mostrado} e a api serve ${naApi.iconFallback}`)
+      } else if (item.icon !== naApi.icon) {
+        problemas.push(`${fonte.caminho}: ${naApi.label} mostra o ícone "${item.icon}" e a api serve "${naApi.icon}"`)
       }
     }
 
     // A colisão importa dentro de cada lista, onde os itens aparecem juntos.
     const vistos = new Map()
     for (const item of itens) {
-      const chave = item.componente ? `<${item.componente} />` : item.emoji
-      if (vistos.has(chave)) {
-        problemas.push(`${fonte.caminho}: ${vistos.get(chave)} e ${item.id} mostram o mesmo ícone ${chave}`)
+      if (vistos.has(item.icon)) {
+        problemas.push(`${fonte.caminho}: ${vistos.get(item.icon)} e ${item.id} mostram o mesmo ícone "${item.icon}"`)
       }
-      vistos.set(chave, item.id)
+      vistos.set(item.icon, item.id)
     }
   }
 
   conferido.push(`${total} ícones de modalidade no mockup do app`)
 }
 
-// ── 3b. Toda modalidade sem emoji tem o SVG que ela exige ───────────────────
+// ── 3b. Toda modalidade tem desenho, e todo desenho é de uma modalidade ─────
 //
-// `iconFallback: null` é a api dizendo "esta não tem emoji correto, desenhe".
-// Quem atende esse pedido é o `iconeDe` da `CourtsSection`, que casa o
-// `sport.icon` com um componente. Se a api passar a servir uma quarta
-// modalidade sem emoji, o `iconeDe` devolve `null` e o cartão sobe **sem ícone
-// nenhum** — sem erro, sem aviso, só um buraco na grade.
+// Até a web#511 só as três de `iconFallback: null` precisavam de SVG; as outras
+// caíam no emoji. Agora as doze são desenhadas pelo `IconeModalidade`, casando
+// o `icon` da api com uma chave do `DESENHOS`. Se a api servir uma modalidade
+// nova, o componente desenha a bola genérica — sem erro, sem aviso, só um
+// cartão com cara de placeholder. É aqui que isso reprova.
 //
-// Este é o contrário do modo de falha da seção 2: lá o risco é a landing
-// inventar um emoji, aqui é ela não desenhar nada.
+// O `iconFallback` continua conferido na seção 2: é contrato com a api, só não
+// é mais o que a landing desenha.
 {
-  const fonte = 'src/components/landing/CourtsSection.tsx'
+  const fonte = 'src/components/landing/IconeModalidade.tsx'
+  const codigo = arquivo(fonte)
+  const bloco = codigo.slice(codigo.indexOf('const DESENHOS'), codigo.indexOf('const GENERICO'))
   const desenhados = new Set(
-    [...arquivo(fonte).matchAll(/sport\.icon === '([^']+)'/g)].map((m) => m[1]),
+    [...bloco.matchAll(/^ {2}'?([a-z][a-z-]*)'?: \{$/gm)].map((m) => m[1]),
   )
-  const precisamDeDesenho = sports.filter((s) => s.iconFallback === null)
 
-  for (const s of precisamDeDesenho) {
+  if (desenhados.size === 0) {
+    problemas.push(`${fonte}: não achei o \`DESENHOS\` — a forma mudou e este script deixou de enxergá-lo`)
+  }
+  for (const s of sports) {
     if (!desenhados.has(s.icon)) {
-      problemas.push(
-        `${fonte}: a api serve ${s.label} com \`iconFallback: null\` e o \`iconeDe\` não tem ` +
-          `ramo para \`${s.icon}\` — o cartão sobe sem ícone`,
-      )
+      problemas.push(`${fonte}: a api serve ${s.label} com \`icon: '${s.icon}'\` e não há desenho para ele`)
     }
   }
   for (const icon of desenhados) {
-    if (!precisamDeDesenho.some((s) => s.icon === icon)) {
+    if (!sports.some((s) => s.icon === icon)) {
       problemas.push(
-        `${fonte}: o \`iconeDe\` desenha \`${icon}\`, e a api não serve modalidade sem emoji com ` +
-          'esse ícone — ou o identificador mudou, ou o desenho virou sobra',
+        `${fonte}: há desenho para \`${icon}\`, e a api não serve modalidade com esse ícone — ` +
+          'ou o identificador mudou, ou o desenho virou sobra',
       )
     }
   }
 
-  conferido.push(`${precisamDeDesenho.length} modalidades sem emoji com SVG próprio`)
+  // Quem escreve `<IconeModalidade icon="…" />` à mão também pode errar a grafia.
+  for (const caminho of [
+    'src/components/landing/HeroSection.tsx',
+    'src/components/landing/PrevisaoSection.tsx',
+  ]) {
+    for (const m of arquivo(caminho).matchAll(/<IconeModalidade icon="([^"]+)"/g)) {
+      if (!sports.some((s) => s.icon === m[1])) {
+        problemas.push(`${caminho}: desenha o ícone "${m[1]}", que a api não serve`)
+      }
+    }
+  }
+
+  conferido.push(`${desenhados.size} modalidades com desenho próprio`)
 }
 
 // ── 4. As tags de avaliação, nomeadas uma a uma no FAQ ──────────────────────

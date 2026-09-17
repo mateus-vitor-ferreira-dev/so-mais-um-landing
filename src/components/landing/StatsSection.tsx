@@ -38,12 +38,13 @@ interface Cartao {
    * tem desenho em boa parte das fontes. Numa seção de prova social, logo abaixo
    * do herói.
    *
-   * Isto **não** vale para o emoji de **modalidade** do `CourtsSection` e do
-   * `AppPreviewSection`, que fica. Ali ele tem fonte — a api decide em
-   * `src/constants/sports.ts` e o `contrato:check` reprova divergência — e
-   * repetir o mesmo símbolo que a tela de seleção do app mostra é coerência.
-   * O que não se sustenta é emoji para **métrica**: "gratuito" não tem emoji
-   * canônico, e foi por isso que saiu um bloco cinza. Ver #79.
+   * A #79 abriu uma exceção para o emoji de **modalidade** do `CourtsSection`
+   * e do `AppPreviewSection`, porque ali ele tinha fonte: a api decide em
+   * `src/constants/sports.ts` e o `contrato:check` reprova divergência. A
+   * exceção caiu na web#511 pelo mesmo motivo desta regra — ter fonte não muda
+   * que a fonte de quem visita é quem desenha — e as doze modalidades viraram
+   * SVG no `IconeModalidade`. O `iconFallback` segue conferido, só não é mais
+   * desenhado. Ver #79.
    */
   Icon: LucideIcon
   /** Linha de apoio, só onde acrescenta — nem todo cartão precisa. */

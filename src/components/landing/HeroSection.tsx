@@ -6,6 +6,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { ArrowRight, Calendar, MapPin, Medal, Trophy, Users, Wallet } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { prefereMenosMovimento } from '@/lib/movimento'
+import IconeModalidade from './IconeModalidade'
 
 export default function HeroSection() {
   const sectionRef   = useRef<HTMLElement>(null)
@@ -142,13 +143,13 @@ export default function HeroSection() {
                       acessibilidade, e um título aqui pulava do h1 para o h3 (web#511). */}
                   <p className="text-white font-bold text-lg">Beach Tennis de Quinta</p>
                 </div>
-                <span className="text-3xl">🎾</span>
+                <IconeModalidade icon="beach-tennis" tamanho={34} />
               </div>
 
               <div className="space-y-3 mb-5">
                 {/* Ícone lucide, e não emoji (web#511): emoji é fonte, e cada
-                    sistema desenha o seu. O 🎾 acima fica — é a modalidade, com
-                    o mesmo emoji que a api serve. */}
+                    sistema desenha o seu. A modalidade, acima, também é desenho:
+                    o do `IconeModalidade`, o mesmo da grade de modalidades. */}
                 {[
                   { Icon: Calendar, text: 'Quinta-feira, 19h' },
                   { Icon: MapPin,   text: 'Arena de Areia Centro' },
