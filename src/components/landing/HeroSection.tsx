@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, Medal, Trophy, Users } from 'lucide-react'
+import { buttonVariants } from '@/components/ui/button'
+import { ArrowRight, Calendar, MapPin, Medal, Trophy, Users, Wallet } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { prefereMenosMovimento } from '@/lib/movimento'
 
 export default function HeroSection() {
   const sectionRef   = useRef<HTMLElement>(null)
@@ -13,6 +15,9 @@ export default function HeroSection() {
   const cardRef      = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    // Sem movimento pedido: nem a entrada, nem o cartão seguindo o mouse.
+    if (prefereMenosMovimento()) return
+
     const ctx = gsap.context(() => {
       // Content entrance
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -68,9 +73,9 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_50%,rgba(34,197,94,0.1),transparent)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_60%_at_75%_55%,rgba(34,197,94,0.06),transparent)]" />
 
-      <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-10 md:pt-24 md:pb-16 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-        {/* Text side */}
-        <div>
+      <div className="relative w-full max-w-6xl mx-auto px-6 pt-20 pb-10 md:pt-24 md:pb-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+        {/* Text side — `min-w-0` para a coluna não crescer além da tela a 360px. */}
+        <div className="min-w-0">
           {/* Badge — sem `animate-ping`: a bolinha pulsando comunica "leitura ao
               vivo", e aqui não há nada sendo lido em tempo real. */}
           <div className="inline-flex items-center gap-2.5 bg-gray-900/80 border border-green-500/25 rounded-full px-4 py-2 mb-7 text-sm">
@@ -99,24 +104,31 @@ export default function HeroSection() {
             Beach tennis, vôlei, futsal, peteca, basquete: encontre partidas abertas na sua cidade, entre com um clique e sorteie os times na hora. Sem grupo de WhatsApp, sem confusão — só jogo.
           </p>
 
+          {/*
+            No celular os dois ocupam a largura toda: com 40px de folga de cada
+            lado e sem quebra de linha, o primeiro media 332px e passava da tela
+            de 360 (web#511).
+          */}
           <div ref={ctaRef} className="flex flex-wrap gap-4">
-            <a href="https://app.so-mais-um.com/register">
-              <Button size="xl" className="group btn-shimmer">
-                Entrar na próxima partida
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </Button>
+            <a
+              href="https://app.so-mais-um.com/register"
+              className={cn(buttonVariants({ size: 'xl' }), 'group btn-shimmer w-full px-6 sm:w-auto sm:px-10')}
+            >
+              Entrar na próxima partida
+              <ArrowRight size={18} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="#how-it-works">
-              <Button variant="ghost" size="xl" className="text-gray-300 hover:text-white">
-                Como funciona
-              </Button>
+            <a
+              href="#how-it-works"
+              className={cn(buttonVariants({ variant: 'ghost', size: 'xl' }), 'text-gray-300 hover:text-white w-full px-6 sm:w-auto sm:px-10')}
+            >
+              Como funciona
             </a>
           </div>
 
         </div>
 
-        {/* Card side */}
-        <div ref={cardRef} className="hidden md:flex items-center justify-center">
+        {/* Card side — desenho de tela, e por isso fora da árvore de acessibilidade. */}
+        <div ref={cardRef} className="hidden md:flex items-center justify-center" aria-hidden="true">
           <div className="relative w-full max-w-sm">
             {/* Green glow sphere */}
             <div className="absolute -inset-8 bg-green-500/8 rounded-full blur-3xl pointer-events-none" />
@@ -125,21 +137,24 @@ export default function HeroSection() {
             <div className="relative bg-gray-900 border border-white/10 rounded-3xl p-6 shadow-2xl shadow-black/50">
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Partida aberta</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Partida aberta</p>
                   <h3 className="text-white font-bold text-lg">Beach Tennis de Quinta</h3>
                 </div>
                 <span className="text-3xl">🎾</span>
               </div>
 
               <div className="space-y-3 mb-5">
+                {/* Ícone lucide, e não emoji (web#511): emoji é fonte, e cada
+                    sistema desenha o seu. O 🎾 acima fica — é a modalidade, com
+                    o mesmo emoji que a api serve. */}
                 {[
-                  { emoji: '📅', text: 'Quinta-feira, 19h' },
-                  { emoji: '📍', text: 'Arena de Areia Centro' },
-                  { emoji: '💰', text: 'R$ 25 por pessoa · Pix' },
-                ].map(({ emoji, text }, i) => (
+                  { Icon: Calendar, text: 'Quinta-feira, 19h' },
+                  { Icon: MapPin,   text: 'Arena de Areia Centro' },
+                  { Icon: Wallet,   text: 'R$ 25 por pessoa · Pix' },
+                ].map(({ Icon, text }, i) => (
                   <div key={i} className="flex items-center gap-3 text-sm text-gray-400">
-                    <span className="w-8 h-8 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center text-base flex-shrink-0">
-                      {emoji}
+                    <span className="w-8 h-8 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+                      <Icon size={15} className="text-green-400" />
                     </span>
                     {text}
                   </div>
@@ -147,7 +162,7 @@ export default function HeroSection() {
               </div>
 
               <div className="mb-5">
-                <div className="flex justify-between text-xs text-gray-500 mb-2">
+                <div className="flex justify-between text-xs text-gray-400 mb-2">
                   <span>Vagas preenchidas</span>
                   <span className="text-green-400 font-semibold">3 / 4</span>
                 </div>
@@ -156,7 +171,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <Button className="w-full btn-shimmer" size="sm">Entrar na partida</Button>
+              <span className={cn(buttonVariants({ size: 'sm' }), 'w-full')}>Entrar na partida</span>
             </div>
 
             {/* Floating badges with float animation */}
@@ -182,7 +197,7 @@ export default function HeroSection() {
               <span className="text-white text-sm font-semibold">Craque</span>
             </div>
 
-            <div className="animate-float absolute top-1/2 -translate-y-1/2 -right-14 bg-gray-800 border border-white/10 rounded-2xl px-3 py-2 shadow-xl flex items-center gap-2" style={{ animationDelay: '0.5s' }}>
+            <div className="animate-float absolute top-1/2 -translate-y-1/2 -right-2 lg:-right-14 bg-gray-800 border border-white/10 rounded-2xl px-3 py-2 shadow-xl flex items-center gap-2" style={{ animationDelay: '0.5s' }}>
               <Users size={14} className="text-blue-400" />
               <span className="text-white text-xs font-semibold">12 modalidades</span>
             </div>

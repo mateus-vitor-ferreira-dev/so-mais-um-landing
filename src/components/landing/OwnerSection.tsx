@@ -3,10 +3,12 @@
 import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
-import { ArrowRight, BarChart2, LayoutGrid, Users, MapPin, Package, ClipboardList, CheckCircle, CloudSun, LifeBuoy } from 'lucide-react'
+import { prefereMenosMovimento } from '@/lib/movimento'
+import { ArrowRight, Check, BarChart2, LayoutGrid, Users, MapPin, Package, ClipboardList, CheckCircle, CloudSun, LifeBuoy } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -53,7 +55,8 @@ export default function OwnerSection() {
   const sectionRef = useMobileScrollAnimation('.owner-title, .owner-card, .owner-benefit', { staggerMs: 80 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title   = sectionRef.current?.querySelector('.owner-title')
     const left    = sectionRef.current?.querySelector('.owner-left')
@@ -107,11 +110,12 @@ export default function OwnerSection() {
             ))}
 
             <div className="pt-4 flex flex-wrap gap-3">
-              <a href="https://app.so-mais-um.com/seja-parceiro">
-                <Button size="lg" className="group">
-                  Quero cadastrar meu espaço
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </Button>
+              <a
+                href="https://app.so-mais-um.com/seja-parceiro"
+                className={cn(buttonVariants({ size: 'lg' }), 'group w-full px-6 sm:w-auto sm:px-8')}
+              >
+                Quero cadastrar meu espaço
+                <ArrowRight size={16} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
 
@@ -125,7 +129,7 @@ export default function OwnerSection() {
               como faz com `/stats`, e preço escrito no código desatualiza na
               primeira mudança. Quem quiser o número vê a grade no painel.
             */}
-            <p className="text-gray-500 text-sm pt-1">
+            <p className="text-gray-400 text-sm pt-1">
               O painel do parceiro é uma assinatura mensal — jogar no Só+1 segue gratuito para
               os jogadores.{' '}
               <a
@@ -143,10 +147,10 @@ export default function OwnerSection() {
             <div className="bg-gray-800/60 border border-white/5 rounded-2xl p-6 space-y-5">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Arena Sul Lavras</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Arena Sul Lavras</p>
                   <h3 className="text-white font-bold text-lg">Painel do parceiro</h3>
                 </div>
-                <span className="text-xs text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-lg font-semibold">✓ Ativo</span>
+                <span className="text-xs text-green-400 bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-lg font-semibold inline-flex items-center gap-1"><Check size={12} aria-hidden="true" /> Ativo</span>
               </div>
 
               {/*
@@ -164,14 +168,14 @@ export default function OwnerSection() {
                 ].map((s, i) => (
                   <div key={i} className="bg-gray-900/60 rounded-xl p-3 text-center">
                     <div className="text-green-400 font-black text-xl">{s.value}</div>
-                    <p className="text-gray-600 text-[10px] mt-0.5 leading-tight">{s.label}</p>
+                    <p className="text-gray-400 text-xs mt-0.5 leading-tight">{s.label}</p>
                   </div>
                 ))}
               </div>
 
               {/* Courts list */}
               <div className="space-y-2">
-                <p className="text-xs text-gray-600 uppercase tracking-wider">Suas quadras</p>
+                <p className="text-xs text-gray-400 uppercase tracking-wider">Suas quadras</p>
                 {[
                   // `Court.status` é OPEN ou CLOSED — não existe reserva de
                   // quadra no produto, e "Reservada" sugeria um módulo inteiro
@@ -185,12 +189,12 @@ export default function OwnerSection() {
                       <span className={`w-2 h-2 rounded-full ${c.dot}`} />
                       <span className="text-gray-300 text-sm">{c.name}</span>
                     </div>
-                    <span className="text-gray-500 text-xs">{c.status}</span>
+                    <span className="text-gray-400 text-xs">{c.status}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex items-center gap-2 text-xs text-gray-600 pt-1">
+              <div className="flex items-center gap-2 text-xs text-gray-400 pt-1">
                 <CheckCircle size={12} className="text-green-500" />
                 Aprovado pelo time Só+1 · Visível para todos os jogadores
               </div>

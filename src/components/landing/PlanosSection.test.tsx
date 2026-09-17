@@ -124,12 +124,13 @@ describe('PlanosSection com a grade da API', () => {
   it('leva para o cadastro pela URL que a API devolveu', () => {
     render(<PlanosSection grade={GRADE} />)
 
-    // O nome acessível do link não atravessa o `<button>` aninhado, então o
-    // texto é conferido no botão e o destino no link — que é único na seção.
-    expect(screen.getByRole('button', { name: /cadastrar meu espaço/i })).toBeInTheDocument()
+    // O link é o único da seção, e leva o nome direto: não há mais `<button>`
+    // aninhado dentro dele (web#511).
+    const link = screen.getByRole('link', { name: /cadastrar meu espaço/i })
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
 
     // Cravar o domínio aqui mandaria quem abre um preview para produção.
-    expect(screen.getByRole('link')).toHaveAttribute('href', GRADE.parceiroUrl)
+    expect(link).toHaveAttribute('href', GRADE.parceiroUrl)
   })
 })
 

@@ -5,7 +5,8 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
-import { Bell, CalendarClock, Umbrella, Wind } from 'lucide-react'
+import { prefereMenosMovimento } from '@/lib/movimento'
+import { Bell, CalendarClock, CloudSun, Sun, Umbrella, Wind } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -65,16 +66,19 @@ const pontos = [
 
 /** O desenho da faixa de horas. É exemplo, e não dado: ver o `aria-hidden` do visual. */
 const horas = [
-  { hora: '15h', icone: '☀️', graus: '29°', chuva: '10%', risco: false },
-  { hora: '16h', icone: '💨', graus: '27°', chuva: '10%', risco: true },
-  { hora: '17h', icone: '⛅', graus: '26°', chuva: '20%', risco: false },
+  // Ícone lucide, e não emoji (web#511): ☀️, 💨 e ⛅ eram fonte, e cada sistema
+  // desenhava o seu.
+  { hora: '15h', Icone: Sun,      graus: '29°', chuva: '10%', risco: false },
+  { hora: '16h', Icone: Wind,     graus: '27°', chuva: '10%', risco: true },
+  { hora: '17h', Icone: CloudSun, graus: '26°', chuva: '20%', risco: false },
 ]
 
 export default function PrevisaoSection() {
   const sectionRef = useMobileScrollAnimation('.previsao-title, .previsao-ponto, .previsao-visual', { staggerMs: 80 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.previsao-title')
     const pontosEl = sectionRef.current?.querySelectorAll('.previsao-ponto')
@@ -145,29 +149,29 @@ export default function PrevisaoSection() {
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p className="text-white font-bold">Beach Tennis de Sábado</p>
-                    <p className="text-gray-500 text-xs">Arena de Areia · Sáb 15h às 17h</p>
+                    <p className="text-gray-400 text-xs">Arena de Areia · Sáb 15h às 17h</p>
                   </div>
                   <span className="text-2xl">🎾</span>
                 </div>
 
-                <p className="text-[11px] uppercase tracking-wider text-gray-500 font-semibold mb-2">
+                <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2">
                   Previsão do tempo
                 </p>
-                <div className="mb-3 rounded-lg bg-red-500/10 border border-red-500/30 px-3 py-2 text-sm font-semibold text-red-300">
-                  💨 Risco de vento forte às 16h
+                <div className="mb-3 rounded-lg bg-red-500/10 border border-red-500/30 px-3 py-2 text-sm font-semibold text-red-300 flex items-center gap-2">
+                  <Wind size={16} className="flex-shrink-0" /> Risco de vento forte às 16h
                 </div>
                 <div className="flex gap-2">
-                  {horas.map(({ hora, icone, graus, chuva, risco }) => (
+                  {horas.map(({ hora, Icone, graus, chuva, risco }) => (
                     <div
                       key={hora}
                       className={`flex-1 flex flex-col items-center gap-0.5 rounded-lg border px-2 py-2 ${
                         risco ? 'border-red-400/70 bg-red-500/5' : 'border-white/10 bg-gray-900'
                       }`}
                     >
-                      <span className="text-[11px] text-gray-500">{hora}</span>
-                      <span className="text-lg leading-none">{icone}</span>
+                      <span className="text-xs text-gray-400">{hora}</span>
+                      <Icone size={18} className={risco ? 'text-red-300' : 'text-gray-300'} />
                       <span className="text-sm font-bold text-white">{graus}</span>
-                      <span className="text-[11px] text-gray-500">{chuva}</span>
+                      <span className="text-xs text-gray-400">{chuva}</span>
                     </div>
                   ))}
                 </div>
@@ -177,7 +181,7 @@ export default function PrevisaoSection() {
                 <p className="flex items-center gap-2 text-white text-xs font-semibold">
                   <Bell size={13} className="text-green-400" /> Previsão de vento forte
                 </p>
-                <p className="text-gray-400 text-[11px] mt-0.5">para sua partida amanhã às 16h</p>
+                <p className="text-gray-400 text-xs mt-0.5">para sua partida amanhã às 16h</p>
               </div>
             </div>
           </div>

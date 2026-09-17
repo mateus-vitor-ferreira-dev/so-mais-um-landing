@@ -3,9 +3,11 @@
 import { useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { ArrowRight, BarChart3, Building2, Dumbbell, GraduationCap, Package, Ticket, Volleyball } from 'lucide-react'
 import type { GradeDePlanos, PlanoPublico } from '@/lib/planos'
 
@@ -84,7 +86,8 @@ export default function PlanosSection({ grade }: PlanosSectionProps) {
   })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const title = sectionRef.current?.querySelector('.planos-title')
     const cards = sectionRef.current?.querySelectorAll('.plano-card')
@@ -158,13 +161,11 @@ export default function PlanosSection({ grade }: PlanosSectionProps) {
         <div className="planos-cta text-center mt-10">
           {/* A URL vem da própria api, montada a partir do `APP_URL` dela: cravar
               o domínio aqui mandaria quem abre um preview para produção. */}
-          <a href={grade.parceiroUrl}>
-            <Button size="lg" className="group">
-              Cadastrar meu espaço
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Button>
+          <a href={grade.parceiroUrl} className={cn(buttonVariants({ size: 'lg' }), 'group')}>
+            Cadastrar meu espaço
+            <ArrowRight size={16} aria-hidden="true" className="group-hover:translate-x-1 transition-transform" />
           </a>
-          <p className="text-gray-600 text-sm mt-4">
+          <p className="text-gray-400 text-sm mt-4">
             Você escolhe o plano no painel, depois de cadastrar o espaço.
           </p>
         </div>

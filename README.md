@@ -66,9 +66,9 @@ flowchart LR
 
 ## ✨ Destaques de engenharia
 
-**Uma landing sem uma única imagem.** Não existe `<img>` nem `next/image` no projeto. As linhas de campo do Hero, da seção de modalidades e do CTA são **SVG inline animado por `stroke-dasharray` / `strokeDashoffset`** — o campo se desenha sozinho no viewport. O resto é ícone Lucide (SVG), gradiente CSS e emoji. Zero bitmap para baixar, zero LCP esperando arquivo de imagem, zero `next/image` para configurar.
+**Uma landing sem uma única imagem.** Não existe `<img>` nem `next/image` no projeto. As linhas de campo do Hero, da seção de modalidades e do CTA são **SVG inline animado por `stroke-dasharray` / `strokeDashoffset`** — o campo se desenha sozinho no viewport. O resto é ícone Lucide (SVG), gradiente CSS e o emoji de cada modalidade, que a api serve — emoji como ícone de interface saiu na web#511. Zero bitmap para baixar, zero LCP esperando arquivo de imagem, zero `next/image` para configurar.
 
-**Duas estratégias de animação, um breakpoint.** No desktop (`min-width: 768px`) as seções entram com GSAP `ScrollTrigger`. No mobile (`max-width: 767px`) cada componente **desiste do ScrollTrigger** e delega para `useMobileScrollAnimation` — um hook próprio com `IntersectionObserver` que só liga classes CSS com stagger. Scroll-linked animation é caro em tela pequena; keyframes CSS disparados uma vez, não. Cada componente checa `matchMedia` e monta **só um** dos dois caminhos.
+**Duas estratégias de animação, um breakpoint.** No desktop (`min-width: 768px`) as seções entram com GSAP `ScrollTrigger`. No mobile (`max-width: 767px`) cada componente **desiste do ScrollTrigger** e delega para `useMobileScrollAnimation` — um hook próprio com `IntersectionObserver` que só liga classes CSS com stagger. Scroll-linked animation é caro em tela pequena; keyframes CSS disparados uma vez, não. Cada componente checa `matchMedia` e monta **só um** dos dois caminhos — ou nenhum: com `prefers-reduced-motion`, o `lib/movimento.ts` faz os dois desistirem e o bloco já nasce visível, e o `globals.css` para as animações que não passam por JavaScript.
 
 **`gsap.context()` e `revert()` em todo componente.** Cada seção embrulha suas tweens em `gsap.context(..., sectionRef)` e devolve `ctx.revert()` no cleanup do effect. Sob o StrictMode do React 19 — que invoca o effect duas vezes em dev — nenhuma tween órfã e nenhum ScrollTrigger duplicado sobrevive. Sem isso, a segunda montagem deixaria triggers vazando e animações disparando em dobro.
 
@@ -209,7 +209,7 @@ A porta 3000 é o default do Next. Para trocar: `npm run dev -- -p 3001`.
 
 Abra `http://localhost:3000` e confira, nesta ordem:
 
-1. **O Hero anima sozinho** no load — o card da partida de beach tennis sobe, e o fundo da página inteira se mexe devagar atrás dele. Se aparecer estático, o GSAP não montou (olhe o console), ou o sistema está com *reduzir movimento* ligado, que para o fundo de propósito.
+1. **O Hero anima sozinho** no load — o card da partida de beach tennis sobe, e o fundo da página inteira se mexe devagar atrás dele. Se aparecer estático, o GSAP não montou (olhe o console), ou o sistema está com *reduzir movimento* ligado, que para o fundo e as entradas de propósito.
 2. **Role a página.** Cada seção entra com sua animação. Seção que fica em branco até você rolar até ela é **comportamento esperado** — os triggers são `once: true`.
 3. **A navbar muda** de transparente para escura com blur depois de ~40px de scroll.
 4. **A seção "Plataforma"** começa a ciclar partidas e notificações assim que entra no viewport (e só então).

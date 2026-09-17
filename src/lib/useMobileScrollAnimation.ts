@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { prefereMenosMovimento } from '@/lib/movimento'
 
 interface Options {
   threshold?: number
@@ -26,7 +27,8 @@ export function useMobileScrollAnimation(selector: string, options: Options = {}
   const { threshold = 0.1, staggerMs = 100 } = options
 
   useEffect(() => {
-    if (!window.matchMedia('(max-width: 767px)').matches) return
+    // Sem movimento pedido, nada é escondido: o bloco já nasce onde fica.
+    if (!window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const container = containerRef.current
     if (!container) return

@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { Search, Shuffle, Star, Zap, BarChart2, QrCode, UserCheck, ShieldCheck, UserRoundPlus } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -188,7 +189,8 @@ export default function FeaturesSection() {
   const sectionRef = useMobileScrollAnimation('.features-title, .feature-card', { staggerMs: 100 })
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const cards = sectionRef.current?.querySelectorAll('.feature-card')
     const title = sectionRef.current?.querySelector('.features-title')
@@ -244,7 +246,7 @@ export default function FeaturesSection() {
               </span>
 
               <h3 className="text-base font-bold text-white mb-2">{feat.title}</h3>
-              <p className="text-gray-500 leading-relaxed text-sm">{feat.description}</p>
+              <p className="text-gray-400 leading-relaxed text-sm">{feat.description}</p>
             </div>
           ))}
         </div>
