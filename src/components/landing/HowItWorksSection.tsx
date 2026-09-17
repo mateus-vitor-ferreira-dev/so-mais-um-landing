@@ -5,6 +5,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import { UserPlus, Search, Star } from 'lucide-react'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -50,7 +51,8 @@ export default function HowItWorksSection() {
   const lineRef    = useRef<SVGLineElement>(null)
 
   useEffect(() => {
-    if (window.matchMedia('(max-width: 767px)').matches) return
+    // O celular anima pelo IntersectionObserver; menos movimento, por nenhum.
+    if (window.matchMedia('(max-width: 767px)').matches || prefereMenosMovimento()) return
 
     const ctx = gsap.context(() => {
       if (lineRef.current) {
@@ -114,12 +116,12 @@ export default function HowItWorksSection() {
               <div key={i} className="step-card group flex flex-col items-center text-center">
                 <div className="relative mb-8">
                   {/* Large background number */}
-                  <span className={`absolute -top-6 left-1/2 -translate-x-1/2 text-8xl font-black ${step.color} opacity-[0.06] select-none pointer-events-none leading-none`}>
+                  <span className={`absolute -top-6 left-1/2 -translate-x-1/2 text-8xl font-black ${step.color} opacity-[0.06] select-none pointer-events-none leading-none`} aria-hidden="true">
                     {step.number}
                   </span>
 
                   <div className={`relative w-28 h-28 rounded-2xl bg-gray-800/80 border border-white/10 flex flex-col items-center justify-center gap-2 shadow-xl ${step.glow} group-hover:border-white/20 transition-all duration-300 group-hover:-translate-y-1`}>
-                    <span className={`text-xs font-bold tracking-widest ${step.color} opacity-60`}>{step.number}</span>
+                    <span className={`text-xs font-bold tracking-widest ${step.color}`}>{step.number}</span>
                     <div className={`w-12 h-12 rounded-xl ${step.bg} border ${step.border} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                       <step.Icon size={22} className={step.color} />
                     </div>
@@ -128,7 +130,7 @@ export default function HowItWorksSection() {
                 </div>
 
                 <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-gray-500 leading-relaxed max-w-xs">{step.description}</p>
+                <p className="text-gray-400 leading-relaxed max-w-xs">{step.description}</p>
               </div>
             ))}
           </div>
