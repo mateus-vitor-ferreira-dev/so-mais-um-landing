@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Building2, CalendarCheck, Gift, MapPin, Shapes, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
+import { prefereMenosMovimento } from '@/lib/movimento'
 import type { NumerosPublicos } from '@/lib/stats'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -133,6 +134,15 @@ export default function StatsSection({ numeros }: StatsSectionProps) {
   const countRefs  = useRef<(HTMLSpanElement | null)[]>([])
 
   useEffect(() => {
+    // Sem movimento pedido, o número já chega pronto, sem contar a partir do 0.
+    if (prefereMenosMovimento()) {
+      highlights.forEach((item, i) => {
+        const el = countRefs.current[i]
+        if (el) el.textContent = item.target + item.suffix
+      })
+      return
+    }
+
     const ctx = gsap.context(() => {
       const isMobile = window.matchMedia('(max-width: 767px)').matches
 
@@ -192,7 +202,7 @@ export default function StatsSection({ numeros }: StatsSectionProps) {
                 </div>
                 <p className="text-gray-300 text-sm font-semibold">{item.label}</p>
                 {item.description && (
-                  <p className="text-gray-600 text-xs mt-0.5">{item.description}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{item.description}</p>
                 )}
               </div>
             </div>
