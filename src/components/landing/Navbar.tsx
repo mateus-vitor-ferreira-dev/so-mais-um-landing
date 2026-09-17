@@ -134,10 +134,12 @@ export default function Navbar() {
         </div>
 
         {/* 24px de ícone com 10px de folga de cada lado: os 44px de alvo de
-            toque (web#511). A margem negativa mantém o ícone alinhado à borda. */}
+            toque (web#511). A margem negativa mantém o ícone alinhado à borda.
+            O Tailwind 4 tirou a mãozinha do `<button>`, e quem a devolve é a
+            classe, como no `buttonVariants`. */}
         <button
           type="button"
-          className="lg:hidden text-white p-2.5 -mr-2.5 rounded-full"
+          className="lg:hidden text-white p-2.5 -mr-2.5 rounded-full cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={menuOpen}

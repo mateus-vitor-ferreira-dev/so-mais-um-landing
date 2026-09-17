@@ -119,7 +119,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
         onClick={toggle}
         aria-expanded={open}
         aria-controls={idResposta}
-        className="w-full flex items-center justify-between p-5 text-left group"
+        className="w-full flex items-center justify-between p-5 text-left group cursor-pointer"
       >
         <span className="text-white font-semibold pr-4 text-sm md:text-base group-hover:text-green-400 transition-colors duration-200">
           {q}

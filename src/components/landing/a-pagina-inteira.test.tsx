@@ -116,4 +116,19 @@ describe('a página inteira', () => {
     expect(hero).toMatch(/beach tennis/i)
     expect(hero).toMatch(/vôlei/i)
   })
+
+  /**
+   * O Tailwind 4 tirou o `cursor: pointer` do `<button>` no preflight, e o
+   * botão sem classe mostra a seta: as oito perguntas do FAQ pareciam texto
+   * (web#511). O jsdom não aplica CSS, então o teste confere a classe.
+   */
+  it('todo botão mostra a mãozinha', () => {
+    const { container } = aPagina()
+
+    const botoes = [...container.querySelectorAll('button, summary, [role=button]')]
+    expect(botoes.length).toBeGreaterThan(0)
+    for (const botao of botoes) {
+      expect(botao.className, botao.textContent ?? '').toMatch(/\bcursor-pointer\b/)
+    }
+  })
 })
