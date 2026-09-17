@@ -137,7 +137,7 @@ export default function AcessoSection() {
 
         <div className="rounded-2xl border border-white/10 bg-gray-950/40 p-6 md:p-8">
           <p className="text-gray-300 font-medium mb-1">E dá para exigir mais do que o convite</p>
-          <p className="text-gray-400 text-sm mb-5 max-w-2xl">
+          <p className="text-gray-400 text-sm mb-5 max-w-leitura">
             Requisitos de entrada barram quem não atende antes do clique — e o app diz o motivo,
             em vez de deixar a pessoa tomar erro.
           </p>

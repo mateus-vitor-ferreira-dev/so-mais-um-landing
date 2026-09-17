@@ -7,6 +7,7 @@ import { Badge } from '@/components/ui/badge'
 import { useMobileScrollAnimation } from '@/lib/useMobileScrollAnimation'
 import { prefereMenosMovimento } from '@/lib/movimento'
 import { Star, Users, Trophy, Bell, MapPin, Calendar, Medal, Handshake } from 'lucide-react'
+import IconeModalidade from './IconeModalidade'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -15,18 +16,19 @@ gsap.registerPlugin(ScrollTrigger)
  * girava entre Society, Futsal e Campo, e quem joga na areia ou na quadra de
  * vôlei não se via na página. Futebol continua, mas não abre a lista.
  *
- * Só modalidades com emoji: futevôlei, vôlei de areia e peteca têm ícone
- * desenhado na `CourtsSection`, e emoji trocado aqui seria o erro que ela conta.
+ * O `icon` é o identificador que a api serve em `GET /sports`, e não o emoji: o
+ * desenho sai do `IconeModalidade`, o mesmo da grade de modalidades, e o
+ * `contrato:check` confere cada identificador contra a api (web#511).
  */
 const ALL_PARTIDAS = [
-  { id: 'BEACH_TENNIS', name: 'Beach Tennis de Sábado', local: 'Arena de Areia Centro', time: 'Sáb 08h', price: 'R$ 25', vagas: 1, total: 4, type: 'Beach Tennis', icon: '🎾' },
-  { id: 'VOLEI', name: 'Vôlei Misto', local: 'Ginásio UFLA', time: 'Ter 19h', price: 'R$ 18', vagas: 5, total: 12, type: 'Vôlei', icon: '🏐' },
-  { id: 'FUTSAL', name: 'Futsal de Sexta', local: 'Arena Indoor Lavras', time: 'Sex 20h', price: 'R$ 20', vagas: 3, total: 10, type: 'Futsal', icon: '👟' },
-  { id: 'BASQUETE', name: 'Basquete 3x3', local: 'Quadra do Parque', time: 'Qua 18h', price: 'R$ 10', vagas: 2, total: 6, type: 'Basquete', icon: '🏀' },
-  { id: 'TENIS', name: 'Tênis em Duplas', local: 'Clube Lavras', time: 'Dom 09h', price: 'R$ 35', vagas: 2, total: 4, type: 'Tênis', icon: '🥎' },
-  { id: 'SOCIETY', name: 'Society da Quinta', local: 'Arena Sul Lavras', time: 'Qui 19h', price: 'R$ 30', vagas: 4, total: 12, type: 'Society', icon: '⚽' },
-  { id: 'HANDBALL', name: 'Handebol de Domingo', local: 'Ginásio Municipal', time: 'Dom 16h', price: 'R$ 12', vagas: 6, total: 14, type: 'Handebol', icon: '🤾' },
-  { id: 'POKER', name: 'Torneio de Poker', local: 'Arena Poker Lavras', time: 'Sáb 14h', price: 'R$ 50', vagas: 8, total: 20, type: 'Poker', icon: '🃏' },
+  { id: 'BEACH_TENNIS', name: 'Beach Tennis de Sábado', local: 'Arena de Areia Centro', time: 'Sáb 08h', price: 'R$ 25', vagas: 1, total: 4, type: 'Beach Tennis', icon: 'beach-tennis' },
+  { id: 'VOLEI', name: 'Vôlei Misto', local: 'Ginásio UFLA', time: 'Ter 19h', price: 'R$ 18', vagas: 5, total: 12, type: 'Vôlei', icon: 'volei' },
+  { id: 'FUTSAL', name: 'Futsal de Sexta', local: 'Arena Indoor Lavras', time: 'Sex 20h', price: 'R$ 20', vagas: 3, total: 10, type: 'Futsal', icon: 'futsal' },
+  { id: 'BASQUETE', name: 'Basquete 3x3', local: 'Quadra do Parque', time: 'Qua 18h', price: 'R$ 10', vagas: 2, total: 6, type: 'Basquete', icon: 'basquete' },
+  { id: 'TENIS', name: 'Tênis em Duplas', local: 'Clube Lavras', time: 'Dom 09h', price: 'R$ 35', vagas: 2, total: 4, type: 'Tênis', icon: 'tenis' },
+  { id: 'SOCIETY', name: 'Society da Quinta', local: 'Arena Sul Lavras', time: 'Qui 19h', price: 'R$ 30', vagas: 4, total: 12, type: 'Society', icon: 'society' },
+  { id: 'HANDBALL', name: 'Handebol de Domingo', local: 'Ginásio Municipal', time: 'Dom 16h', price: 'R$ 12', vagas: 6, total: 14, type: 'Handebol', icon: 'handebol' },
+  { id: 'POKER', name: 'Torneio de Poker', local: 'Arena Poker Lavras', time: 'Sáb 14h', price: 'R$ 50', vagas: 8, total: 20, type: 'Poker', icon: 'poker' },
 ]
 
 const ALL_NOTIFS = [
@@ -127,9 +129,10 @@ export default function AppPreviewSection() {
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <span className="text-xs text-gray-400 mb-1 flex items-center gap-1.5">
-                        <span>{p.icon}</span> {p.type}
+                        <IconeModalidade icon={p.icon} tamanho={14} /> {p.type}
                       </span>
-                      <h4 className="text-white font-bold text-base">{p.name}</h4>
+                      {/* h3 sob o h2 da seção; era h4, e o nível pulava (web#511). */}
+                      <h3 className="text-white font-bold text-base">{p.name}</h3>
                     </div>
                     <span className="text-green-400 font-bold text-sm bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-lg flex-shrink-0">
                       {p.price}<span className="text-gray-400 font-normal">/p.</span>
@@ -168,7 +171,7 @@ export default function AppPreviewSection() {
                   M
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h4 className="text-white font-bold text-base">Mateus F.</h4>
+                  <h3 className="text-white font-bold text-base">Mateus F.</h3>
                   <div className="flex flex-wrap items-center gap-1 mt-0.5">
                     {[1,2,3,4,5].map(s => (
                       <Star key={s} size={11} className="text-yellow-400 fill-yellow-400" />

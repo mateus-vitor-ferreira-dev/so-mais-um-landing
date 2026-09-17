@@ -12,6 +12,12 @@
   --color-link: #4ade80;
   --color-link-hover: #86efac;
   --font-sans: var(--font-inter), 'Segoe UI', sans-serif;
+  /* A medida de leitura, 65 a 75 caracteres por linha (web#511): o `max-w-leitura`.
+     Não é `65ch` porque o `ch` é a largura do zero, e o zero da Inter é mais
+     largo que a letra média do português — 65ch davam uns 81 caracteres. Na
+     Inter, 1ch vale 1,25 caractere médio, então 56ch dão uns 70 em qualquer
+     tamanho de fonte. */
+  --container-leitura: 56ch;
 }
 
 html {
@@ -124,6 +130,7 @@ body {
 
 .legal-document p,
 .legal-document li {
+  max-width: var(--container-leitura);
   color: var(--color-texto-suave);
   line-height: 1.8;
 }
