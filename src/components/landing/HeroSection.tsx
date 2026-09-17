@@ -138,7 +138,9 @@ export default function HeroSection() {
               <div className="flex items-center justify-between mb-5">
                 <div>
                   <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Partida aberta</p>
-                  <h3 className="text-white font-bold text-lg">Beach Tennis de Quinta</h3>
+                  {/* `p`, e não `h3`: o cartão é desenho e fica fora da árvore de
+                      acessibilidade, e um título aqui pulava do h1 para o h3 (web#511). */}
+                  <p className="text-white font-bold text-lg">Beach Tennis de Quinta</p>
                 </div>
                 <span className="text-3xl">🎾</span>
               </div>

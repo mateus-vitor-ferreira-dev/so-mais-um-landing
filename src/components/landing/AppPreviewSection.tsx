@@ -129,7 +129,8 @@ export default function AppPreviewSection() {
                       <span className="text-xs text-gray-400 mb-1 flex items-center gap-1.5">
                         <span>{p.icon}</span> {p.type}
                       </span>
-                      <h4 className="text-white font-bold text-base">{p.name}</h4>
+                      {/* h3 sob o h2 da seção; era h4, e o nível pulava (web#511). */}
+                      <h3 className="text-white font-bold text-base">{p.name}</h3>
                     </div>
                     <span className="text-green-400 font-bold text-sm bg-green-500/10 border border-green-500/20 px-2.5 py-1 rounded-lg flex-shrink-0">
                       {p.price}<span className="text-gray-400 font-normal">/p.</span>
@@ -168,7 +169,7 @@ export default function AppPreviewSection() {
                   M
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h4 className="text-white font-bold text-base">Mateus F.</h4>
+                  <h3 className="text-white font-bold text-base">Mateus F.</h3>
                   <div className="flex flex-wrap items-center gap-1 mt-0.5">
                     {[1,2,3,4,5].map(s => (
                       <Star key={s} size={11} className="text-yellow-400 fill-yellow-400" />

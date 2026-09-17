@@ -131,4 +131,22 @@ describe('a página inteira', () => {
       expect(botao.className, botao.textContent ?? '').toMatch(/\bcursor-pointer\b/)
     }
   })
+
+  /**
+   * Quem navega por título no leitor de tela salta de um nível para o próximo,
+   * e um h4 logo depois de um h2 parece subseção de algo que não existe. Eram
+   * três: o cartão do hero (h1→h3), o preview do app e o rodapé (h2→h4).
+   */
+  it('os títulos não pulam nível', () => {
+    const { container } = aPagina()
+
+    const niveis = [...container.querySelectorAll('h1, h2, h3, h4, h5, h6')].map((h) => ({
+      nivel: Number(h.tagName[1]),
+      texto: h.textContent?.trim(),
+    }))
+    expect(niveis[0]?.nivel).toBe(1)
+    for (let i = 1; i < niveis.length; i++) {
+      expect(niveis[i].nivel, `${niveis[i - 1].texto} → ${niveis[i].texto}`).toBeLessThanOrEqual(niveis[i - 1].nivel + 1)
+    }
+  })
 })

@@ -58,8 +58,10 @@ export default function Footer() {
           </div>
 
           {/* Platform links */}
+          {/* h2, e não h4: o rodapé não é subseção do convite final, e o h4
+              direto depois do h2 dele pulava um nível (web#511). */}
           <div>
-            <h4 className="text-white font-semibold mb-5">Plataforma</h4>
+            <h2 className="text-white font-semibold mb-5">Plataforma</h2>
             {/* Cada link com 44px de altura de toque (web#511); o espaço entre eles já vem da altura. */}
             <ul>
               {platformLinks.map((link) => (
@@ -77,7 +79,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-white font-semibold mb-5">Contato</h4>
+            <h2 className="text-white font-semibold mb-5">Contato</h2>
             <ul className="space-y-1">
               {socialLinks.map(({ Icon, label, href, text }) => (
                 <li key={label}>
