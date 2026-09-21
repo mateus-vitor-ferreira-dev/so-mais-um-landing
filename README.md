@@ -60,7 +60,18 @@ flowchart LR
     style V fill:#1f2937,stroke:#4b5563,color:#fff
 ```
 
-> A landing é uma **folha do funil**: sem banco e sem estado. HTML pré-renderizado e servido pelo CDN da Vercel — o único trabalho dela é não perder o visitante antes do clique. A única variável de ambiente é `API_URL` (padrão `https://api.so-mais-um.com`), usada no servidor para ler `GET /stats` com revalidação de 5 minutos; se a API não responder, a prova social simplesmente some e a página continua de pé.
+> A landing é uma **folha do funil**: sem banco e sem estado. HTML pré-renderizado e servido pelo CDN da Vercel — o único trabalho dela é não perder o visitante antes do clique. A variável de ambiente principal é `API_URL` (padrão `https://api.so-mais-um.com`), usada no servidor para ler `GET /stats` com revalidação de 5 minutos; se a API não responder, a prova social simplesmente some e a página continua de pé — **e agora avisa** (#111).
+
+### 🛰️ Quando alguma coisa quebra aqui
+
+A landing é pública e anônima: quem encontra um defeito não está logado, não abre chamado e não reclama — fecha a aba. Por isso ela tem as três telas de sistema com a cara do produto (`error.tsx`, `global-error.tsx`, `not-found.tsx`, que antes não existiam) e manda para o Sentry o que não deveria ter acontecido:
+
+| Vai para o painel | Não vai |
+|---|---|
+| Erro de render, no servidor (`instrumentation.ts`) e no navegador (`error.tsx`, `global-error.tsx`) | **404** — endereço que não existe é navegação, não defeito |
+| `GET /stats` falhando, com o status: é o sumiço silencioso da prova social | |
+
+Ligue com `NEXT_PUBLIC_SENTRY_DSN`. **Sem ela nada acontece e o site sobe igual** — a mesma regra da api e da web. O SDK do navegador entra por `import()`: quem não vê erro nenhum não baixa uma linha dele, e o JS da primeira tela fica exatamente do tamanho que era.
 
 ---
 

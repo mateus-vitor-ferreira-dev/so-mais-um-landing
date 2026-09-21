@@ -6,6 +6,8 @@
  * inventado é afirmação falsa para quem visita. Estes vêm de `GET /stats`, que
  * conta no banco.
  */
+import { reportaErro } from './observabilidade'
+
 export interface NumerosPublicos {
   jogadores: number
   matchesAbertas: number
@@ -38,7 +40,21 @@ export async function getNumerosPublicos(): Promise<NumerosPublicos | null> {
       next: { revalidate: REVALIDAR_SEGUNDOS },
     })
 
-    if (!resposta.ok) return null
+    if (!resposta.ok) {
+      /**
+       * O `null` continua escondendo os cartões — muda só que agora **alguém
+       * fica sabendo** (#111).
+       *
+       * Esconder era e continua sendo o certo: "0 jogadores" na home é número
+       * errado, e número errado é afirmação falsa. Mas o acerto tinha um preço
+       * escondido: a prova social podia sumir por uma semana sem ninguém
+       * reparar, com a landing no ar, bonita, vendendo um produto que parece
+       * não ter usuário nenhum. Foi exatamente o que aconteceu em 21/09/2026,
+       * quando a api passou a responder 500 por cota de banco estourada.
+       */
+      reportaErro(new Error(`GET /stats respondeu ${resposta.status}`), { origem: 'stats' })
+      return null
+    }
 
     const corpo: unknown = await resposta.json()
     const dados = (corpo as { data?: Partial<NumerosPublicos> } | null)?.data
@@ -55,8 +71,10 @@ export async function getNumerosPublicos(): Promise<NumerosPublicos | null> {
     }
 
     return dados as NumerosPublicos
-  } catch {
-    // Rede fora, DNS, timeout: a landing continua de pé sem a prova social.
+  } catch (erro) {
+    // Rede fora, DNS, timeout: a landing continua de pé sem a prova social —
+    // e o evento diz qual dos três foi.
+    reportaErro(erro, { origem: 'stats' })
     return null
   }
 }

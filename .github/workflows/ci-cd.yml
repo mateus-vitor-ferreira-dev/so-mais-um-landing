@@ -108,7 +108,16 @@ jobs:
             npx vercel pull --yes --environment=preview --token=$VERCEL_TOKEN
           fi
 
+      # O build acontece AQUI, então é este ambiente que o Next inlina.
+      #
+      # As três do Sentry são opcionais: sem elas o site sobe igual e o erro
+      # fica só no log do servidor. `NEXT_PUBLIC_` é obrigatório no nome porque
+      # o `error.tsx` e o `global-error.tsx` rodam no navegador. Ver #111.
       - name: Build project artifacts
+        env:
+          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          NEXT_PUBLIC_COMMIT: ${{ github.sha }}
+          NEXT_PUBLIC_AMBIENTE: ${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }}
         run: |
           if [ "${{ github.ref }}" = "refs/heads/main" ]; then
             npx vercel build --prod --token=$VERCEL_TOKEN

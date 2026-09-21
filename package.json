@@ -16,6 +16,7 @@
     "contrato:check": "node scripts/verifica-contrato-com-o-produto.mjs"
   },
   "dependencies": {
+    "@sentry/nextjs": "^10.75.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "gsap": "^3.15.0",
