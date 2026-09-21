@@ -60,7 +60,17 @@ flowchart LR
     style V fill:#1f2937,stroke:#4b5563,color:#fff
 ```
 
-> A landing é uma **folha do funil**: sem banco e sem estado. HTML pré-renderizado e servido pelo CDN da Cloudflare — o único trabalho dela é não perder o visitante antes do clique. A única variável de ambiente é `API_URL` (padrão `https://api.so-mais-um.com`), usada no servidor para ler `GET /stats` com revalidação de 5 minutos; se a API não responder, a prova social simplesmente some e a página continua de pé.
+> A landing é uma **folha do funil**: sem banco e sem estado. HTML pré-renderizado e servido pelo CDN da Cloudflare — o único trabalho dela é não perder o visitante antes do clique. `API_URL` (padrão `https://api.so-mais-um.com`) é usada no build para ler `GET /stats`; o rebuild agendado atualiza esse retrato a cada três horas. Se a API não responder, a prova social simplesmente some e a página continua de pé.
+
+### 🛰️ Quando alguma coisa quebra aqui
+
+A landing é pública e anônima: quem encontra um defeito não está logado, não abre chamado e não reclama — fecha a aba. Por isso ela tem telas próprias para erro de página, erro global e 404, e pode enviar ao Sentry o que não deveria ter acontecido:
+
+| Vai para o painel | Não vai |
+|---|---|
+| Erro de render no navegador e falha de `GET /stats`, com contexto da origem | **404** — endereço que não existe é navegação, não defeito |
+
+Configure `NEXT_PUBLIC_SENTRY_DSN` no ambiente de build do Cloudflare, além de `NEXT_PUBLIC_COMMIT` e `NEXT_PUBLIC_AMBIENTE` para identificar a versão e separar produção de preview. Sem DSN, o site continua funcionando e apenas não envia eventos.
 
 ---
 
