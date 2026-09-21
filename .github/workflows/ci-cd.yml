@@ -59,6 +59,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.BOARD_TOKEN }}
 
+      # Aviso, nunca reprovação.
+      #
+      # Vulnerabilidade nova aparece em dependência transitiva sem ninguém ter
+      # tocado no repositório, e um PR reprovado por isso — numa sexta, no meio
+      # de outra coisa — ensina a desligar o passo. O que se quer aqui é que ela
+      # **apareça**; o que fazer com ela é decisão do board, não do CI.
+      #
+      # Mesma configuração na api e na web.
+      - name: Confere as dependências
+        run: |
+          if ! npm audit --audit-level=high; then
+            echo "::warning::O npm audit achou vulnerabilidade alta ou crítica. Rode 'npm audit' e leve para a issue de dependências."
+          fi
+
       - name: Build
         run: npm run build
 
