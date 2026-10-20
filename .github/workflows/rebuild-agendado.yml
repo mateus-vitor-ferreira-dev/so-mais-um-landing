@@ -1,0 +1,28 @@
+# O site é estático: os números, os esportes e os planos vêm da API no build, e só se
+# atualizam num build novo. Este agendamento pede um build ao Cloudflare a cada 3 horas,
+# pelo deploy hook do Workers Builds. Mudou um preço e não dá para esperar? Rode o
+# workflow na mão, pela aba Actions.
+#
+# Configurar uma vez: no painel do Cloudflare, Worker "so-mais-um-landing" → Settings →
+# Builds → Deploy Hooks, crie um hook da branch de produção e guarde a URL no segredo
+# CLOUDFLARE_DEPLOY_HOOK do repositório (Settings → Secrets and variables → Actions).
+name: Rebuild agendado
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pedir um build ao Cloudflare
+        env:
+          DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$DEPLOY_HOOK" ]; then
+            echo "::warning::Segredo CLOUDFLARE_DEPLOY_HOOK não configurado; nada a fazer."
+            exit 0
+          fi
+          curl --fail --silent --show-error -X POST "$DEPLOY_HOOK"
