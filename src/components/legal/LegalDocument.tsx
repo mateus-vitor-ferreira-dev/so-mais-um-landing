@@ -2,7 +2,7 @@ import Link from 'next/link'
 import type { ReactNode } from 'react'
 import LogoSvg from '@/components/LogoSvg'
 
-export const LEGAL_LAST_UPDATED = '10 de agosto de 2026'
+export const LEGAL_LAST_UPDATED = '30 de outubro de 2026'
 
 type LegalDocumentProps = {
   title: string
@@ -23,7 +23,7 @@ export default function LegalDocument({ title, description, children }: LegalDoc
         <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-green-400">Documentos legais</p>
         <h1 className="text-3xl font-bold tracking-tight text-white md:text-5xl">{title}</h1>
         <p className="mt-5 max-w-leitura text-lg leading-8 text-gray-400">{description}</p>
-        <p className="mt-5 text-sm text-gray-400">Última atualização: <time dateTime="2026-08-10">{LEGAL_LAST_UPDATED}</time></p>
+        <p className="mt-5 text-sm text-gray-400">Última atualização: <time dateTime="2026-10-30">{LEGAL_LAST_UPDATED}</time></p>
         {/* A caixa ocupa a largura da página; só o texto dentro dela fica na medida de leitura. */}
         <aside aria-label="Aviso sobre revisão jurídica" className="mt-8 rounded-2xl border border-amber-400/30 bg-amber-400/10 p-5 text-sm leading-6 text-amber-100">
           <p className="max-w-leitura">

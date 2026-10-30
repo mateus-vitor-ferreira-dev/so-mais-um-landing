@@ -32,7 +32,7 @@ export default function PoliticaDePrivacidadePage() {
       </section>
       <section>
         <h2>4. Compartilhamento e operadores</h2>
-        <p>Compartilhamos apenas o necessário para operar a plataforma. Atualmente utilizamos Google para autenticação, Stripe para pagamentos, Resend para envio de e-mails, Neon para banco de dados, Railway para infraestrutura da API e Vercel para hospedagem da aplicação e do site. Esses fornecedores tratam dados segundo seus próprios termos e as instruções aplicáveis aos serviços contratados.</p>
+        <p>Compartilhamos apenas o necessário para operar a plataforma. Atualmente utilizamos Google para autenticação, Stripe para pagamentos, Resend para envio de e-mails, Cloudinary para armazenamento das fotos de perfil, Hetzner para os servidores da API e do banco de dados e Cloudflare para hospedagem da aplicação e do site e para as cópias de segurança do banco de dados. Esses fornecedores tratam dados segundo seus próprios termos e as instruções aplicáveis aos serviços contratados.</p>
         <p>Também podemos compartilhar dados quando exigido por lei, ordem de autoridade competente ou para proteger direitos e a segurança da Só+1, dos usuários e de terceiros.</p>
       </section>
       <section>
