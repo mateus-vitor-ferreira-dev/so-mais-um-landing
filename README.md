@@ -7,7 +7,7 @@
 Landing de conversão do **Só+1**: descubra partidas abertas, entre com um clique e sorteie os times na hora — sem grupo de WhatsApp, sem confusão, só jogo.
 
 <p>
-  <a href="https://so-mais-um.com"><img src="https://img.shields.io/badge/▶_Ver_ao_vivo-so--mais--um.com-22C55E?style=for-the-badge&logo=vercel&logoColor=white" alt="Ao vivo"/></a>
+  <a href="https://so-mais-um.com"><img src="https://img.shields.io/badge/▶_Ver_ao_vivo-so--mais--um.com-22C55E?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Ao vivo"/></a>
   <a href="https://app.so-mais-um.com"><img src="https://img.shields.io/badge/Abrir_o_app-app.so--mais--um.com-3B82F6?style=for-the-badge&logo=googlechrome&logoColor=white" alt="App"/></a>
 </p>
 
@@ -18,7 +18,7 @@ Landing de conversão do **Só+1**: descubra partidas abertas, entre com um cliq
   <img src="https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript"/>
   <img src="https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind v4"/>
   <img src="https://img.shields.io/badge/GSAP-3-88CE02?style=flat-square&logo=greensock&logoColor=black" alt="GSAP"/>
-  <img src="https://img.shields.io/badge/deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel"/>
+  <img src="https://img.shields.io/badge/deploy-Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white" alt="Cloudflare Workers"/>
 </p>
 
 <sub>🟢 <strong>Em produção</strong> &nbsp;•&nbsp; 🏟️ <strong>12</strong> modalidades esportivas &nbsp;•&nbsp; 🎬 animações scroll-driven &nbsp;•&nbsp; ⚡ deploy contínuo</sub>
@@ -60,7 +60,7 @@ flowchart LR
     style V fill:#1f2937,stroke:#4b5563,color:#fff
 ```
 
-> A landing é uma **folha do funil**: sem banco e sem estado. HTML pré-renderizado e servido pelo CDN da Vercel — o único trabalho dela é não perder o visitante antes do clique. A única variável de ambiente é `API_URL` (padrão `https://api.so-mais-um.com`), usada no servidor para ler `GET /stats` com revalidação de 5 minutos; se a API não responder, a prova social simplesmente some e a página continua de pé.
+> A landing é uma **folha do funil**: sem banco e sem estado. HTML pré-renderizado e servido pelo CDN da Cloudflare — o único trabalho dela é não perder o visitante antes do clique. A única variável de ambiente é `API_URL` (padrão `https://api.so-mais-um.com`), usada no servidor para ler `GET /stats` com revalidação de 5 minutos; se a API não responder, a prova social simplesmente some e a página continua de pé.
 
 ---
 
@@ -76,7 +76,7 @@ flowchart LR
 
 **Fonte resolvida no build, não no runtime.** `next/font/google` carrega a Inter com `subsets: ['latin']` e `display: 'swap'`, exposta como a CSS var `--font-inter`. O arquivo é self-hospedado no build — nenhuma request para o Google Fonts no carregamento, nenhum FOIT, e o subset corta o que o português não usa.
 
-**O artefato que o CI testa é o artefato que vai pro ar.** O workflow não empurra o repositório para a Vercel rebuildar do outro lado: ele roda `vercel pull`, `vercel build --prod` e publica com **`vercel deploy --prebuilt`**. O build validado pelo lint no runner é literalmente o bundle servido em produção — sem "passou no CI, quebrou no deploy".
+**O CI valida e o Cloudflare publica.** O GitHub Actions roda lint e build em todo push e PR. A publicação é do **Workers Builds**, que faz o próprio build a partir do repositório: `main` vai para produção e os outros ramos viram preview. O workflow `rebuild-agendado.yml` pede um build novo a cada 3 horas, para os números, os esportes e os planos da API chegarem ao site.
 
 **Composição sem framework de UI.** Cada seção é um componente isolado em `components/landing/`, orquestrado por um `page.tsx` que não faz nada além de empilhar. `Button` e `Badge` são primitivos próprios no padrão shadcn/ui — **CVA** para variantes tipadas e `cn()` (`clsx` + `tailwind-merge`) para resolver conflito de classe, com `focus-visible:ring` no lugar por padrão. Nenhuma dependência de biblioteca de componentes.
 
@@ -143,7 +143,7 @@ flowchart LR
     </tr>
     <tr>
       <td><strong>Deploy</strong></td>
-      <td><img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white"/> — <code>vercel deploy --prebuilt</code> pelo CI; <code>main</code> vai para produção, o resto para preview</td>
+      <td><img src="https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white"/> — Workers Builds; <code>main</code> vai para produção, o resto para preview</td>
     </tr>
   </tbody>
 </table>
@@ -192,7 +192,7 @@ Pronto — **http://localhost:3000**. Não há passo 4: sem migration, sem seed,
 - o `next.config.ts` está vazio, sem `env` nem `publicRuntimeConfig`;
 - os únicos "endereços configuráveis" — `app.so-mais-um.com/login`, `/register`, `/seja-parceiro` — são links literais nos componentes.
 
-A landing não autentica, não consulta API e não persiste nada, então não há segredo para vazar. Os únicos secrets do projeto vivem no GitHub Actions (`VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`) e servem **só ao deploy** — nada disso é necessário para rodar local.
+A landing não autentica, não consulta API e não persiste nada, então não há segredo para vazar. O único secret do projeto vive no GitHub Actions (`CLOUDFLARE_DEPLOY_HOOK`) e serve **só ao rebuild agendado** — nada disso é necessário para rodar local.
 
 > Se um dia a landing ganhar formulário ou analytics, é aqui que a lista aparece. Até lá, qualquer `.env` que você criar é ignorado pelo código.
 
@@ -293,7 +293,7 @@ Foi o que motivou a suíte existir: são atributos que ninguém percebe quebrand
 
 `main` (produção · [so-mais-um.com](https://so-mais-um.com)) ← `develop` ← `feature/*` · `fix/*`
 
-O workflow `ci-cd.yml` roda em push e PR para `main` e `develop`: **Lint & Build** primeiro; só depois, e só em push, o job de deploy faz `vercel pull` → `vercel build` → `vercel deploy --prebuilt`. Push em `main` publica em produção; qualquer outro push vira preview. Commits em Conventional Commits (pt-BR).
+O workflow `ci-cd.yml` roda em push e PR para `main` e `develop`: **Lint & Build**. A publicação é do Workers Builds: push em `main` publica em produção; qualquer outro push vira preview. Commits em Conventional Commits (pt-BR).
 
 ---
 
